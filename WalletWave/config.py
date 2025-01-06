@@ -2,7 +2,7 @@ import argparse
 import yaml
 import os
 from yaml import YAMLError
-from utils.config_validators import *
+from WalletWave.utils.config_validators import *
 import logging
 
 class ConfigManager:
