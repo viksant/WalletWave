@@ -1,5 +1,6 @@
 import logging
 from WalletWave.config import parse_args
+from WalletWave.utils.strategy_utils import StrategyUtils, StrategyTypes
 from config import ConfigManager
 from utils.file_utils import FileUtils
 
@@ -16,13 +17,13 @@ class WalletWave:
         logging.basicConfig(level=logging.INFO) # todo add verbose option
         self.file_utils = FileUtils(self.config.path) # todo change path variable name to export path
 
-    def initialize(self):
+    def execute(self):
         data = self.strategy()
         self.export_data(data)
 
     def strategy(self):
         self.logger.info("Running strategy...")
-        data = ""
+        data = StrategyUtils(self.config, StrategyTypes.TOP_WALLETS) # todo add dynamic strategy selection
         return data
 
     def export_data(self, data, export_format = 'csv'):
@@ -44,7 +45,7 @@ def main():
         app = WalletWave(manager)
 
         # Run
-        app.initialize()
+        app.execute()
     except ValueError as e:
         print(f"Configuration Error: {e}")
         exit(1)
