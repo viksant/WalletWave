@@ -19,10 +19,10 @@ class TopWalletStrategy(StrategyInterface):
         """
         self.gmgn = gmgn()
         self.logger = setup_logger("TopWalletStrategy", log_level=logging.INFO)
-        self.config = config_manager.config
+        self.config = config_manager
 
     def execute(self):
-        self.run_strategy()
+        return self.run_strategy()
 
     def get_top_wallets(self, timeframe="7d", wallet_tag="smart_degen"):
         """

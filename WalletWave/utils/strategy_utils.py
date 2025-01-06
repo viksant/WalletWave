@@ -25,7 +25,7 @@ class StrategyUtils:
         self.strategy = StrategyTypes.get_strategy(strategy, config)
 
     def execute(self):
-        self.strategy.execute()
+        return self.strategy.execute()
 
 
 

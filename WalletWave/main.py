@@ -23,7 +23,7 @@ class WalletWave:
 
     def strategy(self):
         self.logger.info("Running strategy...")
-        data = StrategyUtils(self.config, StrategyTypes.TOP_WALLETS) # todo add dynamic strategy selection
+        data = StrategyUtils(self.config, StrategyTypes.TOP_WALLETS).execute() # todo add dynamic strategy selection
         return data
 
     def export_data(self, data, export_format = 'csv'):
