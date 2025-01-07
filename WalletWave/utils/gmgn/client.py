@@ -135,7 +135,8 @@ class Gmgn:
             self.request_count += 1
             if self.request_count % self.max_requests == 0:
                 self._rotate_headers()
-                self.max_requests = random.randint(1, 10)
+                self.max_requests = random.randint(*self.max_requests_range)
+                self.request_count = 0
                 # todo add logger
 
             time.sleep(2)
