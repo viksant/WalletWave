@@ -10,7 +10,8 @@ setup(
     install_requires=[
         "PyYAML",
         "fake-useragent",
-        "tls_client"
+        "tls_client",
+        "requests",
     ],
     url='https://github.com/LetsStartWithPurple/WalletWave',
     license='CC0 1.0 Universal (Public Domain Dedication)',

@@ -1,272 +1,169 @@
 import random
-import platform
 import tls_client
 from fake_useragent import UserAgent
+from typing import Optional, Dict, Any
+from requests.exceptions import HTTPError
 
-# author - 1f1n
-# date - 05/06/2024
+from WalletWave.utils.config_validators import validate_wallet_tag
 
-class gmgn:
-    BASE_URL = "https://gmgn.ai/defi/quotation"
+# TODO: Implement additional features like fetching transaction history or token analytics if supported by the API.
+# TODO: Add support for other blockchain networks in addition to Solana.
+# TODO: Create a CLI or web-based interface for interacting with the `Gmgn` class.
+# TODO: Explore multithreading or async requests to improve performance for concurrent API calls.
+# TODO: Add pagination handling for endpoints that return large datasets.
+# TODO: Consider integrating database support (e.g., SQLite, PostgreSQL) for persistent storage of API responses.
+
+class AgentMapper:
+    """
+    Maps tls_client client_identifiers to corresponding user-agents and platforms
+    with realistic operating system alignment.
+    """
+
+    # TODO: Expand `identifier_mapping` to include more browser and platform options if needed.
+    # TODO: Add logging for debugging when generating user-agent strings.
+    # TODO: Write unit tests for `AgentMapper` to ensure correct mapping and user-agent generation.
+    # TODO: Consider caching user-agent results to improve performance if the same identifier is used multiple times.
 
     def __init__(self):
-        pass
-
-    def randomiseRequest(self):
-        # Randomly choose a valid browser identifier
-        self.identifier = random.choice(
-            [browser for browser in tls_client.settings.ClientIdentifiers.__args__ if
-             browser.startswith(('chrome', 'safari', 'firefox', 'opera'))]
-        )
-        self.sendRequest = tls_client.Session(random_tls_extension_order=True, client_identifier=self.identifier)
-
-        # Extract parts of the identifier
-        parts = self.identifier.split('_')
-        identifier, version, *rest = parts
-        other = rest[0] if rest else None
-
-        # Detect OS dynamically
-        current_os = platform.system().lower()
-        if current_os == 'darwin':  # macOS
-            os_type = 'mac'
-        elif current_os == 'linux':
-            os_type = 'linux'
-        else:
-            os_type = 'windows'
-
-        # Adjust identifier and os_type for specific cases
-        if identifier == 'opera':
-            identifier = 'chrome'
-        elif version == 'ios':
-            os_type = 'ios'
-
-        self.user_agent = UserAgent(browsers=[identifier], os=[os_type]).random
-
-        self.headers = {
-            'Host': 'gmgn.ai',
-            'accept': 'application/json, text/plain, */*',
-            'accept-language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
-            'dnt': '1',
-            'priority': 'u=1, i',
-            'referer': 'https://gmgn.ai/?chain=sol',
-            'user-agent': self.user_agent
+        # Mapping of tls_client identifiers to browser, platform, and OS
+        self.identifier_mapping = {
+            # Chrome (desktop only)
+            **{
+                f"chrome_{version}": {
+                    "browser": "Chrome",
+                    "platform": "desktop",
+                    "os": "Windows",
+                }
+                for version in range(103, 121)
+            },
+            # Safari (desktop only)
+            "safari_15_6_1": {"browser": "Safari", "platform": "desktop", "os": "Mac OS X"},
+            "safari_16_0": {"browser": "Safari", "platform": "desktop", "os": "Mac OS X"},
+            # iOS (Safari)
+            "safari_ios_15_5": {"browser": "Mobile Safari", "platform": "mobile", "os": "iOS"},
+            "safari_ios_15_6": {"browser": "Mobile Safari", "platform": "mobile", "os": "iOS"},
+            "safari_ios_16_0": {"browser": "Mobile Safari", "platform": "mobile", "os": "iOS"},
+            # Firefox (desktop only)
+            **{
+                f"firefox_{version}": {
+                    "browser": "Firefox",
+                    "platform": "desktop",
+                    "os": "Linux",
+                }
+                for version in [102, 104, 105, 106, 108, 110, 117, 120]
+            },
+            # Opera (desktop only)
+            "opera_89": {"browser": "Opera", "platform": "desktop", "os": "Windows"},
+            "opera_90": {"browser": "Opera", "platform": "desktop", "os": "Windows"},
+            "opera_91": {"browser": "Opera", "platform": "desktop", "os": "Windows"},
+            # OkHttp (Android)
+            **{
+                f"okhttp4_android_{version}": {
+                    "browser": "Chrome Mobile",
+                    "platform": "mobile",
+                    "os": "Android",
+                }
+                for version in range(7, 14)
+            },
         }
-        
 
-    def getTokenInfo(self, contractAddress: str) -> dict:
-        """
-        Gets info on a token.
-        """
-        self.randomiseRequest()
-        if not contractAddress:
-            return "You must input a contract address."
-        url = f"{self.BASE_URL}/v1/tokens/sol/{contractAddress}"
+    def get_user_agent(self, client_identifier: str) -> str:
+        # validate client_identifier
+        mapping = self.identifier_mapping.get(client_identifier)
+        if not mapping:
+            raise ValueError(f"Unsupported client identifier: {client_identifier}")
 
-        request = self.sendRequest.get(url, headers=self.headers)
+        browser = mapping["browser"]
+        platform = mapping["platform"]
+        os_type = mapping["os"]
 
-        jsonResponse = request.json()
+        # generate user-agent
+        ua = UserAgent(browsers=[browser], platforms=[platform], os=[os_type])
+        return ua.random
 
-        return jsonResponse
-    
-    def getNewPairs(self, limit: int = None) -> dict:
-        """
-        Limit - Limits how many tokens are in the response.
-        """
-        self.randomiseRequest()
-        if not limit:
-            limit = 50
-        elif limit > 50:
-            return "You cannot have more than check more than 50 pairs."
-        
-        url = f"{self.BASE_URL}/v1/pairs/sol/new_pairs?limit={limit}&orderby=open_timestamp&direction=desc&filters[]=not_honeypot"
+    def get_random_client_and_agent(self) -> tuple[str, str]:
+        # choose a random client_identifier and generate matching user-agent
+        client_identifier = random.choice(list(self.identifier_mapping.keys()))
+        user_agent = self.get_user_agent(client_identifier)
+        return client_identifier, user_agent
 
-        request = self.sendRequest.get(url, headers=self.headers)
 
-        jsonResponse = request.json()['data']
+class Gmgn:
+    BASE_URL = "https://gmgn.ai/defi/quotation"
 
-        return jsonResponse
-    
-    def getTrendingWallets(self, timeframe: str = None, walletTag: str = None) -> dict:
-        """
-        Gets a list of trending wallets based on a timeframe and a wallet tag.
+    # TODO: Add logging to track successful and failed API requests.
+    # TODO: Write unit tests for all `Gmgn` methods (e.g., `get_token_info`, `get_trending_wallets`, `get_wallet_info`).
+    # TODO: Consolidate validation logic (e.g., for `timeframe`, `wallet_tag`, `period`) into reusable utility functions.
+    # TODO: Add retries for `_make_request` to handle transient network errors or timeouts.
+    # TODO: Add an optional timeout parameter to `_make_request` for better control over request time.
+    # TODO: Refactor `_generate_headers` to allow more dynamic header configurations if needed in the future.
+    # TODO: Modularize the code into separate files (e.g., `agent_mapper.py`, `gmgn.py`, `validators.py`) for better maintainability.
+    # TODO: Implement caching for frequently accessed endpoints (e.g., `get_token_info`) to reduce API load.
+    # TODO: Add detailed docstrings for all methods to ensure clarity for future developers.
+    # TODO: Validate wallet address format in `get_wallet_info` to avoid unnecessary API calls.
+    # TODO: Explore rate-limiting compliance for `gmgn.ai` API to avoid potential issues. (2 seconds)
 
-        Timeframes\n
-        1d = 1 Day\n
-        7d = 7 Days\n
-        30d = 30 days\n
+    def __init__(self):
+        self.agent_mapper = AgentMapper
+        self.session = tls_client.Session(random_tls_extension_order=True)
+        self.client, self.agent = self.agent_mapper.get_random_client_and_agent()
+        self.headers = self._generate_headers()
 
-        ----------------
+    def _generate_headers(self) -> Dict[str, str]:
+        return {
+            "Host": "gmgn.ai",
+            "accept": "application/json, text/plain, */*",
+            "accept-language": "en-US,en;q=0.9",
+            "dnt": "1",
+            "priority": "u=1, i",
+            "referer": "https://gmgn.ai/?chain=sol",
+            "user-agent": self.agent,
+        }
 
-        Wallet Tags\n
-        pump_smart = Pump.Fun Smart Money\n
-        smart_degen = Smart Money\n
-        reowned = KOL/VC/Influencer\n
-        snipe_bot = Snipe Bot\n
+    def _make_request(self, endpoint: str, params: Optional[Dict[str, Any]] = None) -> dict:
+        url = f"{self.BASE_URL}{endpoint}"
+        try:
+            response = self.session.get(url, headers=self.headers, params=params)
 
-        """
-        self.randomiseRequest()
-        if not timeframe:
-            timeframe = "7d"
-        if not walletTag:
-            walletTag = "smart_degen"
-        
-        url = f"{self.BASE_URL}/v1/rank/sol/wallets/{timeframe}?tag={walletTag}&orderby=pnl_{timeframe}&direction=desc"
+            if response.status_code >= 400:
+                raise RuntimeError(f"HTTP error {response.status_code}: {response.text}")
 
-        request = self.sendRequest.get(url, headers=self.headers)
+            return response.json()
+        except Exception as err:
+            raise RuntimeError(f"Request failed: {err}")
 
-        jsonResponse = request.json()['data']
+    def get_token_info(self, contract_address: str) -> dict:
+        if not contract_address:
+            raise ValueError("Must provide a contract address")
+        return self._make_request(f"/v1/tokens/sol/{contract_address}")
 
-        return jsonResponse
-    
-    def getTrendingTokens(self, timeframe: str = None) -> dict:
-        """
-        Gets a list of trending tokens based on a timeframe.
+    def get_trending_wallets(self, timeframe: str = "7d", wallet_tag: str = "smart_degen") -> dict:
+        valid_timeframes = ["1d", "7d", "30d"]
+        valid_wallet_tags = ["all", "pump_smart", "smart_degen", "reowned", "snipe_bot"]
 
-        Timeframes\n
-        1m = 1 Minute\n
-        5m = 5 Minutes\n
-        1h = 1 Hour\n
-        6h = 6 Hours\n
-        24h = 24 Hours\n
-        """
-        timeframes = ["1m", "5m", "1h", "6h", "24h"]
-        self.randomiseRequest()
-        if timeframe not in timeframes:
-            return "Not a valid timeframe."
+        if timeframe not in valid_timeframes or wallet_tag not in valid_wallet_tags:
+            raise ValueError("Invalid timeframe or wallet tag")
 
-        if not timeframe:
-            timeframe = "1h"
+        params = {
+            "tag": wallet_tag,
+            "orderby": f"pnl_{timeframe}",
+            "direction": "desc",
+        }
 
-        if timeframe == "1m":
-            url = f"{self.BASE_URL}/v1/rank/sol/swaps/{timeframe}?orderby=swaps&direction=desc&limit=20"
-        else:
-            url = f"{self.BASE_URL}/v1/rank/sol/swaps/{timeframe}?orderby=swaps&direction=desc"
-        
-        request = self.sendRequest.get(url, headers=self.headers)
+        return self._make_request(f"/v1/rank/sol/wallets/{timeframe}", params)
 
-        jsonResponse = request.json()['data']
+    def get_wallet_info(self, wallet_address: str, period: str = "7d") -> dict:
+        valid_periods = ["7d", "30d"]
+        if not wallet_address:
+            raise ValueError("Must provide a wallet address")
+        if period not in valid_periods:
+            raise ValueError(f"Invalid period: {period}")
 
-        return jsonResponse
+        params = {"period": period}
+        return self._make_request(f"/v1/smartmoney/sol/walletNew/{wallet_address}", params)
 
-    def getTokensByCompletion(self, limit: int = None) -> dict:
-        """
-        Gets tokens by their bonding curve completion progress.\n
-
-        Limit - Limits how many tokens in the response.
-        """
-        self.randomiseRequest()
-        if not limit:
-            limit = 50
-        elif limit > 50:
-            return "Limit cannot be above 50."
-
-        url = f"{self.BASE_URL}/v1/rank/sol/pump?limit={limit}&orderby=progress&direction=desc&pump=true"
-
-        request = self.sendRequest.get(url, headers=self.headers)
-
-        jsonResponse = request.json()['data']
-
-        return jsonResponse
-    
-    def findSnipedTokens(self, size: int = None) -> dict:
-        """
-        Gets a list of tokens that have been sniped.\n
-
-        Size - The amount of tokens in the response
-        """
-        self.randomiseRequest()
-        if not size:
-            size = 10
-        elif size > 39:
-            return "Size cannot be more than 39"
-        
-        url = f"{self.BASE_URL}/v1/signals/sol/snipe_new?size={size}&is_show_alert=false&featured=false"
-
-        request = self.sendRequest.get(url, headers=self.headers)
-
-        jsonResponse = request.json()['data']
-
-        return jsonResponse
-
-    def getGasFee(self):
-        """
-        Get the current gas fee price.
-        """
-        self.randomiseRequest()
-        url = f"{self.BASE_URL}/v1/chains/sol/gas_price"
-
-        request = self.sendRequest.get(url, headers=self.headers)
-
-        jsonResponse = request.json()['data']
-
-        return jsonResponse
-    
-    def getTokenUsdPrice(self, contractAddress: str = None) -> dict:
-        """
-        Get the realtime USD price of the token.
-        """
-        self.randomiseRequest()
-        if not contractAddress:
-            return "You must input a contract address."
-        
-        url = f"{self.BASE_URL}/v1/sol/tokens/realtime_token_price?address={contractAddress}"
-
-        request = self.sendRequest.get(url, headers=self.headers)
-
-        jsonResponse = request.json()['data']
-
-        return jsonResponse
-
-    def getTopBuyers(self, contractAddress: str = None) -> dict:
-        """
-        Get the top buyers of a token.
-        """
-        self.randomiseRequest()
-        if not contractAddress:
-            return "You must input a contract address."
-        
-        url = f"{self.BASE_URL}/v1/tokens/top_buyers/sol/{contractAddress}"
-
-        request = self.sendRequest.get(url, headers=self.headers)
-
-        jsonResponse = request.json()['data']
-
-        return jsonResponse
-
-    def getSecurityInfo(self, contractAddress: str = None) -> dict:
-        """
-        Gets security info about the token.
-        """
-        self.randomiseRequest()
-        if not contractAddress:
-            return "You must input a contract address."
-        
-        url = f"{self.BASE_URL}/v1/tokens/security/sol/{contractAddress}"
-
-        request = self.sendRequest.get(url, headers=self.headers)
-
-        jsonResponse = request.json()['data']
-
-        return jsonResponse
-    
-    def getWalletInfo(self, walletAddress: str = None, period: str = None) -> dict:
-        """
-        Gets various information about a wallet address.
-
-        Period - 7d, 30d - The timeframe of the wallet you're checking.
-        """
-        self.randomiseRequest()
-        periods = ["7d", "30d"]
-
-        if not walletAddress:
-            return "You must input a wallet address."
-        if not period or period not in periods:
-            period = "7d"
-        
-        url = f"{self.BASE_URL}/v1/smartmoney/sol/walletNew/{walletAddress}?period={period}"
-
-        request = self.sendRequest.get(url, headers=self.headers)
-
-        jsonResponse = request.json()['data']
-
-        return jsonResponse
+if __name__ == "__main__":
+    agent_mapper = AgentMapper()
+    client, agent = agent_mapper.get_random_client_and_agent()
+    print(f"Client Identifier: {client}")
+    print(f"User-Agent: {agent}")
