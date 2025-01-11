@@ -19,10 +19,10 @@ venv:
 	@if [ ! -d "$(VENV_DIR)" ]; then \
 		echo "Creating virtual environment..."; \
 		$(PYTHON) -m venv $(VENV_DIR); \
-		echo "Virtual environment created in $(VENV_DIR)."
-	else \ 
+		echo "Virtual environment created in $(VENV_DIR)."; \
+	else \
 		echo "Virtual environment already exists in $(VENV_DIR)."; \
-	fi 
+	fi
 
 # Install requirements
 .PHONY: install
