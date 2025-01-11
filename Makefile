@@ -16,9 +16,13 @@ help:
 # Create virtual env
 .PHONY: venv
 venv:
-	@echo "Creating virtual environment..."
-	@$(PYTHON) -m venv $(VENV_DIR)
-	@echo "Virtual environment created in $(VENV_DIR)."
+	@if [ ! -d "$(VENV_DIR)" ]; then \
+		echo "Creating virtual environment..."; \
+		$(PYTHON) -m venv $(VENV_DIR); \
+		echo "Virtual environment created in $(VENV_DIR)."
+	else \ 
+		echo "Virtual environment already exists in $(VENV_DIR)."; \
+	fi 
 
 # Install requirements
 .PHONY: install
