@@ -4,7 +4,7 @@ import time
 
 from WalletWave.config import ConfigManager
 from WalletWave.services.strategies.strategy_interface import StrategyInterface
-from WalletWave.utils.gmgn.client import gmgn
+from WalletWave.utils.gmgn.client import Gmgn
 from WalletWave.utils.logging_utils import setup_logger
 
 
@@ -17,7 +17,7 @@ class TopWalletStrategy(StrategyInterface):
         Initializes the top_wallet_strategy object.
 
         """
-        self.gmgn = gmgn()
+        self.gmgn = Gmgn()
         self.logger = setup_logger("TopWalletStrategy", log_level=logging.INFO)
         self.config = config_manager
 
@@ -33,7 +33,7 @@ class TopWalletStrategy(StrategyInterface):
         :return: List of top performing wallets.
         """
         try:
-            response = self.gmgn.getTrendingWallets(timeframe, wallet_tag)
+            response = self.gmgn.get_trending_wallets(timeframe, wallet_tag)
             return response['rank']
         except Exception as e:
             self.logger.error(f"Error fetching top wallets: {e}")
@@ -48,7 +48,7 @@ class TopWalletStrategy(StrategyInterface):
         :return: Wallet activity data.
         """
         try:
-            response = self.gmgn.getWalletInfo(walletAddress=wallet_address, period=period)
+            response = self.gmgn.get_wallet_info(wallet_address=wallet_address, period=period)
             return response
         except Exception as e:
             self.logger.error(f"Error analyzing wallet activity: {e}")
@@ -62,9 +62,9 @@ class TopWalletStrategy(StrategyInterface):
         :return: Token information and USD price.
         """
         try:
-            token_info = self.gmgn.getTokenInfo(contractAddress=token_address)
-            token_price = self.gmgn.getTokenUsdPrice(contractAddress=token_address)
-            return token_info, token_price
+            token_info = self.gmgn.get_token_info(contract_address=token_address)
+            # token_price = self.gmgn.getTokenUsdPrice(contract_address=token_address)
+            return token_info, 3 # todo add token price
         except Exception as e:
             self.logger.error(f"Error evaluating token: {e}")
             return {}, {}
