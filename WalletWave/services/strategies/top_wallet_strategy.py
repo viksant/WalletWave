@@ -73,32 +73,6 @@ class TopWalletStrategy(StrategyInterface):
             self.logger.error(f"Error evaluating token: {e}")
             return {}, {}
 
-    # todo: either remove or repurpose
-    # def print_analysis_output(self, wallets):
-    #     """
-    #     Print the analysis output in a tabulated format.
-    #
-    #     :param wallets: List of wallets to print.
-    #     """
-    #     headers = ["Rank", "Wallet Address", "Realized Profit (SOL or USD)", "Buy Transactions", "Sell Transactions",
-    #                "Last Active"]
-    #     table_data = []
-    #
-    #     for idx, wallet in enumerate(wallets):
-    #         last_active = datetime.utcfromtimestamp(wallet.get('last_active_timestamp', 0)).strftime(
-    #             '%Y-%m-%d %H:%M:%S')
-    #         table_data.append([
-    #             idx + 1,
-    #             wallet.get('wallet_address', 'N/A'),
-    #             wallet.get('realized_profit', 'N/A'),
-    #             wallet.get('buy', 'N/A'),
-    #             wallet.get('sell', 'N/A'),
-    #             last_active
-    #         ])
-    #
-    #     print("Note: The 'Realized Profit' is represented in SOL.")
-
-
     def run_strategy(self):
         """
         Orchestrate the overall strategy execution.

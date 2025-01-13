@@ -33,7 +33,6 @@ class WalletInfo:
     sell_7d: int
     buy: int
     sell: int
-    history_bought_cost: float
     token_avg_cost: float
     token_sold_avg_profit: float
     token_num: int
@@ -50,6 +49,7 @@ class WalletInfo:
     avg_holding_peroid: float
 
     # Fields with default values
+    history_bought_cost: Optional[float] = 0.0
     winrate: Optional[float] = 0.0
     twitter_username: Optional[str] = None
     twitter_name: Optional[str] = None
@@ -84,4 +84,5 @@ class WalletInfoResponse:
             "buy": self.wallet_data.buy,
             "sell": self.wallet_data.sell,
             "last_active_stamp": self.wallet_data.last_active_timestamp,
+            "winrate": self.wallet_data.winrate,
         }

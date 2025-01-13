@@ -4,6 +4,8 @@ from typing import Optional, Dict, Any
 import time
 
 from WalletWave.utils.gmgn_client.utils.agent_mapper import AgentMapper
+from WalletWave.utils.logging_utils import setup_logger
+
 
 # TODO: Implement additional features like fetching transaction history or token analytics if supported by the API.
 # TODO: Add support for other blockchain networks in addition to Solana.
@@ -26,6 +28,7 @@ class Gmgn:
     # TODO: Explore rate-limiting compliance for `gmgn_client.ai` API to avoid potential issues. (2 seconds)
 
     def __init__(self, max_requests_range: tuple = (1, 10)):
+        self.logger = setup_logger("Gmgn Client")
         self.agent_mapper = AgentMapper()
         self.session = tls_client.Session(random_tls_extension_order=True)
         self.client, self.agent, self.headers = None, None, None
@@ -33,9 +36,12 @@ class Gmgn:
         self.max_requests_range = max_requests_range
         self.max_requests = random.randint(*self.max_requests_range)
         self.error_count = 0
+
+        self.logger.info("Initiating Gmgn Client...")
         self._rotate_headers()
 
     def _generate_headers(self) -> Dict[str, str]:
+        self.logger.debug("Generating headers for the request.")
         return {
             "Host": "gmgn_client.ai",
             "accept": "application/json",
@@ -50,32 +56,36 @@ class Gmgn:
         # todo add timeout method
         self.client, self.agent = self.agent_mapper.get_random_client_and_agent()
         self.headers = self._generate_headers()
-        print(f"Rotated Headers -> Client: {self.client}, User-Agent: {self.agent}") #todo change to logger
+        self.logger.info(f"Rotated Headers -> Client: {self.client}, User-Agent: {self.agent}")
 
     def _clear_cookies(self):
-        print("There still appears to be a problem, lets destroy cookies!")
+        self.logger.warning("Lets destroy cookies!")
         self.session.cookies.clear()
-        print("Cleared cookies...")
+        self.logger.info("Cookies cleared...")
 
     def make_request(self, endpoint: str, params: Optional[Dict[str, Any]] = None) -> dict:
         url = endpoint
+        self.logger.debug(f"Preparing request to URL: {url} with params: {params}")
         try:
             self.request_count += 1
             if self.request_count % self.max_requests == 0:
+                self.logger.info("Max requests reached, rotating headers...")
                 self._rotate_headers()
                 self.max_requests = random.randint(*self.max_requests_range)
                 self.request_count = 0
-                # todo add logger
+
 
             time.sleep(2)
+            self.logger.debug("Sending request...")
             response = self.session.get(url, headers=self.headers, params=params)
 
             # rotate on rate-limit or block errors
             if response.status_code in [429, 403]:
                 self.error_count += 1
-                print(f"Encountered HTTP {response.status_code}, rotating headers and retrying...") #todo change to logger
+                self.logger.warning(f"Received HTTP {response.status_code}, rotating headers and retrying...")
                 self._rotate_headers()
                 if self.error_count == 3:
+                    self.logger.error("Multiple consecutive failures, clearing cookies and retrying...")
                     self._clear_cookies()
                     self.error_count = 0
                 time.sleep(random.randint(5, 10)) # backoff
@@ -84,6 +94,7 @@ class Gmgn:
             if response.status_code >= 400:
                 raise RuntimeError(f"HTTP error {response.status_code}: {response.text}")
 
+            self.logger.info(f"Request to {url} completed successfully.")
             return response.json()
         except Exception as err:
             raise RuntimeError(f"Request failed: {err}")

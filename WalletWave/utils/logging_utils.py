@@ -12,6 +12,11 @@ def setup_logger(name, log_level=logging.INFO, log_file = None):
     """
 
     logger = logging.getLogger(name)
+
+    # Avoid adding duplicate handlers
+    if logger.hasHandlers():
+        return logger
+
     logger.setLevel(log_level)
 
     #console handler
