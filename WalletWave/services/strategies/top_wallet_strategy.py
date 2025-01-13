@@ -4,7 +4,7 @@ import time
 
 from WalletWave.config import ConfigManager
 from WalletWave.services.strategies.strategy_interface import StrategyInterface
-from WalletWave.utils.gmgn.client import Gmgn
+from WalletWave.repositories.gmgn_repo import GmgnRepo
 from WalletWave.utils.logging_utils import setup_logger
 
 
@@ -17,7 +17,7 @@ class TopWalletStrategy(StrategyInterface):
         Initializes the top_wallet_strategy object.
 
         """
-        self.gmgn = Gmgn()
+        self.gmgn = GmgnRepo()
         self.logger = setup_logger("TopWalletStrategy", log_level=logging.INFO)
         self.config = config_manager
 
@@ -34,7 +34,9 @@ class TopWalletStrategy(StrategyInterface):
         """
         try:
             response = self.gmgn.get_trending_wallets(timeframe, wallet_tag)
-            return response['rank']
+            data = response.get("data", {})
+            rank = data.get("rank", [])
+            return rank
         except Exception as e:
             self.logger.error(f"Error fetching top wallets: {e}")
             return []
@@ -63,7 +65,7 @@ class TopWalletStrategy(StrategyInterface):
         """
         try:
             token_info = self.gmgn.get_token_info(contract_address=token_address)
-            # token_price = self.gmgn.getTokenUsdPrice(contract_address=token_address)
+            # token_price = self.gmgn_client.getTokenUsdPrice(contract_address=token_address)
             return token_info, 3 # todo add token price
         except Exception as e:
             self.logger.error(f"Error evaluating token: {e}")
@@ -108,7 +110,7 @@ class TopWalletStrategy(StrategyInterface):
 
             # Step 2: Analyze each wallet's activity
             for wallet in top_wallets:
-                wallet_address = wallet.get('wallet_address')
+                wallet_address = wallet.get('address')
                 wallet_activity = self.analyze_wallet_activity(wallet_address, period=self.config.timeframe)
 
                 # Log wallet activity data vertically

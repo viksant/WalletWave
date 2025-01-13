@@ -23,4 +23,4 @@ verbose: False
 wallet_settings:
   timeframe: "7d"
   wallet_tag: "smart_degen"
-  win_rate: 30
+  win_rate: 80
