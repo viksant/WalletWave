@@ -32,6 +32,7 @@ class Gmgn:
         self.request_count = 0
         self.max_requests_range = max_requests_range
         self.max_requests = random.randint(*self.max_requests_range)
+        self.error_count = 0
         self._rotate_headers()
 
     def _generate_headers(self) -> Dict[str, str]:
@@ -51,6 +52,11 @@ class Gmgn:
         self.headers = self._generate_headers()
         print(f"Rotated Headers -> Client: {self.client}, User-Agent: {self.agent}") #todo change to logger
 
+    def _clear_cookies(self):
+        print("There still appears to be a problem, lets destroy cookies!")
+        self.session.cookies.clear()
+        print("Cleared cookies...")
+
     def make_request(self, endpoint: str, params: Optional[Dict[str, Any]] = None) -> dict:
         url = endpoint
         try:
@@ -66,8 +72,12 @@ class Gmgn:
 
             # rotate on rate-limit or block errors
             if response.status_code in [429, 403]:
+                self.error_count += 1
                 print(f"Encountered HTTP {response.status_code}, rotating headers and retrying...") #todo change to logger
                 self._rotate_headers()
+                if self.error_count == 3:
+                    self._clear_cookies()
+                    self.error_count = 0
                 time.sleep(random.randint(5, 10)) # backoff
                 return self.make_request(endpoint, params)
 

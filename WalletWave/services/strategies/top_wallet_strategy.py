@@ -117,6 +117,12 @@ class TopWalletStrategy(StrategyInterface):
                 wallet_address = wallet.wallet_address
                 wallet_activity = self.analyze_wallet_activity(wallet_address, period=self.timeframe)
 
+                # Check if wallet_activity is valid
+                if not wallet_activity or not hasattr(wallet_activity, "to_summary"):
+                    self.logger.warning(
+                        f"Skipping wallet {wallet_address} due to empty or invalid activity data: {wallet_activity}")
+                    continue
+
                 # Log wallet activity data vertically
                 self.logger.info(f"Wallet Activity for {wallet_address}:")
                 self.logger.info(wallet_activity.to_summary(wallet_address))
@@ -124,7 +130,7 @@ class TopWalletStrategy(StrategyInterface):
                 # Filter wallets with a win rate higher than configured win_rate
                 winrate = wallet_activity.wallet_data.winrate
                 if winrate is not None and winrate >= self.win_rate:
-                    wallet_data.append(wallet_activity.wallet_data)
+                    wallet_data.append(wallet_activity.to_summary(wallet_address))
 
                 time.sleep(1)  # Rate limiting
 

@@ -24,7 +24,6 @@ class WalletInfo:
     pnl_30d: float
     realized_profit_7d: float
     realized_profit_30d: float
-    winrate: float
     all_pnl: float
     total_profit: float
     total_profit_pnl: float
@@ -48,9 +47,10 @@ class WalletInfo:
     followers_count: int
     is_contract: bool
     updated_at: int
-    avg_holding_peroid: int
+    avg_holding_peroid: float
 
     # Fields with default values
+    winrate: Optional[float] = 0.0
     twitter_username: Optional[str] = None
     twitter_name: Optional[str] = None
     ens: Optional[str] = None
@@ -77,7 +77,7 @@ class WalletInfoResponse:
         """
         return self.data
 
-    def to_summary(self, wallet_address: str):
+    def to_summary(self, wallet_address: str) -> dict:
         return {
             "wallet_address": wallet_address,
             "realized_profit": self.wallet_data.realized_profit,
