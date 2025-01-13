@@ -3,7 +3,7 @@ import tls_client
 from typing import Optional, Dict, Any
 import time
 
-from utils.agent_mapper import AgentMapper
+from WalletWave.utils.gmgn_client.utils.agent_mapper import AgentMapper
 
 # TODO: Implement additional features like fetching transaction history or token analytics if supported by the API.
 # TODO: Add support for other blockchain networks in addition to Solana.
@@ -46,6 +46,7 @@ class Gmgn:
         }
 
     def _rotate_headers(self):
+        # todo add timeout method
         self.client, self.agent = self.agent_mapper.get_random_client_and_agent()
         self.headers = self._generate_headers()
         print(f"Rotated Headers -> Client: {self.client}, User-Agent: {self.agent}") #todo change to logger

@@ -40,7 +40,7 @@ class RankEntry:
     tags: List[str] = field(default_factory=list)
     twitter_name: Optional[str] = None
     followers_count: Optional[int] = 0
-    is_blue_verified: Optional[bool] = False
+    is_blue_verified: Optional[int] = 0
     twitter_description: Optional[str] = None
     name: Optional[str] = None
     avg_hold_time: Optional[int] = 0
@@ -60,10 +60,21 @@ class RankEntry:
     daily_profit_7d: List[DailyProfit] = field(default_factory=list)
     txs: Optional[int] = None
     token_num_7d: Optional[int] = None
-    avg_holding_period_7d: Optional[int] = None
+    avg_holding_period_7d: Optional[float] = None
 
 @dataclass
-class GmgnResponse:
+class WalletsResponse:
     code: int
     msg: str
     data: Dict[str, List[RankEntry]]
+
+    @property
+    def rank(self) -> List[RankEntry]:
+        """
+        Getter for the 'rank' data
+
+        Returns:
+            List[RankEntry]: A list of RankEntry objects or an empty list if 'rank' is missing.
+        """
+
+        return self.data.get("rank", [])

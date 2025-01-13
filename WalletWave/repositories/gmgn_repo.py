@@ -1,6 +1,8 @@
 from WalletWave.utils.gmgn_client.client import Gmgn
 from WalletWave.utils.gmgn_client.utils.gmgn_endpoints import GmgnEndpoints
-from typing import Optional, Dict, Any
+from WalletWave.utils.gmgn_client.schemas import *
+from WalletWave.utils.gmgn_client.utils.dataclass_transformer import transform
+
 
 class GmgnRepo:
     def __init__(self):
@@ -11,7 +13,7 @@ class GmgnRepo:
         self.endpoint = GmgnEndpoints
 
 
-    def get_trending_wallets(self, timeframe: str, wallet_tag: str, order: str = "desc") -> dict:
+    def get_trending_wallets(self, timeframe: str, wallet_tag: str, order: str = "desc") -> WalletsResponse:
         """
         Fetches trending wallets for a given timeframe and wallet tag.
 
@@ -21,7 +23,7 @@ class GmgnRepo:
             order (str): Order to sort the wallets ("desc", "asc") Default: "desc"
 
         Returns:
-            dict: The response from the GMGN API containing trending wallet data.
+            WalletsResponse: The response from the GMGN API containing trending wallet data.
 
         Raises:
             ValueError: If the provided timeframe or wallet tag is invalid.
@@ -42,7 +44,9 @@ class GmgnRepo:
         url = self.endpoint.get_url(self.endpoint.TRENDING_WALLETS, timeframe=timeframe)
 
         # Make the request
-        return self.client.make_request(url, params)
+        response = self.client.make_request(url, params)
+
+        return transform(response, WalletsResponse)
 
     def get_token_info(self, contract_address: str) -> dict:
         if not contract_address:
@@ -52,7 +56,7 @@ class GmgnRepo:
         #make request
         return self.client.make_request(url)
 
-    def get_wallet_info(self, wallet_address: str, period: str = "7d") -> dict:
+    def get_wallet_info(self, wallet_address: str, period: str = "7d") -> WalletInfoResponse:
         valid_periods = ["7d", "30d"]
         if not wallet_address:
             raise ValueError("Must provide a wallet address")
@@ -61,10 +65,18 @@ class GmgnRepo:
 
         params = {"period": period}
 
+        # build the endpoint url
         url = self.endpoint.get_url(self.endpoint.WALLET_INFO, wallet_address=wallet_address)
 
-        return self.client.make_request(url, params)
+        #make request
+        response = self.client.make_request(url, params)
+
+        return transform(response, WalletInfoResponse)
 
 
+if __name__ == "__main__":
+    repo = GmgnRepo()
+    test = repo.get_trending_wallets("7d", "smart_degen")
 
-
+    for wallet in test.rank:
+        print(f"Address: {wallet.wallet_address}")

@@ -10,7 +10,8 @@ dependencies=[
     "tls_client",
     "requests",
     "PyYAML",
-    "fake-useragent"
+    "fake-useragent",
+    "dacite"
 ]
 keywords = ['crypto', 'wallet', 'scanner', 'solana', 'copy trading']
 requires-python = ">= 3.8"

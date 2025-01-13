@@ -33,7 +33,7 @@ class TokenInfo:
     burn_status: Optional[str] = None
 
 @dataclass
-class TokenResponse:
+class TokenInfoResponse:
     code: int
     msg: str
     data: List[TokenInfo]

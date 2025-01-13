@@ -20,6 +20,9 @@ class TopWalletStrategy(StrategyInterface):
         self.gmgn = GmgnRepo()
         self.logger = setup_logger("TopWalletStrategy", log_level=logging.INFO)
         self.config = config_manager
+        self.timeframe = config_manager.timeframe
+        self.wallet_tag = config_manager.wallet_tag
+        self.win_rate = config_manager.win_rate
 
     def execute(self):
         return self.run_strategy()
@@ -34,9 +37,7 @@ class TopWalletStrategy(StrategyInterface):
         """
         try:
             response = self.gmgn.get_trending_wallets(timeframe, wallet_tag)
-            data = response.get("data", {})
-            rank = data.get("rank", [])
-            return rank
+            return response.rank
         except Exception as e:
             self.logger.error(f"Error fetching top wallets: {e}")
             return []
@@ -56,6 +57,7 @@ class TopWalletStrategy(StrategyInterface):
             self.logger.error(f"Error analyzing wallet activity: {e}")
             return {}
 
+    # todo: not being used. repurpose or remove
     def evaluate_token(self, token_address):
         """
         Evaluate a token using the getTokenInfo and getTokenUsdPrice endpoints.
@@ -71,29 +73,31 @@ class TopWalletStrategy(StrategyInterface):
             self.logger.error(f"Error evaluating token: {e}")
             return {}, {}
 
-    def print_analysis_output(self, wallets):
-        """
-        Print the analysis output in a tabulated format.
+    # todo: either remove or repurpose
+    # def print_analysis_output(self, wallets):
+    #     """
+    #     Print the analysis output in a tabulated format.
+    #
+    #     :param wallets: List of wallets to print.
+    #     """
+    #     headers = ["Rank", "Wallet Address", "Realized Profit (SOL or USD)", "Buy Transactions", "Sell Transactions",
+    #                "Last Active"]
+    #     table_data = []
+    #
+    #     for idx, wallet in enumerate(wallets):
+    #         last_active = datetime.utcfromtimestamp(wallet.get('last_active_timestamp', 0)).strftime(
+    #             '%Y-%m-%d %H:%M:%S')
+    #         table_data.append([
+    #             idx + 1,
+    #             wallet.get('wallet_address', 'N/A'),
+    #             wallet.get('realized_profit', 'N/A'),
+    #             wallet.get('buy', 'N/A'),
+    #             wallet.get('sell', 'N/A'),
+    #             last_active
+    #         ])
+    #
+    #     print("Note: The 'Realized Profit' is represented in SOL.")
 
-        :param wallets: List of wallets to print.
-        """
-        headers = ["Rank", "Wallet Address", "Realized Profit (SOL or USD)", "Buy Transactions", "Sell Transactions",
-                   "Last Active"]
-        table_data = []
-
-        for idx, wallet in enumerate(wallets):
-            last_active = datetime.utcfromtimestamp(wallet.get('last_active_timestamp', 0)).strftime(
-                '%Y-%m-%d %H:%M:%S')
-            table_data.append([
-                idx + 1,
-                wallet.get('wallet_address', 'N/A'),
-                wallet.get('realized_profit', 'N/A'),
-                wallet.get('buy', 'N/A'),
-                wallet.get('sell', 'N/A'),
-                last_active
-            ])
-
-        print("Note: The 'Realized Profit' is represented in SOL.")
 
     def run_strategy(self):
         """
@@ -101,7 +105,7 @@ class TopWalletStrategy(StrategyInterface):
         """
         try:
             # Step 1: Get top wallets
-            top_wallets = self.get_top_wallets(timeframe=self.config.timeframe, wallet_tag=self.config.wallet_tag)
+            top_wallets = self.get_top_wallets(timeframe=self.timeframe, wallet_tag=self.wallet_tag)
             if not top_wallets:
                 self.logger.warning("No top wallets found.")
                 return
@@ -110,41 +114,22 @@ class TopWalletStrategy(StrategyInterface):
 
             # Step 2: Analyze each wallet's activity
             for wallet in top_wallets:
-                wallet_address = wallet.get('address')
-                wallet_activity = self.analyze_wallet_activity(wallet_address, period=self.config.timeframe)
+                wallet_address = wallet.wallet_address
+                wallet_activity = self.analyze_wallet_activity(wallet_address, period=self.timeframe)
 
                 # Log wallet activity data vertically
                 self.logger.info(f"Wallet Activity for {wallet_address}:")
-                for key, value in wallet_activity.items():
-                    self.logger.info(f"{key}: {value}")
+                self.logger.info(wallet_activity.to_summary(wallet_address))
 
-                # Filter wallets with a win rate higher than 0.6
-                winrate = wallet_activity.get('winrate', 0)
-                if winrate is not None and winrate >= self.config.win_rate:
-                    wallet_info = {
-                        'wallet_address': wallet_address,
-                        'realized_profit': wallet_activity.get('realized_profit', 'N/A'),
-                        'buy': wallet_activity.get('buy', 'N/A'),
-                        'sell': wallet_activity.get('sell', 'N/A'),
-                        'last_active_timestamp': wallet_activity.get('last_active_timestamp', 0)
-                    }
+                # Filter wallets with a win rate higher than configured win_rate
+                winrate = wallet_activity.wallet_data.winrate
+                if winrate is not None and winrate >= self.win_rate:
+                    wallet_data.append(wallet_activity.wallet_data)
 
-                    wallet_data.append(wallet_info)
-
-                    # Step 3: Evaluate tokens traded by the wallet
-                    for trade in wallet_activity.get('trades', []):
-                        token_address = trade.get('token_address')
-                        token_info, token_price = self.evaluate_token(token_address)
-                        self.logger.info(f"Token Info for {token_address}: {token_info}")
-                        self.logger.info(f"Token Price for {token_address}: {token_price}")
-
-                    time.sleep(1)  # Rate limiting
+                time.sleep(1)  # Rate limiting
 
             # Step 4: return data
             return wallet_data
-
-            # Step 5: Print the analysis output
-            #self.print_analysis_output(wallet_data)
 
         except Exception as e:
             self.logger.error(f"Error running strategy: {e}")
