@@ -12,10 +12,10 @@ class ConfigManager:
     Wallet Wave configuration manager
     """
     def __init__(self, args = None):
+        self.logger = setup_logger("ConfigManager")
         self._config_path = os.path.abspath(args.config)
         self._config_data = self._load_config()
         self._args = args
-        self.logger = setup_logger("ConfigManager")
         self._final_config = self._merge_configurations()
 
     def _load_config(self):
