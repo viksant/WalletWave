@@ -43,7 +43,7 @@ def print_wave_banner():
                         .:-*+@@@@@@@@@@@@@%+{RESET}                          
 
 
-                      ==WELCOME TO WALLETWAVE==                                                                                                             
+                      {BLUE}==WELCOME TO WALLETWAVE=={RESET}                                                                                                             
     """
     print(wave_art)
 
