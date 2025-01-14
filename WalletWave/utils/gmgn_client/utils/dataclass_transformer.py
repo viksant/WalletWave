@@ -1,6 +1,11 @@
+import logging
 from typing import Type, TypeVar, Union, Dict, Any
 from dataclasses import is_dataclass, asdict
 import dacite
+from WalletWave.utils.logging_utils import setup_logger
+
+# Initialize logger
+logger = setup_logger("TransformUtils", log_level=logging.DEBUG)
 
 T = TypeVar("T")
 
@@ -19,13 +24,16 @@ def transform(data: Any, dataclass_type: Type[T]) -> T:
         ValueError: if type is not a dataclass
         TypeError: if data is not dictionary or list
     """
+    logger.debug(f"Starting transformation to dataclass: {dataclass_type.__name__}")
 
     if not is_dataclass(dataclass_type):
         raise ValueError(f"{dataclass_type} is not a valid dataclass") # todo enter logging
 
     if isinstance(data, list):
+        logger.debug(f"Transforming a list of {len(data)} items to {dataclass_type.__name__}.")
         return [dacite.from_dict(dataclass_type, item) for item in data]
     elif isinstance(data, dict):
+        logger.debug(f"Transforming a dictionary to {dataclass_type.__name__}.")
         return dacite.from_dict(dataclass_type, data)
     else:
         raise TypeError(f"Unsupported data type: {type(data)}. Must be a dictionary or list.")
@@ -42,17 +50,23 @@ def to_dict(obj: Any, extra_fields: Dict[str, Any] = None, dataclass_type: Type[
     Returns:
         Union[dict, T]: The converted dictionary with additional fields or a dataclass instance.
     """
+    logger.debug(f"Converting object of type {type(obj).__name__} to dictionary.")
+
     if is_dataclass(obj):
+        logger.debug("Object is a dataclass. Converting to dictionary.")
         result = asdict(obj)
     elif isinstance(obj, dict):
+        logger.debug("Object is a dictionary. No conversion needed.")
         result = obj
     else:
         raise TypeError(f"Unsupported type {type(obj)}. Must be a dataclass or dict.")
 
     if extra_fields:
+        logger.debug(f"Adding extra fields to the dictionary: {extra_fields}")
         result.update(extra_fields)
 
     if dataclass_type:
+        logger.debug(f"Converting dictionary back to dataclass: {dataclass_type.__name__}")
         return dacite.from_dict(dataclass_type, result)
 
     return result

@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
-from typing import List, Optional, Dict
+from typing import List, Optional
+
 
 @dataclass
 class Status:

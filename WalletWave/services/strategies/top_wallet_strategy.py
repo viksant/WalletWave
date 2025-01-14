@@ -1,14 +1,13 @@
-from datetime import datetime
 import logging
 import time
 from typing import List
 
 from WalletWave.config import ConfigManager
-from WalletWave.services.strategies.strategy_interface import StrategyInterface
 from WalletWave.repositories.gmgn_repo import GmgnRepo
+from WalletWave.services.strategies.strategy_interface import StrategyInterface
 from WalletWave.utils.gmgn_client.schemas.wallet_info import WalletInfo
-from WalletWave.utils.logging_utils import setup_logger
 from WalletWave.utils.gmgn_client.utils.dataclass_transformer import to_dict
+from WalletWave.utils.logging_utils import setup_logger
 
 
 class TopWalletStrategy(StrategyInterface):

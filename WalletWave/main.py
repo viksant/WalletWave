@@ -1,4 +1,4 @@
-import logging
+from utils.logging_utils import setup_logger
 from WalletWave.config import parse_args
 from WalletWave.utils.strategy_utils import StrategyUtils, StrategyTypes
 from config import ConfigManager
@@ -13,8 +13,7 @@ class WalletWave:
         Initializes the main app.
         """
         self.config = config
-        self.logger = logging.getLogger("main")
-        logging.basicConfig(level=logging.INFO) # todo add verbose option
+        self.logger = setup_logger("main") # todo add verbose option
         self.file_utils = FileUtils(self.config.path) # todo change path variable name to export path
 
     def execute(self):
