@@ -2,6 +2,7 @@ import os
 import csv
 import logging
 from datetime import datetime
+from dataclasses import asdict
 
 
 class FileUtils:
@@ -26,18 +27,22 @@ class FileUtils:
             self.logger.warning("No data to export")
             return
 
+        # Convert all entries to dictionaries in one step
+        data_dicts = [asdict(entry) if hasattr(entry, "__dataclass_fields__") else entry for entry in data]
+
+
         os.makedirs(self.export_path, exist_ok=True)
 
         if export_format == "csv":
             file_path = os.path.join(self.export_path, f"wallet_list_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv")
             with open(file_path, mode="w", newline="", encoding="utf-8") as file:
-                writer = csv.DictWriter(file, fieldnames=data[0].keys())
+                writer = csv.DictWriter(file, fieldnames=data_dicts[0].keys())
                 writer.writeheader()
-                writer.writerows(data)
+                writer.writerows(data_dicts)
         elif export_format == "txt":
             file_path = os.path.join(self.export_path, f"wallet_list_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt")
             with open(file_path, mode="w") as file:
-                for wallet in data:
+                for wallet in data_dicts:
                     for key, value in wallet.items():
                         file.write(f"{key}: {value}\n")
                     file.write("\n")

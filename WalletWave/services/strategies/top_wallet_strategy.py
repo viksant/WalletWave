@@ -1,11 +1,14 @@
 from datetime import datetime
 import logging
 import time
+from typing import List
 
 from WalletWave.config import ConfigManager
 from WalletWave.services.strategies.strategy_interface import StrategyInterface
 from WalletWave.repositories.gmgn_repo import GmgnRepo
+from WalletWave.utils.gmgn_client.schemas.wallet_info import WalletInfo
 from WalletWave.utils.logging_utils import setup_logger
+from WalletWave.utils.gmgn_client.utils.dataclass_transformer import to_dict
 
 
 class TopWalletStrategy(StrategyInterface):
@@ -84,7 +87,7 @@ class TopWalletStrategy(StrategyInterface):
                 self.logger.warning("No top wallets found.")
                 return
 
-            wallet_data = []
+            wallet_data: List[WalletInfo] = []
 
             # Step 2: Analyze each wallet's activity
             for wallet in top_wallets:
@@ -104,7 +107,8 @@ class TopWalletStrategy(StrategyInterface):
                 # Filter wallets with a win rate higher than configured win_rate
                 winrate = wallet_activity.wallet_data.winrate
                 if winrate is not None and winrate >= self.win_rate:
-                    wallet_data.append(wallet_activity.to_summary(wallet_address))
+                    wallet_dict = to_dict(wallet_activity.wallet_data, extra_fields={"wallet_address": wallet_address})
+                    wallet_data.append(wallet_dict)
 
                 time.sleep(1)  # Rate limiting
 

@@ -33,8 +33,6 @@ class WalletInfo:
     sell_7d: int
     buy: int
     sell: int
-    token_avg_cost: float
-    token_sold_avg_profit: float
     token_num: int
     profit_num: int
     pnl_lt_minus_dot5_num: int
@@ -49,6 +47,8 @@ class WalletInfo:
     avg_holding_peroid: float
 
     # Fields with default values
+    token_avg_cost: Optional[float] = 0.0
+    token_sold_avg_profit: Optional[float] = 0.0
     history_bought_cost: Optional[float] = 0.0
     winrate: Optional[float] = 0.0
     twitter_username: Optional[str] = None
