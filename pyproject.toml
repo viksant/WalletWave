@@ -12,7 +12,7 @@ dependencies=[
     "PyYAML",
     "fake-useragent",
     "dacite",
-    "click"
+    "colorama"
 ]
 keywords = ['crypto', 'wallet', 'scanner', 'solana', 'copy trading']
 requires-python = ">= 3.8"
