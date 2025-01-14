@@ -2,9 +2,9 @@ import argparse
 import yaml
 import os
 from yaml import YAMLError
-import logging
 
 from WalletWave.utils.config_validators import *
+from WalletWave.utils.logging_utils import setup_logger
 
 
 class ConfigManager:
@@ -15,8 +15,7 @@ class ConfigManager:
         self._config_path = os.path.abspath(args.config)
         self._config_data = self._load_config()
         self._args = args
-        self.logger = logging.getLogger("ConfigManager")
-        logging.basicConfig(level=logging.INFO)  # todo add verbose option
+        self.logger = setup_logger("ConfigManager")
         self._final_config = self._merge_configurations()
 
     def _load_config(self):
