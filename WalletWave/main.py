@@ -3,6 +3,7 @@ from WalletWave.config import parse_args
 from WalletWave.utils.strategy_utils import StrategyUtils, StrategyTypes
 from config import ConfigManager
 from utils.file_utils import FileUtils
+from CLI.menu import menu
 
 class WalletWave:
     """
@@ -16,7 +17,7 @@ class WalletWave:
         self.logger = setup_logger("main") # todo add verbose option
         self.file_utils = FileUtils(self.config.path) # todo change path variable name to export path
 
-    def execute(self):
+    def execute(self, plugin):
         data = self.strategy()
         self.export_data(data)
 
@@ -40,11 +41,20 @@ def main():
         args = parse_args()
         manager = ConfigManager(args)
 
+        # run menu
+        action = menu()
+
+        #exit if prompted
+        if action == "exit":
+            return
+
         # WalletWave instance
         app = WalletWave(manager)
 
-        # Run
-        app.execute()
+        if isinstance(action, tuple) and action[0] == "plugin":
+            selected_plugin = action[1]
+            # Run
+            app.execute(selected_plugin)
     except ValueError as e:
         print(f"Configuration Error: {e}")
         exit(1)

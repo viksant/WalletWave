@@ -1,9 +1,19 @@
 from abc import ABC, abstractmethod
 
+from WalletWave.config import ConfigManager
+
+
 class PluginInterface(ABC):
     """
     Abstract base class for all plugins. Every plugin must implement the following methods.
     """
+
+    def __init__(self, config_manager: ConfigManager):
+        """
+        Initializes the plugin with a ConfigManager instance.
+        :param config_manager: The configuration manager for the plugin.
+        """
+        self.config_manager = config_manager
 
     @abstractmethod
     def get_name(self) -> str:
@@ -20,7 +30,7 @@ class PluginInterface(ABC):
         pass
 
     @abstractmethod
-    def initialize(self, config: dict) -> None:
+    def initialize(self, config: dict = None) -> None:
         """
         Called once to initialize the plugin with the given configuration.
         :param config: Dictionary containing plugin-specific configuration.

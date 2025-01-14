@@ -36,8 +36,7 @@ def print_wave_banner():
                         .:-*+@@@@@@@@@@@@@%+                          
                                                                       
                                                                       
-                                                                      
-                                                                      
+                      ==WELCOME TO WALLETWAVE==                                                                                                             
     """
     print(wave_art)
 

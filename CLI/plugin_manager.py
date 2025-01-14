@@ -12,7 +12,7 @@ class PluginManager:
         if plugin_directory is not None:
             self.plugin_directory = plugin_directory
         else:
-            self.plugin_directory = "WalletWave/plugins"
+            self.plugin_directory = "../WalletWave/plugins"
         self.plugins = []
 
     def load_plugins(self) -> None:

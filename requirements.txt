@@ -1,6 +1,6 @@
 PyYAML
 fake-useragent
 tls_client
-setuptools
 requests
 dacite
+click
