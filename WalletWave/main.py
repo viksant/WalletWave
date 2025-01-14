@@ -18,8 +18,28 @@ class WalletWave:
         self.file_utils = FileUtils(self.config.path) # todo change path variable name to export path
 
     def execute(self, plugin):
-        data = self.strategy()
-        self.export_data(data)
+        """
+        Executes the selected plugin's lifecycle: initialize, execute, and finalize.
+        :param plugin: The plugin object to execute.
+        """
+        try:
+            # Step 1: Initialize the plugin
+            self.logger.info(f"Initializing: {plugin.get_name()}")
+            plugin.initialize()
+
+            # Step 2: Execute the plugin
+            self.logger.info(f"Executing plugin...")
+            data = plugin.execute(None) # todo: change the none type
+
+            # Step 3: Export plugin results
+            self.logger.info(f"Exporting plugin results..")
+            self.export_data(data)
+
+            # Step 4: Finalize the plugin
+            self.logger.info(f"Finalizing plugin...")
+            plugin.finalize()
+        except Exception as e:
+            self.logger.error(f"An error occurred while running the plugin: {e}")
 
     def strategy(self):
         self.logger.info("Running strategy...")
@@ -42,7 +62,8 @@ def main():
         manager = ConfigManager(args)
 
         # run menu
-        action = menu()
+        action = menu(manager)
+        print(f"Action returned from menu: {action}")
 
         #exit if prompted
         if action == "exit":
@@ -51,10 +72,9 @@ def main():
         # WalletWave instance
         app = WalletWave(manager)
 
-        if isinstance(action, tuple) and action[0] == "plugin":
-            selected_plugin = action[1]
-            # Run
-            app.execute(selected_plugin)
+        selected_plugin = action[1]
+        # Run
+        app.execute(selected_plugin)
     except ValueError as e:
         print(f"Configuration Error: {e}")
         exit(1)

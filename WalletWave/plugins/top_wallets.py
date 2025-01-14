@@ -5,7 +5,7 @@ from WalletWave.config import ConfigManager
 from WalletWave.repositories.gmgn_repo import GmgnRepo
 from WalletWave.utils.gmgn_client.schemas.wallet_info import WalletInfo
 from WalletWave.utils.logging_utils import setup_logger
-from utils.plugin_interface import PluginInterface
+from WalletWave.plugins.utils.plugin_interface import PluginInterface
 
 
 def custom_summary(wallet_address, wallet_data):

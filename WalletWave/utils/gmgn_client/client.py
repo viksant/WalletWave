@@ -37,7 +37,7 @@ class Gmgn:
         self.max_requests = random.randint(*self.max_requests_range)
         self.error_count = 0
 
-        self.logger.info("Initiating Gmgn Client...")
+        #self.logger.info("Initiating Gmgn Client...")
         self._rotate_headers()
 
     def _generate_headers(self) -> Dict[str, str]:
@@ -56,7 +56,7 @@ class Gmgn:
         # todo add timeout method
         self.client, self.agent = self.agent_mapper.get_random_client_and_agent()
         self.headers = self._generate_headers()
-        self.logger.info(f"Rotated Headers -> Client: {self.client}, User-Agent: {self.agent}")
+        #self.logger.info(f"Rotated Headers -> Client: {self.client}, User-Agent: {self.agent}")
 
     def _clear_cookies(self):
         self.logger.warning("Lets destroy cookies!")

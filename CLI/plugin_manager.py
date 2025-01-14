@@ -8,24 +8,41 @@ class PluginManager:
     Manages plugins: loading, selecting, and executing them.
     """
 
-    def __init__(self, plugin_directory: str = None):
-        if plugin_directory is not None:
-            self.plugin_directory = plugin_directory
+    def __init__(self, plugin_directory: str = None, config_manager=None):
+        """
+        Initialize the plugin manager with the directory containing plugins.
+        """
+
+        if plugin_directory is None:
+            self.plugin_directory = os.path.join(
+                os.path.dirname(os.path.abspath(__file__)),
+                "../WalletWave/plugins"
+            )
         else:
-            self.plugin_directory = "../WalletWave/plugins"
+            self.plugin_directory = plugin_directory
+
+        self.config_manager = config_manager
         self.plugins = []
 
     def load_plugins(self) -> None:
         """
         Dynamically loads plugins from the specified directory.
         """
+        print(f"Plugin directory resolved to: {self.plugin_directory}")
+        if not os.path.exists(self.plugin_directory):
+            raise FileNotFoundError(f"Plugin directory does not exist: {self.plugin_directory}")
+
         for file in os.listdir(self.plugin_directory):
             if file.endswith(".py") and file != "__init__.py":
                 module_name = file[:-3]  # Remove the .py extension
-                module = importlib.import_module(f"{self.plugin_directory}.{module_name}")
-                for _, obj in inspect.getmembers(module, inspect.isclass):
-                    if issubclass(obj, PluginInterface) and obj is not PluginInterface:
-                        self.plugins.append(obj())
+                try:
+                    #Dynamically import the plugin
+                    module = importlib.import_module(f"WalletWave.plugins.{module_name}")
+                    for _, obj in inspect.getmembers(module, inspect.isclass):
+                        if issubclass(obj, PluginInterface) and obj is not PluginInterface:
+                            self.plugins.append(obj(self.config_manager))
+                except Exception as e:
+                    print(f"Failed to load plugin {module_name}: {e}")
 
     def list_plugins(self) -> None:
         """

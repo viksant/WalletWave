@@ -1,49 +1,54 @@
-import click
 from CLI import banner, plugin_manager
 
-@click.command()
-def menu():
-    pm = plugin_manager.PluginManager()
+def menu(config_manager):
+    pm = plugin_manager.PluginManager(config_manager=config_manager)
     pm.load_plugins()
 
     banner.print_wave_banner()
 
     while True:
-        click.echo("\n1. List Plugins")
-        click.echo("2. Run Plugin")
-        click.echo("0. Exit")
+        print("\n1. List Plugins")
+        print("2. Run Plugin")
+        print("0. Exit")
 
-        choice = click.prompt("Enter your choice", type=int)
+        try:
+            choice = int(input("Enter your choice: "))
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            continue
 
         if choice == 0:
-            # exit the program
-            click.echo("Goodbye!")
+            print("Goodbye!")
             return "exit"
         elif choice == 1:
             # List available plugins
-            click.echo("\nAvailable Plugins:")
+            print("\nAvailable Plugins:")
             if not pm.plugins:
-                click.echo("No plugins found.")
+                print("No plugins found.")
             else:
                 pm.list_plugins()
         elif choice == 2:
             if not pm.plugins:
-                click.echo("\nNo plugins to run. Please add plugins to the directory.")
+                print("\nNo plugins to run. Please add plugins to the directory.")
                 continue
 
-            click.echo("\nAvailable Plugins:")
+            print("\nAvailable Plugins:")
             pm.list_plugins()
 
-            plugin_choice = click.prompt("Select a plugin by number", type=int)
-            if plugin_choice < 1 or plugin_choice > len(pm.plugins):
-                click.echo("Invalid plugin number.")
-                continue
+            plugin_choice = input("Select a plugin by number: ")
+            try:
+                plugin_choice = int(plugin_choice)
+                if plugin_choice < 1 or plugin_choice > len(pm.plugins):
+                    print("Invalid plugin number.")
+                    continue
 
-            selected_plugin = pm.plugins[plugin_choice - 1]
-            click.echo(f"Selected Plugin: {selected_plugin.get_name()}")
-            return "plugin", selected_plugin
+                selected_plugin = pm.plugins[plugin_choice - 1]
+                print(f"Selected Plugin: {selected_plugin.get_name()}")
+                return "plugin", selected_plugin
+            except ValueError:
+                print("Invalid input. Please enter a number.")
         else:
-            click.echo("Invalid choice.")
+            print("Invalid choice.")
 
 
 if __name__ == "__main__":
