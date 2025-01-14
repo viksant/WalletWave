@@ -79,14 +79,16 @@ class WalletInfoResponse:
 
     # noinspection PyTypeChecker
     def to_summary(self, wallet_address: str, summary_func: callable = None) -> dict:
+        """
+        Summarizes wallet data. Returns the entire wallet data dictionary if no summary_func is provided.
+
+        :param wallet_address: The address of the wallet.
+        :param summary_func: Optional callable to customize the summary.
+        :return: Dictionary summarizing the wallet data.
+        """
+
         if summary_func is not None:
-            return {"wallet_address": wallet_address, **asdict(self.wallet_data)}
+            return summary_func(wallet_address, self.wallet_data)
         else:
-            return {
-                "wallet_address": wallet_address,
-                "realized_profit": self.wallet_data.realized_profit,
-                "buy": self.wallet_data.buy,
-                "sell": self.wallet_data.sell,
-                "last_active_stamp": self.wallet_data.last_active_timestamp,
-                "winrate": self.wallet_data.winrate,
-            }
+            # return the entire dictionary, including wallet address
+            return {"wallet_address": wallet_address, **asdict(self.wallet_data)}
