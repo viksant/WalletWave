@@ -4,7 +4,7 @@ import os
 from yaml import YAMLError
 import logging
 
-from src.WalletWave.utils.config_validators import *
+from WalletWave.utils.config_validators import *
 
 
 class ConfigManager:

@@ -2,7 +2,7 @@ import logging
 from typing import Type, TypeVar, Any
 from dataclasses import is_dataclass
 import dacite
-from src.WalletWave.utils.logging_utils import setup_logger
+from WalletWave.utils.logging_utils import setup_logger
 
 # Initialize logger
 logger = setup_logger("TransformUtils", log_level=logging.DEBUG)

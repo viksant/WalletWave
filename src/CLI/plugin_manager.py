@@ -3,7 +3,7 @@ import os
 import inspect
 from pathlib import Path
 
-from src.WalletWave.plugins.utils.plugin_interface import PluginInterface
+from WalletWave.plugins.utils.plugin_interface import PluginInterface
 
 class PluginManager:
     """

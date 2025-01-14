@@ -1,10 +1,10 @@
 import time
 from typing import List
 
-from src.WalletWave.config import ConfigManager
-from src.WalletWave.plugins.utils.plugin_interface import PluginInterface
-from src.WalletWave.repositories.gmgn_repo import GmgnRepo
-from src.WalletWave.utils.logging_utils import setup_logger
+from WalletWave.plugins.utils.plugin_interface import PluginInterface
+from WalletWave.repositories.gmgn_repo import GmgnRepo
+from WalletWave.utils.logging_utils import setup_logger
+from WalletWave.config import ConfigManager
 
 
 def custom_summary(wallet_address, wallet_data):
