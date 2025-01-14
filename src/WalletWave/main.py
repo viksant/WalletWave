@@ -1,8 +1,8 @@
-from CLI.menu import menu
-from WalletWave.config import parse_args
-from config import ConfigManager
-from utils.file_utils import FileUtils
-from utils.logging_utils import setup_logger
+from src.CLI.menu import menu
+from src.WalletWave.config import parse_args
+from src.WalletWave.config import ConfigManager
+from src.WalletWave.utils.file_utils import FileUtils
+from src.WalletWave.utils.logging_utils import setup_logger
 
 
 class WalletWave:

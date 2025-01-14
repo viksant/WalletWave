@@ -1,7 +1,9 @@
 import importlib
 import os
 import inspect
-from WalletWave.plugins.utils.plugin_interface import PluginInterface
+from pathlib import Path
+
+from src.WalletWave.plugins.utils.plugin_interface import PluginInterface
 
 class PluginManager:
     """
@@ -13,13 +15,9 @@ class PluginManager:
         Initialize the plugin manager with the directory containing plugins.
         """
 
-        if plugin_directory is None:
-            self.plugin_directory = os.path.join(
-                os.path.dirname(os.path.abspath(__file__)),
-                "../WalletWave/plugins"
-            )
-        else:
-            self.plugin_directory = plugin_directory
+        root = Path(__file__).resolve().parent.parent
+
+        self.plugin_directory = root / "WalletWave" / "plugins"
 
         self.config_manager = config_manager
         self.plugins = []

@@ -1,7 +1,7 @@
 import logging
 import random
 from fake_useragent import UserAgent
-from WalletWave.utils.logging_utils import setup_logger
+from src.WalletWave.utils.logging_utils import setup_logger
 
 class AgentMapper:
     """

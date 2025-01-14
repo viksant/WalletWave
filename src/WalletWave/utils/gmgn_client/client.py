@@ -3,8 +3,8 @@ import tls_client
 from typing import Optional, Dict, Any
 import time
 
-from WalletWave.utils.gmgn_client.utils.agent_mapper import AgentMapper
-from WalletWave.utils.logging_utils import setup_logger
+from src.WalletWave.utils.gmgn_client.utils.agent_mapper import AgentMapper
+from src.WalletWave.utils.logging_utils import setup_logger
 
 
 # TODO: Implement additional features like fetching transaction history or token analytics if supported by the API.

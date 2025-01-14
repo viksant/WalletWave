@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from WalletWave.config import ConfigManager
+from src.WalletWave.config import ConfigManager
 
 
 class PluginInterface(ABC):

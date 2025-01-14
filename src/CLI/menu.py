@@ -1,4 +1,4 @@
-from CLI import banner, plugin_manager
+from src.CLI import banner, plugin_manager
 
 def menu(config_manager):
     pm = plugin_manager.PluginManager(config_manager=config_manager)
