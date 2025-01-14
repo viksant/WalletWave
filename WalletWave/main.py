@@ -1,9 +1,9 @@
-from utils.logging_utils import setup_logger
+from CLI.menu import menu
 from WalletWave.config import parse_args
-from WalletWave.utils.strategy_utils import StrategyUtils, StrategyTypes
 from config import ConfigManager
 from utils.file_utils import FileUtils
-from CLI.menu import menu
+from utils.logging_utils import setup_logger
+
 
 class WalletWave:
     """
@@ -40,11 +40,6 @@ class WalletWave:
             plugin.finalize()
         except Exception as e:
             self.logger.error(f"An error occurred while running the plugin: {e}")
-
-    def strategy(self):
-        self.logger.info("Running strategy...")
-        data = StrategyUtils(self.config, StrategyTypes.TOP_WALLETS).execute() # todo add dynamic strategy selection
-        return data
 
     def export_data(self, data, export_format = 'csv'):
         """

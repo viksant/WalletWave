@@ -37,36 +37,3 @@ def transform(data: Any, dataclass_type: Type[T]) -> T:
         return dacite.from_dict(dataclass_type, data)
     else:
         raise TypeError(f"Unsupported data type: {type(data)}. Must be a dictionary or list.")
-
-def to_dict(obj: Any, extra_fields: Dict[str, Any] = None, dataclass_type: Type[T] = None) -> Union[Dict[str, Any], T]:
-    """
-    Converts an object (dataclass or dict) into a dictionary or back to a dataclass with optional additional fields.
-
-    Args:
-        obj: The object to convert (dataclass or dictionary).
-        extra_fields: Optional additional fields to include in the dictionary.
-        dataclass_type: Optionally specify a dataclass type to convert back into a dataclass.
-
-    Returns:
-        Union[dict, T]: The converted dictionary with additional fields or a dataclass instance.
-    """
-    logger.debug(f"Converting object of type {type(obj).__name__} to dictionary.")
-
-    if is_dataclass(obj):
-        logger.debug("Object is a dataclass. Converting to dictionary.")
-        result = asdict(obj)
-    elif isinstance(obj, dict):
-        logger.debug("Object is a dictionary. No conversion needed.")
-        result = obj
-    else:
-        raise TypeError(f"Unsupported type {type(obj)}. Must be a dataclass or dict.")
-
-    if extra_fields:
-        logger.debug(f"Adding extra fields to the dictionary: {extra_fields}")
-        result.update(extra_fields)
-
-    if dataclass_type:
-        logger.debug(f"Converting dictionary back to dataclass: {dataclass_type.__name__}")
-        return dacite.from_dict(dataclass_type, result)
-
-    return result

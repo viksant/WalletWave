@@ -51,7 +51,3 @@ def menu(config_manager):
             print("Invalid choice.")
 
 
-if __name__ == "__main__":
-    menu()
-
-
