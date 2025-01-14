@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, asdict
 from typing import List, Optional
 
 
@@ -77,12 +77,16 @@ class WalletInfoResponse:
         """
         return self.data
 
-    def to_summary(self, wallet_address: str) -> dict:
-        return {
-            "wallet_address": wallet_address,
-            "realized_profit": self.wallet_data.realized_profit,
-            "buy": self.wallet_data.buy,
-            "sell": self.wallet_data.sell,
-            "last_active_stamp": self.wallet_data.last_active_timestamp,
-            "winrate": self.wallet_data.winrate,
-        }
+    # noinspection PyTypeChecker
+    def to_summary(self, wallet_address: str, summary_func: callable = None) -> dict:
+        if summary_func is not None:
+            return {"wallet_address": wallet_address, **asdict(self.wallet_data)}
+        else:
+            return {
+                "wallet_address": wallet_address,
+                "realized_profit": self.wallet_data.realized_profit,
+                "buy": self.wallet_data.buy,
+                "sell": self.wallet_data.sell,
+                "last_active_stamp": self.wallet_data.last_active_timestamp,
+                "winrate": self.wallet_data.winrate,
+            }
