@@ -1,3 +1,4 @@
+import logging
 import time
 from typing import List
 
@@ -27,7 +28,7 @@ class TopWallets(PluginInterface):
         self.wallet_tag = None
         self.timeframe = None
         self.gmgn = GmgnRepo()
-        self.logger = setup_logger("TopWalletsPlugin")
+        self.logger = setup_logger("TopWalletsPlugin", log_level=logging.INFO)
 
     def get_name(self) -> str:
         return "Top Wallets"
