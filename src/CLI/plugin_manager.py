@@ -1,9 +1,12 @@
 import importlib
+import logging
 import os
 import inspect
 from pathlib import Path
 
 from WalletWave.plugins.utils.plugin_interface import PluginInterface
+from WalletWave.utils.logging_utils import setup_logger
+
 
 class PluginManager:
     """
@@ -14,6 +17,7 @@ class PluginManager:
         """
         Initialize the plugin manager with the directory containing plugins.
         """
+        self.debug_logger = setup_logger("PluginManager", log_level=logging.INFO)
 
         root = Path(__file__).resolve().parent.parent
 
@@ -26,7 +30,7 @@ class PluginManager:
         """
         Dynamically loads plugins from the specified directory.
         """
-        print(f"Plugin directory resolved to: {self.plugin_directory}")
+        self.debug_logger.debug(f"Plugin directory resolved to: {self.plugin_directory}")
         if not os.path.exists(self.plugin_directory):
             raise FileNotFoundError(f"Plugin directory does not exist: {self.plugin_directory}")
 

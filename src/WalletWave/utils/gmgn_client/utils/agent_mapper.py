@@ -15,7 +15,7 @@ class AgentMapper:
 
     def __init__(self):
         # setup logger
-        self.debug_logger = setup_logger("AgentMapper", logging.DEBUG)
+        self.debug_logger = setup_logger("AgentMapper", logging.INFO)
 
         # Mapping of tls_client identifiers to browser, platform, and OS
         self.identifier_mapping = {
