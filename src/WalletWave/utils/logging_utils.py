@@ -1,6 +1,8 @@
 import logging
 import os
 
+# todo: add a global log level
+
 def setup_logger(name, log_level=logging.NOTSET, log_file = None):
     """
     Sets up a logger with the specified name, level, and optional file handler.

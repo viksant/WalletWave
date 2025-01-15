@@ -1,3 +1,4 @@
+import logging
 import random
 import tls_client
 from typing import Optional, Dict, Any
@@ -28,7 +29,7 @@ class Gmgn:
     # TODO: Explore rate-limiting compliance for `gmgn_client.ai` API to avoid potential issues. (2 seconds)
 
     def __init__(self, max_requests_range: tuple = (1, 10)):
-        self.logger = setup_logger("Gmgn Client")
+        self.logger = setup_logger("Gmgn Client", log_level=logging.INFO)
         self.agent_mapper = AgentMapper()
         self.session = tls_client.Session(random_tls_extension_order=True)
         self.client, self.agent, self.headers = None, None, None
