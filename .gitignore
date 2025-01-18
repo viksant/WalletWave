@@ -1,3 +1,7 @@
 /src/WalletWave/data/
 /.venv/
 /.idea
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
