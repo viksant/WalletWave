@@ -110,7 +110,7 @@ class ConfigManager:
 def parse_args():
     """ Parse command-line arguments"""
     parser = argparse.ArgumentParser(description="Smart Money Follower Configuration")
-    parser.add_argument("--config", type=str, default="config.yaml", help="Path to the config file")
+    parser.add_argument("--config", type=str, default="src/WalletWave/config.yaml", help="Path to the config file")
     parser.add_argument("--path", type=str, help="Path to export files")
     parser.add_argument("--verbose", type=bool, help="Verbose script logs")
     parser.add_argument("--export-format", type=str, choices=["csv", "txt"], help="Export format (csv or txt)")
