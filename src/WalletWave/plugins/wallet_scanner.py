@@ -35,7 +35,6 @@ class SolanaWalletScanner(PluginInterface):
         else:
             self.logger.info(f"Solana Wallet Scanner initialized with {len(self.wallets)} wallets")
 
-
     def execute(self) -> list:
         # Step 2 execute the plugin
         wallet_data = []
@@ -51,7 +50,6 @@ class SolanaWalletScanner(PluginInterface):
 
         self.logger.info(f"Scanned {len(wallet_data)}")
         return wallet_data
-
 
     def finalize(self) -> None:
         self.logger.info("Solana Wallet Scanner finalized")

@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import List, Union, Dict, Any
 
 from WalletWave.config import ConfigManager
 
@@ -46,7 +47,7 @@ class PluginInterface(ABC):
         pass
 
     @abstractmethod
-    def execute(self) -> any:
+    def execute(self) -> List[Union[Dict, Any]]:
         """
         Executes the plugin's main functionality.
         Plugins should handle all logic internally and return the processes data
