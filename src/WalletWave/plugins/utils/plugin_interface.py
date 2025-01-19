@@ -14,6 +14,7 @@ class PluginInterface(ABC):
         :param config_manager: The configuration manager for the plugin.
         """
         self.config_manager = config_manager
+        self.plugin_class = self.__class__.__name__
 
     @abstractmethod
     def get_name(self) -> str:

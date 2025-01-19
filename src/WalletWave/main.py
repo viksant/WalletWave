@@ -1,3 +1,5 @@
+import logging
+
 from CLI.menu import menu
 from WalletWave.config import parse_args
 from WalletWave.config import ConfigManager
@@ -14,8 +16,8 @@ class WalletWave:
         Initializes the main app.
         """
         self.config = config
-        self.logger = setup_logger("main") # todo add verbose option
-        self.file_utils = FileUtils(self.config.export_path) # todo change export_path variable name to export export_path
+        self.logger = setup_logger("main", log_level=logging.INFO) # todo add verbose option
+        self.file_utils = FileUtils(self.config.export_path)
 
     def execute(self, plugin):
         """
@@ -28,15 +30,18 @@ class WalletWave:
             plugin.initialize()
 
             # Step 2: Execute the plugin
-            self.logger.info(f"Executing plugin...")
+            self.logger.info("Executing plugin...")
             data = plugin.execute()
 
             # Step 3: Export plugin results
-            self.logger.info(f"Exporting plugin results..")
-            self.export_data(data)
+            if self.config.export_enabled:
+                self.logger.info("Exporting plugin results..")
+                self.export_data(data)
+            else:
+                self.logger.info("Exporting data has been set to False in the config file. Skipping export function.")
 
             # Step 4: Finalize the plugin
-            self.logger.info(f"Finalizing plugin...")
+            self.logger.info("Finalizing plugin...")
             plugin.finalize()
         except Exception as e:
             self.logger.error(f"An error occurred while running the plugin: {e}")
@@ -58,7 +63,6 @@ def main():
 
         # run menu
         action = menu(manager)
-        print(f"Action returned from menu: {action}")
 
         #exit if prompted
         if action == "exit":

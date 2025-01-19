@@ -45,6 +45,9 @@ class ConfigManager:
             "export_format": validate_export_format(
                 self._args.export_format if self._args and self._args.export_format else program_settings.get("export_format", "csv")
             ),
+            "export_enabled": validate_export_enabled(
+              program_settings.get("export_enabled", True) #defaults to True
+            ),
         }
 
     def _load_plugin_settings(self):
@@ -71,7 +74,7 @@ class ConfigManager:
         """ Get plugin settings as attributes """
         if name in self._plugin_settings:
             return self._plugin_settings[name]
-        self.logger.warning(f"No plugin with {name} found, proceeding without plugin settings")
+        self.logger.warning(f"No plugin settings with {name} found, proceeding without plugin settings")
         return {}
 
     @property
@@ -97,6 +100,10 @@ class ConfigManager:
     @export_format.setter
     def export_format(self, export_format):
         self._final_config["export_format"] = validate_export_format(export_format)
+
+    @property
+    def export_enabled(self):
+        return self._final_config["export_enabled"]
 
     @property
     def config(self):

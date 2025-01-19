@@ -28,7 +28,7 @@ class TopWallets(PluginInterface):
         super().__init__(config_manager)
         self.plugin_settings = config_manager.TopWallets #dynamically get plugin settings
         self.gmgn = GmgnRepo()
-        self.logger = setup_logger("TopWalletsPlugin", log_level=logging.INFO)
+        self.logger = setup_logger(self.plugin_class, log_level=logging.INFO)
 
     def get_name(self) -> str:
         return "Top Wallets"

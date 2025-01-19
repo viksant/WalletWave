@@ -8,8 +8,8 @@ class SolanaWalletScanner(PluginInterface):
     def __init__(self, config_manager: ConfigManager):
         super().__init__(config_manager)
         self.gmgn = GmgnRepo()
-        self.logger = setup_logger("SolanaWalletScanner")
-        self.timeframe = None
+        self.logger = setup_logger(self.plugin_class)
+        self.timeframe = config_manager.get_plugin_setting(self.plugin_class, "timeframe", "7d")
         self.wallets = []
 
     def get_name(self) -> str:
@@ -26,7 +26,6 @@ class SolanaWalletScanner(PluginInterface):
     def initialize(self) -> None:
         # Step 1 of plugin lifecycle
         self.logger.info("Solana Wallet Scanner initialized")
-        self.timeframe = self.config_manager.timeframe
         wallet_file_path = input("Please provide the export_path to the wallet file: ").strip()
         self._load_wallets(wallet_file_path)
 

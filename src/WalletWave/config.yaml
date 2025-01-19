@@ -6,6 +6,10 @@ program_settings:
   # csv or txt
   export_format: "csv"
 
+  # set True if you want results to be exported to a file
+  # set False if you don't want results to be exported
+  export_enabled: True
+
   #### Verbose Settings
   verbose: False
 
