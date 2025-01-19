@@ -5,7 +5,7 @@ import dacite
 from WalletWave.utils.logging_utils import setup_logger
 
 # Initialize logger
-logger = setup_logger("TransformUtils", log_level=logging.DEBUG)
+logger = setup_logger("TransformUtils", log_level=logging.INFO)
 
 T = TypeVar("T")
 

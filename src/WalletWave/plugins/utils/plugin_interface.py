@@ -14,6 +14,7 @@ class PluginInterface(ABC):
         :param config_manager: The configuration manager for the plugin.
         """
         self.config_manager = config_manager
+        self.plugin_class = self.__class__.__name__
 
     @abstractmethod
     def get_name(self) -> str:
@@ -30,18 +31,25 @@ class PluginInterface(ABC):
         pass
 
     @abstractmethod
-    def initialize(self, config: dict = None) -> None:
+    def get_version(self) -> str:
         """
-        Called once to initialize the plugin with the given configuration.
-        :param config: Dictionary containing plugin-specific configuration.
+        Returns plugin version
         """
         pass
 
     @abstractmethod
-    def execute(self, data: any) -> any:
+    def initialize(self) -> None:
+        """
+        Called once to initialize the plugin with the given configuration.
+        Plugins should fetch their configuration directly from the ConfigManager.
+        """
+        pass
+
+    @abstractmethod
+    def execute(self) -> any:
         """
         Executes the plugin's main functionality.
-        :param data: Input data that the plugin will process.
+        Plugins should handle all logic internally and return the processes data
         :return: Processed data.
         """
         pass

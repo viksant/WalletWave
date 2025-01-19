@@ -17,6 +17,7 @@ class ConfigManager:
         self._config_data = self._load_config()
         self._args = args
         self._final_config = self._merge_configurations()
+        self._plugin_settings = self._load_plugin_settings()
 
     def _load_config(self):
         """ Load the configuration file"""
@@ -33,35 +34,56 @@ class ConfigManager:
 
     def _merge_configurations(self):
         """Config file and command-line arguments merger"""
-        wallet_settings = self._config_data.get("wallet_settings", {})
+        program_settings = self._config_data.get("program_settings", {})
         return {
-            "path": validate_path(
-                self._args.path if self._args and self._args.path else self._config_data.get("path", "data")
+            "export_path": validate_path(
+                self._args.export_path if self._args and self._args.export_path else program_settings.get("export_path", "data")
             ),
             "verbose": validate_verbose(
-                self._args.verbose if self._args and self._args.verbose else self._config_data.get("verbose", True)
+                self._args.verbose if self._args and self._args.verbose else program_settings.get("verbose", False)
             ),
             "export_format": validate_export_format(
-                self._args.export_format if self._args and self._args.export_format else self._config_data.get("export_format", "csv")
+                self._args.export_format if self._args and self._args.export_format else program_settings.get("export_format", "csv")
             ),
-            "timeframe": validate_timeframe(
-                self._args.timeframe if self._args and self._args.timeframe else wallet_settings.get("timeframe", "7d")
+            "export_enabled": validate_export_enabled(
+              program_settings.get("export_enabled", True) #defaults to True
             ),
-            "wallet_tag": validate_wallet_tag(
-                wallet_settings.get("wallet_tag", "smart_degen")
-            ),
-            "win_rate": validate_win_rate(
-                self._args.winrate if self._args and self._args.winrate else wallet_settings.get("win_rate", 60)
-            )
         }
 
-    @property
-    def path(self):
-        return self._final_config["path"]
+    def _load_plugin_settings(self):
+        """ Load plugin-specific settings """
+        plugins = self._config_data.get("plugin_settings", {})
+        return {plugin: settings for plugin, settings in plugins.items()}
 
-    @path.setter
-    def path(self, new_path):
-        self._final_config["path"] = validate_path(new_path)
+    @property
+    def plugins(self):
+        """ Return all plugin settings """
+        return self._plugin_settings
+
+    def get_plugin_setting(self, plugin, key, default=None):
+        """ Get a specific setting for a plugin """
+        return self._plugin_settings.get(plugin, {}).get(key, default)
+
+    def set_plugin_setting(self, plugin, key, value):
+        """ Set a specific setting for a plugin """
+        if plugin not in self._plugin_settings:
+            self._plugin_settings[plugin] = {}
+        self._plugin_settings[plugin][key] = value
+
+    def __getattr__(self, name):
+        """ Get plugin settings as attributes """
+        if name in self._plugin_settings:
+            return self._plugin_settings[name]
+        self.logger.warning(f"No plugin settings with {name} found, proceeding without plugin settings")
+        return {}
+
+    @property
+    def export_path(self):
+        return self._final_config["export_path"]
+
+    @export_path.setter
+    def export_path(self, new_path):
+        self._final_config["export_path"] = validate_path(new_path)
 
     @property
     def verbose(self):
@@ -80,28 +102,8 @@ class ConfigManager:
         self._final_config["export_format"] = validate_export_format(export_format)
 
     @property
-    def timeframe(self):
-        return self._final_config["timeframe"]
-
-    @timeframe.setter
-    def timeframe(self, timeframe):
-        self._final_config["timeframe"] = validate_timeframe(timeframe)
-
-    @property
-    def wallet_tag(self):
-        return self._final_config["wallet_tag"]
-
-    @wallet_tag.setter
-    def wallet_tag(self, wallet_tag):
-        self._final_config["wallet_tag"] = validate_wallet_tag(wallet_tag)
-
-    @property
-    def win_rate(self):
-        return self._final_config["win_rate"]
-
-    @win_rate.setter
-    def win_rate(self, win_rate):
-        self._final_config["win_rate"] = validate_win_rate(win_rate)
+    def export_enabled(self):
+        return self._final_config["export_enabled"]
 
     @property
     def config(self):
@@ -111,11 +113,9 @@ def parse_args():
     """ Parse command-line arguments"""
     parser = argparse.ArgumentParser(description="Smart Money Follower Configuration")
     parser.add_argument("--config", type=str, default="src/WalletWave/config.yaml", help="Path to the config file")
-    parser.add_argument("--path", type=str, help="Path to export files")
+    parser.add_argument("--export_path", type=str, help="Path to export files")
     parser.add_argument("--verbose", type=bool, help="Verbose script logs")
     parser.add_argument("--export-format", type=str, choices=["csv", "txt"], help="Export format (csv or txt)")
-    parser.add_argument("--timeframe", type=str, choices=["1d", "7d", "30d"], help="Select timeframe of wallet scan")
-    parser.add_argument("--winrate", type=int, help="Set winrate between 0 and 100")
     return parser.parse_args()
 
 if __name__ == "__main__":
@@ -128,10 +128,16 @@ if __name__ == "__main__":
 
     # Access properties
     print("Final Configuration:")
-    print(f"Path: {config_manager.path}")
+    print(f"Export Path: {config_manager.export_path}")
     print(f"Verbose: {config_manager.verbose}")
     print(f"Export Format: {config_manager.export_format}")
-    print(f"Timeframe: {config_manager.timeframe}")
-    print(f"Wallet Tag: {config_manager.wallet_tag}")
-    print(f"Win Rate: {config_manager.win_rate}")
+
+    #plugin settings
+    # get via attributes
+    plugin_settings = config_manager.TopWallets
+    print(plugin_settings.get("timeframe"))
+
+    # get directly
+    plugin_settings = config_manager.get_plugin_setting("TopWallets", "timeframe")
+    print(plugin_settings)
 

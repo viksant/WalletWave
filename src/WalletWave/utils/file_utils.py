@@ -64,7 +64,7 @@ class FileUtils:
         # Make sure the export dir exists
         self.export_path.mkdir(parents=True, exist_ok=True)
 
-        # Generate file path
+        # Generate file export_path
         file_path = self._generate_file_path(export_format, timestamp_format)
 
         if export_format == "csv":

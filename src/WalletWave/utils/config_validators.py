@@ -9,6 +9,11 @@ def validate_verbose(verbose):
         raise ValueError("Verbose must be a boolean")
     return verbose
 
+def validate_export_enabled(export_enabled_setting):
+    if not isinstance(export_enabled_setting, bool):
+        raise ValueError("Export Enabled setting must be True or False")
+    return export_enabled_setting
+
 def validate_export_format(export_format):
     valid_formats = ["csv", "txt"]
     if export_format not in valid_formats:
