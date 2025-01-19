@@ -3,7 +3,7 @@ WalletWave is a Python-based solana wallet scanner, designed to analyze transact
 
 > **_DISCLAIMER_**  
 > 
-> Even though the wallets that WalletWave exports fit a criteria that may work for your strategy, it is best to still do your own reseach with additional solana tools such as Dex Screener, Birdeye.so, GMGN.ai, etc.
+> Even though the wallets that WalletWave exports fit a criteria that may work for your strategy, it is best to still do your own research with additional solana tools such as Dex Screener, Birdeye.so, GMGN.ai, etc.
 
 ---
 ## Features
@@ -107,7 +107,7 @@ walletwave
 ---
 
 # Community
-> - **Discord** (Will be up soon)
+> - [**Discord**](https://discord.gg/sunDQ8Xq)
 > - **GitHub Issues:** [Report bugs or request features](https://github.com/LetsStartWithPurple/WalletWave/issues)
 
 ---
