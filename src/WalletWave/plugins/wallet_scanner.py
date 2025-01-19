@@ -20,11 +20,14 @@ class SolanaWalletScanner(PluginInterface):
         # return a short description of your plugin
         return "Scans a list of wallets and exports performance"
 
-    def initialize(self, config: dict = None) -> None:
+    def get_version(self) -> str:
+        return "1.0.0"
+
+    def initialize(self) -> None:
         # Step 1 of plugin lifecycle
         self.logger.info("Solana Wallet Scanner initialized")
         self.timeframe = self.config_manager.timeframe
-        wallet_file_path = input("Please provide the path to the wallet file: ").strip()
+        wallet_file_path = input("Please provide the export_path to the wallet file: ").strip()
         self._load_wallets(wallet_file_path)
 
         if not self.wallets:
@@ -34,7 +37,7 @@ class SolanaWalletScanner(PluginInterface):
             self.logger.info(f"Solana Wallet Scanner initialized with {len(self.wallets)} wallets")
 
 
-    def execute(self, data: any) -> list:
+    def execute(self) -> list:
         # Step 2 execute the plugin
         wallet_data = []
         self.logger.info("Executing Solana Wallet Scanner...")

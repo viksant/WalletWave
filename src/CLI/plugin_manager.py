@@ -51,7 +51,7 @@ class PluginManager:
         Lists all available plugins with their descriptions.
         """
         for i, plugin in enumerate(self.plugins):
-            print(f"[{i + 1}] {plugin.get_name()}: {plugin.get_description()}")
+            print(f"[{i + 1}] {plugin.get_name()} ({plugin.get_version()}): {plugin.get_description()}")
 
     def select_plugin(self, index: int):
         """

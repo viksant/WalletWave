@@ -9,7 +9,7 @@ def setup_logger(name, log_level=logging.NOTSET, log_file = None):
 
     :param name: Name of the logger.
     :param log_level: Logging level (default: logging.INFO).
-    :param log_file: Optional file path to write logs to (default: None).
+    :param log_file: Optional file export_path to write logs to (default: None).
     :return: Configured logger.
     """
 

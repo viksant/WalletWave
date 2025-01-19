@@ -7,6 +7,8 @@ from WalletWave.repositories.gmgn_repo import GmgnRepo
 from WalletWave.utils.logging_utils import setup_logger
 from WalletWave.config import ConfigManager
 
+from WalletWave.utils.config_validators import *
+
 
 def custom_summary(wallet_address, wallet_data):
     return {
@@ -24,9 +26,7 @@ class TopWallets(PluginInterface):
 
     def __init__(self, config_manager: ConfigManager):
         super().__init__(config_manager)
-        self.win_rate = None
-        self.wallet_tag = None
-        self.timeframe = None
+        self.plugin_settings = config_manager.TopWallets #dynamically get plugin settings
         self.gmgn = GmgnRepo()
         self.logger = setup_logger("TopWalletsPlugin", log_level=logging.INFO)
 
@@ -36,20 +36,23 @@ class TopWallets(PluginInterface):
     def get_description(self) -> str:
         return "Plugin that gathers Top performing wallets"
 
-    def initialize(self, config: dict = None) -> None:
-        self.timeframe = self.config_manager.timeframe
-        self.wallet_tag = self.config_manager.wallet_tag
-        self.win_rate = self.config_manager.win_rate
+    def get_version(self) -> str:
+        return "2.0.0"
+
+    def initialize(self) -> None:
         self.logger.info("TopWallets plugin initialized.")
 
-    def execute(self, data: any) -> any:
+    def execute(self) -> any:
         """
         Execute the plugin
         """
+        timeframe = validate_timeframe(self.plugin_settings.get("timeframe"))
+        wallet_tag = validate_wallet_tag(self.plugin_settings.get("wallet_tag"))
+
         filtered_wallets = []
         try:
             # Step 1: Get the top wallets
-            top_wallets = self.get_top_wallets(timeframe=self.timeframe, wallet_tag=self.wallet_tag)
+            top_wallets = self.get_top_wallets(timeframe=timeframe, wallet_tag=wallet_tag)
             if not top_wallets:
                 self.logger.warning("No top wallets found.")
                 return []
@@ -59,7 +62,7 @@ class TopWallets(PluginInterface):
             # Step 2: Analyze each wallet activity
             for wallet in top_wallets:
                 wallet_address = wallet.wallet_address
-                wallet_activity = self.analyze_wallet_activity(wallet_address, period=self.timeframe)
+                wallet_activity = self.analyze_wallet_activity(wallet_address, period=timeframe)
 
                 if not wallet_activity:
                     self.logger.warning(
@@ -130,11 +133,14 @@ class TopWallets(PluginInterface):
         :param wallet_tuples: List of tuples (wallet_activity, wallet_address).
         :return: List of dictionaries with filtered wallet data.
         """
+        user_defined_win_rate = validate_win_rate(self.plugin_settings.get("win_rate"))
+
         filtered_wallets = []
 
+        self.logger.info(f"Searching for wallets that have a winrate greater than or equal to {user_defined_win_rate}")
         for wallet_activity, wallet_address in wallet_tuples:
             winrate = wallet_activity.wallet_data.winrate
-            if winrate is not None and winrate >= self.win_rate:
+            if winrate is not None and winrate >= user_defined_win_rate:
                 wallet_dict = wallet_activity.to_summary(wallet_address)
                 filtered_wallets.append(wallet_dict)
                 self.logger.info(f"Wallet {wallet_address} passed with winrate: {winrate}.")

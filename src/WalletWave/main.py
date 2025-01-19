@@ -15,7 +15,7 @@ class WalletWave:
         """
         self.config = config
         self.logger = setup_logger("main") # todo add verbose option
-        self.file_utils = FileUtils(self.config.path) # todo change path variable name to export path
+        self.file_utils = FileUtils(self.config.export_path) # todo change export_path variable name to export export_path
 
     def execute(self, plugin):
         """
@@ -29,7 +29,7 @@ class WalletWave:
 
             # Step 2: Execute the plugin
             self.logger.info(f"Executing plugin...")
-            data = plugin.execute(None) # todo: change the none type
+            data = plugin.execute()
 
             # Step 3: Export plugin results
             self.logger.info(f"Exporting plugin results..")
