@@ -103,12 +103,13 @@ walletwave
  ---  
 
 # Plugin Development  
-> Documentation coming soon...  
+> See [Plugin Development Wiki](https://github.com/LetsStartWithPurple/WalletWave/wiki/2.-Plugin-Development) 
 ---
 
 # Community
 > - [**Discord**](https://discord.gg/sunDQ8Xq)
-> - **GitHub Issues:** [Report bugs or request features](https://github.com/LetsStartWithPurple/WalletWave/issues)
+> - [**GitHub Discussion**](https://github.com/LetsStartWithPurple/WalletWave/discussions)
+> - **Program Issues:** [Report bugs](https://github.com/LetsStartWithPurple/WalletWave/issues)
 
 ---
 # License
