@@ -119,7 +119,13 @@ walletwave
 # Disclaimer
 > WalletWave is for educational and informational purposes only. Always verify outputs using additional tools and your own research.
 
-
+---
+# Contributions
+> We will never solicit money from our users, but if you would like to donate to the project, here is the Solana address.
+> 
+> Solana Wallet Address: 2NbHvVDjpNf8hG9aDjLom57Z1SwgH1G3wgih1amyLLzS
+> 
+> Thank you so much for your support! Just by you using WalletWave fills my heart with joy and is contribution enough!
 
 
 
