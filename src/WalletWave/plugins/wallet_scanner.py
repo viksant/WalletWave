@@ -3,6 +3,8 @@ from WalletWave.repositories.gmgn_repo import GmgnRepo
 from WalletWave.utils.logging_utils import setup_logger
 from WalletWave.config import ConfigManager
 
+# Author: LetsStartWithPurple
+# Version: 1.0.1
 
 class SolanaWalletScanner(PluginInterface):
     def __init__(self, config_manager: ConfigManager):
@@ -21,12 +23,12 @@ class SolanaWalletScanner(PluginInterface):
         return "Scans a list of wallets and exports performance"
 
     def get_version(self) -> str:
-        return "1.0.0"
+        return "1.0.1"
 
     def initialize(self) -> None:
         # Step 1 of plugin lifecycle
         self.logger.info("Solana Wallet Scanner initialized")
-        wallet_file_path = input("Please provide the export_path to the wallet file: ").strip()
+        wallet_file_path = input("Please provide the path to the wallet list file: ").strip()
         self._load_wallets(wallet_file_path)
 
         if not self.wallets:

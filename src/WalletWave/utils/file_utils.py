@@ -5,9 +5,18 @@ from datetime import datetime
 from dataclasses import asdict
 from pathlib import Path
 
-from WalletWave.utils.formatting_utils import format_timestamp, format_percentage, format_currency
+from WalletWave.utils.formatting_utils import *
 from WalletWave.utils.logging_utils import setup_logger
 
+def _flatten_nested_dicts(item: dict) -> dict:
+    flattened = {}
+    for key, value in item.items():
+        if isinstance(value, dict): # check if the value is a nested dict
+            for sub_key, sub_value in value.items():
+                flattened[f"{key}_{sub_key}"] = sub_value
+        else:
+            flattened[key] = value
+    return flattened
 
 def _apply_formatting(item: dict) -> dict:
     """
@@ -16,17 +25,28 @@ def _apply_formatting(item: dict) -> dict:
     :param item: A dictionary representing a single data entry.
     :return: A dictionary with formatted values.
     """
+
+    item = _flatten_nested_dicts(item)
+
     formatted_item = {}
     for key, value in item.items():
         if "timestamp" in key or "date" in key:
             formatted_item[key] = format_timestamp(value) if value else value
-        elif any(keyword in key for keyword in ["winrate", "pnl"]):
+        elif any(keyword in key for keyword in ["winrate", "pnl", "ratio"]):
             formatted_item[key] = format_percentage(value) if value is not None else value
         elif any(keyword in key for keyword in ["profit", "value", "cost"]):
             formatted_item[key] = format_currency(value) if value is not None else value
+        elif any(keyword in key for keyword in ["period", "peroid"]):
+            formatted_item[key] = format_gmgn_time_period(value) if value else value
         else:
             formatted_item[key] = value
     return formatted_item
+
+def _sort_fieldnames(fieldnames: set[list]) -> list:
+    custom_order = ["wallet_address", "winrate"]
+    sorted_remaining_fields = sorted(field for field in fieldnames if field not in custom_order)
+    final_fieldnames = custom_order + sorted_remaining_fields
+    return final_fieldnames
 
 
 class FileUtils:
@@ -61,6 +81,12 @@ class FileUtils:
             for entry in data
         ]
 
+        # make sure fieldnames include all keys (flattened dicts)
+        all_fieldnames = set()
+        for entry in data_dicts:
+            all_fieldnames.update(entry.keys())
+        sorted_fieldnames = _sort_fieldnames(all_fieldnames)
+
         # Make sure the export dir exists
         self.export_path.mkdir(parents=True, exist_ok=True)
 
@@ -68,16 +94,24 @@ class FileUtils:
         file_path = self._generate_file_path(export_format, timestamp_format)
 
         if export_format == "csv":
-            with file_path.open(mode="w", newline="", encoding="utf-8") as file:
-                writer = csv.DictWriter(file, fieldnames=data_dicts[0].keys())
-                writer.writeheader()
-                writer.writerows(data_dicts)
+            try:
+                with file_path.open(mode="w", newline="", encoding="utf-8") as file:
+                    writer = csv.DictWriter(file, fieldnames=sorted_fieldnames)
+                    writer.writeheader()
+                    writer.writerows(data_dicts)
+            except Exception as e:
+                self.logger.error(f"Failed to export CSV: {e}")
+                return
         elif export_format == "txt":
-            with file_path.open(mode="w", encoding="utf-8") as file:
-                for wallet in data_dicts:
-                    for key, value in wallet.items():
-                        file.write(f"{key}: {value}\n")
-                    file.write("\n")
+            try:
+                with file_path.open(mode="w", encoding="utf-8") as file:
+                    for wallet in data_dicts:
+                        for key, value in wallet.items():
+                            file.write(f"{key}: {value}\n")
+                        file.write("\n")
+            except Exception as e:
+                self.logger.error(f"Failed to export TXT: {e}")
+                return
         else:
             self.logger.error(f"Unsupported export format: {export_format}")
             return

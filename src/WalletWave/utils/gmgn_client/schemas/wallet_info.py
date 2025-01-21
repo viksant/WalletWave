@@ -6,6 +6,17 @@ from typing import List, Optional
 class TagRank:
     fresh_wallet: Optional[int] = None
 
+@dataclass
+class Risk:
+    token_active: Optional[str] = None
+    token_honeypot: Optional[str] = None
+    token_honeypot_ratio: Optional[float] = None
+    no_buy_hold: Optional[str] = None
+    no_buy_hold_ratio: Optional[float] = None
+    sell_pass_buy: Optional[str] = None
+    sell_pass_buy_ratio: Optional[float] = None
+    fast_tx: Optional[str] = None
+    fast_tx_ratio: Optional[float] = None
 
 @dataclass
 class WalletInfo:
@@ -59,6 +70,7 @@ class WalletInfo:
     tags: List[str] = field(default_factory=list)
     tag_rank: TagRank = field(default_factory=TagRank)
     refresh_requested_at: Optional[int] = None
+    risk: Optional[Risk] = None
 
 
 @dataclass

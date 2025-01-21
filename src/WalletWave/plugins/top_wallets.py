@@ -9,6 +9,8 @@ from WalletWave.config import ConfigManager
 
 from WalletWave.utils.config_validators import *
 
+# Author: LetsStartWithPurple
+# Version: 2.0.0
 
 def custom_summary(wallet_address, wallet_data):
     return {
@@ -46,8 +48,13 @@ class TopWallets(PluginInterface):
         """
         Execute the plugin
         """
-        timeframe = validate_timeframe(self.plugin_settings.get("timeframe"))
-        wallet_tag = validate_wallet_tag(self.plugin_settings.get("wallet_tag"))
+        try:
+            timeframe = validate_timeframe(self.plugin_settings.get("timeframe"))
+            wallet_tag = validate_wallet_tag(self.plugin_settings.get("wallet_tag"))
+        except Exception as e:
+            self.logger.error(f"Error setting config: {e}")
+            timeframe = "7d"
+            wallet_tag = "smart_degen"
 
         filtered_wallets = []
         try:
@@ -133,7 +140,12 @@ class TopWallets(PluginInterface):
         :param wallet_tuples: List of tuples (wallet_activity, wallet_address).
         :return: List of dictionaries with filtered wallet data.
         """
-        user_defined_win_rate = validate_win_rate(self.plugin_settings.get("win_rate"))
+
+        try:
+            user_defined_win_rate = validate_win_rate(self.plugin_settings.get("win_rate"))
+        except Exception as e:
+            self.logger.info(f"Error setting custom setting: {e}. Using a default")
+            user_defined_win_rate = validate_win_rate(60)
 
         filtered_wallets = []
 

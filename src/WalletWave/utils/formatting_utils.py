@@ -20,3 +20,27 @@ def format_currency(value: float, currency_symbol: str = "$") -> str:
         return f"{currency_symbol}{value:,.2f}"
     except Exception as e:
         return f"Invalid currency value: {value} ({e})"
+
+def format_gmgn_time_period(seconds: float) -> str:
+    """
+    Converts seconds into a more human-readable format of days, hours, minutes, and seconds.
+
+    Args:
+        seconds (float): Time period in seconds.
+
+    Returns:
+        str: A formatted string showing the time period in days, hours, minutes, and seconds.
+    """
+
+    original_seconds = seconds
+    try:
+        seconds = int(seconds)
+        days = seconds // (24 * 3600)
+        seconds %= (24 * 3600)
+        hours = seconds // 3600
+        seconds %= 3600
+        minutes = seconds // 60
+        seconds %= 60
+        return f"{days} days, {hours} hours, {minutes} minutes, {seconds} seconds"
+    except Exception as e:
+        return f"Seconds: {str(original_seconds)}: {e}"
