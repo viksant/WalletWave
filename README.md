@@ -3,7 +3,7 @@ WalletWave is a Python-based solana wallet scanner, designed to analyze transact
 
 > **_DISCLAIMER_**  
 > 
-> Even though the wallets that WalletWave exports fit a criteria that may work for your strategy, it is best to still do your own reseach with additional solana tools such as Dex Screener, Birdeye.so, GMGN.ai, etc.
+> Even though the wallets that WalletWave exports fit a criteria that may work for your strategy, it is best to still do your own research with additional solana tools such as Dex Screener, Birdeye.so, GMGN.ai, etc.
 
 ---
 ## Features
@@ -103,12 +103,13 @@ walletwave
  ---  
 
 # Plugin Development  
-> Documentation coming soon...  
+> See [Plugin Development Wiki](https://github.com/LetsStartWithPurple/WalletWave/wiki/2.-Plugin-Development) 
 ---
 
 # Community
-> - **Discord** (Will be up soon)
-> - **GitHub Issues:** [Report bugs or request features](https://github.com/LetsStartWithPurple/WalletWave/issues)
+> - [**Discord**](https://discord.gg/sunDQ8Xq)
+> - [**GitHub Discussion**](https://github.com/LetsStartWithPurple/WalletWave/discussions)
+> - **Program Issues:** [Report bugs](https://github.com/LetsStartWithPurple/WalletWave/issues)
 
 ---
 # License
@@ -118,7 +119,13 @@ walletwave
 # Disclaimer
 > WalletWave is for educational and informational purposes only. Always verify outputs using additional tools and your own research.
 
-
+---
+# Contributions
+> We will never solicit money from our users, but if you would like to donate to the project, here is the Solana address.
+> 
+> Solana Wallet Address: 2NbHvVDjpNf8hG9aDjLom57Z1SwgH1G3wgih1amyLLzS
+> 
+> Thank you so much for your support! Just by you using WalletWave fills my heart with joy and is contribution enough!
 
 
 
