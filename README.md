@@ -107,6 +107,7 @@ walletwave
 ---
 
 # Community
+> - https://x.com/WalletWaveApp
 > - [**Discord**](https://discord.gg/sunDQ8Xq)
 > - [**GitHub Discussion**](https://github.com/LetsStartWithPurple/WalletWave/discussions)
 > - **Program Issues:** [Report bugs](https://github.com/LetsStartWithPurple/WalletWave/issues)
