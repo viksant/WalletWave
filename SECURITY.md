@@ -11,4 +11,4 @@ The following versions are currently being supported with security updates.
 ## Reporting a Vulnerability
 
 If you need to report a security vulnerability, please email letsstartwithpurple2@gmail.com or  
-report in the GitHub Discussions. 
+report in the [GitHub Discussions](https://github.com/LetsStartWithPurple/WalletWave/discussions/categories/security-violations). 
