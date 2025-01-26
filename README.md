@@ -122,11 +122,15 @@ walletwave
 
 ---
 # Contributions
+> We welcome code contributions! In fact we encourage it! If you'd like to help improve WalletWave, please see:
+> - [Contributing Guidelines](https://github.com/LetsStartWithPurple/WalletWave/blob/main/CONTRIBUTING.md)
+> - [Code of Conduct](https://github.com/LetsStartWithPurple/WalletWave/blob/main/CODE_OF_CONDUCT.md)
+>
 > We will never solicit money from our users, but if you would like to donate to the project, here is the Solana address.
 > 
 > Solana Wallet Address: 2NbHvVDjpNf8hG9aDjLom57Z1SwgH1G3wgih1amyLLzS
 > 
-> Thank you so much for your support! Just by you using WalletWave fills my heart with joy and is contribution enough!
+> Thank you so much for your support! Just using WalletWave fills my heart with joy and is contribution enough!
 
 
 
