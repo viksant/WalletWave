@@ -1,12 +1,10 @@
-import os
 import csv
-import logging
-from datetime import datetime
 from dataclasses import asdict
 from pathlib import Path
 
 from WalletWave.utils.formatting_utils import *
-from WalletWave.utils.logging_utils import setup_logger
+from WalletWave.utils.logging_utils import get_logger
+
 
 def _flatten_nested_dicts(item: dict) -> dict:
     flattened = {}
@@ -56,7 +54,7 @@ class FileUtils:
     def __init__(self, export_path: str, import_path: str = None):
         self.export_path = Path(export_path)
         self.import_path = Path(import_path) if import_path else None
-        self.logger = setup_logger("FileUtils", log_level=logging.INFO)
+        self.logger = get_logger("FileUtils")
 
     def _generate_file_path(self, export_format: str, timestamp_format: str) -> Path:
         timestamp = datetime.now().strftime(timestamp_format)

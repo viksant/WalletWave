@@ -1,7 +1,9 @@
-import logging
 import random
+
 from fake_useragent import UserAgent
-from WalletWave.utils.logging_utils import setup_logger
+
+from WalletWave.utils.logging_utils import get_logger
+
 
 class AgentMapper:
     """
@@ -15,7 +17,7 @@ class AgentMapper:
 
     def __init__(self):
         # setup logger
-        self.debug_logger = setup_logger("AgentMapper", logging.INFO)
+        self.logger = get_logger("AgentMapper")
 
         # Mapping of tls_client identifiers to browser, platform, and OS
         self.identifier_mapping = {
@@ -59,19 +61,19 @@ class AgentMapper:
             },
         }
 
-        self.debug_logger.debug(f"AgentMapper initialized with {len(self.identifier_mapping)} client identifiers.")
+        self.logger.debug(f"AgentMapper initialized with {len(self.identifier_mapping)} client identifiers.")
 
     def get_user_agent(self, client_identifier: str) -> str:
-        self.debug_logger.debug("Mapping client identifier...")
-        self.debug_logger.debug(f"Received client_identifier: {client_identifier}")
+        self.logger.debug("Mapping client identifier...")
+        self.logger.debug(f"Received client_identifier: {client_identifier}")
 
         # validate client_identifier
         mapping = self.identifier_mapping.get(client_identifier)
         if not mapping:
-            self.debug_logger.debug(f"Client identifier {client_identifier} not found in mapping.")
+            self.logger.debug(f"Client identifier {client_identifier} not found in mapping.")
             raise ValueError(f"Unsupported client identifier: {client_identifier}")
 
-        self.debug_logger.debug(f"Mapping found for client_identifier {client_identifier}: {mapping}")
+        self.logger.debug(f"Mapping found for client_identifier {client_identifier}: {mapping}")
 
         browser = mapping["browser"]
         platform = mapping["platform"]
@@ -80,15 +82,15 @@ class AgentMapper:
         # generate user-agent
         ua = UserAgent(browsers=[browser], platforms=[platform], os=[os_type])
         user_agent = ua.random
-        self.debug_logger.debug(f"Generated user-agent: {user_agent}")
+        self.logger.debug(f"Generated user-agent: {user_agent}")
         return user_agent
 
     def get_random_client_and_agent(self) -> tuple[str, str]:
-        self.debug_logger.debug("Selecting a random client identifier...")
+        self.logger.debug("Selecting a random client identifier...")
 
         # choose a random client_identifier and generate matching user-agent
         client_identifier = random.choice(list(self.identifier_mapping.keys()))
-        self.debug_logger.debug(f"Randomly selected client_identifier: {client_identifier}")
+        self.logger.debug(f"Randomly selected client_identifier: {client_identifier}")
 
         user_agent = self.get_user_agent(client_identifier)
         return client_identifier, user_agent

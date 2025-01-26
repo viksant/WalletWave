@@ -1,49 +1,57 @@
 import logging
-import os
+from pathlib import Path
 
-# todo: add a global log level
+class LogConfig:
+    DEFAULT_FORMAT = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    DEFAULT_DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
+    LOG_LEVELS = {
+        "DEBUG": logging.DEBUG,
+        "INFO": logging.INFO,
+        "WARNING": logging.WARNING,
+        "ERROR": logging.ERROR,
+        "CRITICAL": logging.CRITICAL
+    }
 
-def setup_logger(name, log_level=logging.INFO, log_file = None):
-    """
-    Sets up a logger with the specified name, level, and optional file handler.
+    def __init__(self, log_level=None, log_dir="logs", config=None):
+        self.config = config
+        self.log_level = self._get_log_level(log_level)
+        self.log_dir = Path(log_dir)
+        self.log_dir.mkdir(exist_ok=True)
+        self._configure_root_logger()
 
-    :param name: Name of the logger.
-    :param log_level: Logging level (default: logging.INFO).
-    :param log_file: Optional file export_path to write logs to (default: None).
-    :return: Configured logger.
-    """
-
-    logger = logging.getLogger(name)
-
-    # Avoid adding duplicate handlers
-    if logger.hasHandlers():
-        return logger
-
-    logger.setLevel(log_level)
-
-    #console handler
-    console_handler = logging.StreamHandler()
-    console_handler.setLevel(log_level)
-
-    # formatter
-    formatter = logging.Formatter(
-        fmt="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S",
-    )
-
-    console_handler.setFormatter(formatter)
-
-    logger.addHandler(console_handler)
-
-    if log_file:
-        os.makedirs(os.path.dirname(log_file), exist_ok=True)
-        file_handler = logging.FileHandler(log_file)
-        file_handler.setLevel(log_level)
-        file_handler.setFormatter(formatter)
-        logger.addHandler(file_handler)
-
-    return logger
+    def _get_log_level(self, default_level):
+        if self.config and self.config.get("logging_level"):
+            level = self.config["logging_level"].upper()
+            return self.LOG_LEVELS.get(level, logging.INFO)
+        return default_level or logging.INFO
 
 
-def get_logging_config():
-    pass
+    def _configure_root_logger(self):
+        root_logger = logging.getLogger()
+        root_logger.setLevel(self.log_level)
+        root_logger.handlers.clear()
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(logging.Formatter(
+            fmt=self.DEFAULT_FORMAT,
+            datefmt=self.DEFAULT_DATE_FORMAT
+        ))
+        root_logger.addHandler(console_handler)
+
+        try:
+            file_handler = logging.FileHandler(
+                self.log_dir / "app.log"
+            )
+
+            file_handler.setFormatter(logging.Formatter(
+                fmt=self.DEFAULT_FORMAT,
+                datefmt=self.DEFAULT_DATE_FORMAT
+            ))
+            root_logger.addHandler(file_handler)
+        except Exception as e:
+            console_handler.error(f"Failed to set up file logging: {e}")
+
+def init_logging(config=None):
+    LogConfig(config=config)
+
+def get_logger(name):
+    return logging.getLogger(name)

@@ -1,10 +1,9 @@
-import logging
 import time
 from typing import List
 
 from WalletWave.plugins.utils.plugin_interface import PluginInterface
 from WalletWave.repositories.gmgn_repo import GmgnRepo
-from WalletWave.utils.logging_utils import setup_logger
+from WalletWave.utils.logging_utils import get_logger
 from WalletWave.config import ConfigManager
 
 from WalletWave.utils.config_validators import *
@@ -30,7 +29,8 @@ class TopWallets(PluginInterface):
         super().__init__(config_manager)
         self.plugin_settings = config_manager.TopWallets #dynamically get plugin settings
         self.gmgn = GmgnRepo()
-        self.logger = setup_logger(self.plugin_class, log_level=logging.INFO)
+        self.logger = get_logger("TopWallets")
+        self.logger.debug("Initializing TOPWALLETS")
 
     def get_name(self) -> str:
         return "Top Wallets"
@@ -52,23 +52,28 @@ class TopWallets(PluginInterface):
             timeframe = validate_timeframe(self.plugin_settings.get("timeframe"))
             wallet_tag = validate_wallet_tag(self.plugin_settings.get("wallet_tag"))
         except Exception as e:
-            self.logger.error(f"Error setting config: {e}")
+            self.logger.critical(f"Config validation error: {e}")
             timeframe = "7d"
             wallet_tag = "smart_degen"
+            self.logger.warning(f"Falling back to default values: timeframe={timeframe}, wallet_tag={wallet_tag}")
 
         filtered_wallets = []
         try:
             # Step 1: Get the top wallets
+            self.logger.debug(f"Fetching top wallets with params: timeframe={timeframe}, wallet_tag={wallet_tag}")
             top_wallets = self.get_top_wallets(timeframe=timeframe, wallet_tag=wallet_tag)
             if not top_wallets:
-                self.logger.warning("No top wallets found.")
+                self.logger.error("No top wallets found.")
                 return []
+
+            self.logger.debug(f"Found {len(top_wallets)} top wallets to analyze")
 
             wallet_tuples = []
 
             # Step 2: Analyze each wallet activity
             for wallet in top_wallets:
                 wallet_address = wallet.wallet_address
+                self.logger.debug(f"Analyzing wallet: {wallet_address}")
                 wallet_activity = self.analyze_wallet_activity(wallet_address, period=timeframe)
 
                 if not wallet_activity:
@@ -96,7 +101,7 @@ class TopWallets(PluginInterface):
             return filtered_wallets
 
         except Exception as e:
-            self.logger.error(f"Error running plugin: {e}")
+            self.logger.critical(f"Error running plugin: {e}", exc_info=True)
             return filtered_wallets
 
     def finalize(self) -> None:
@@ -111,6 +116,7 @@ class TopWallets(PluginInterface):
         :param period: Time period for wallet analysis (default "7d").
         :return: Wallet activity data.
         """
+        self.logger.debug(f"Analyzing wallet {wallet_address} for period {period}")
         try:
             response = self.gmgn.get_wallet_info(wallet_address=wallet_address, period=period)
             return response
@@ -126,6 +132,7 @@ class TopWallets(PluginInterface):
         :param wallet_tag: Tag to filter wallets (default "smart_degen").
         :return: List of top performing wallets.
         """
+        self.logger.debug(f"Fetching trending wallets: timeframe={timeframe}, tag={wallet_tag}")
         try:
             response = self.gmgn.get_trending_wallets(timeframe, wallet_tag)
             return response.rank
@@ -144,12 +151,13 @@ class TopWallets(PluginInterface):
         try:
             user_defined_win_rate = validate_win_rate(self.plugin_settings.get("win_rate"))
         except Exception as e:
-            self.logger.info(f"Error setting custom setting: {e}. Using a default")
+            self.logger.warning(f"Invalid win rate in setting: {e}")
             user_defined_win_rate = validate_win_rate(60)
+            self.logger.info(f"Using default win rate: {user_defined_win_rate}")
 
         filtered_wallets = []
 
-        self.logger.info(f"Searching for wallets that have a winrate greater than or equal to {user_defined_win_rate}")
+        self.logger.debug(f"Filtering wallets with win rate >= {user_defined_win_rate}")
         for wallet_activity, wallet_address in wallet_tuples:
             winrate = wallet_activity.wallet_data.winrate
             if winrate is not None and winrate >= user_defined_win_rate:

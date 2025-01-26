@@ -4,7 +4,7 @@ import os
 from yaml import YAMLError
 
 from WalletWave.utils.config_validators import *
-from WalletWave.utils.logging_utils import setup_logger
+from WalletWave.utils.logging_utils import get_logger
 
 
 class ConfigManager:
@@ -12,7 +12,7 @@ class ConfigManager:
     Wallet Wave configuration manager
     """
     def __init__(self, args = None):
-        self.logger = setup_logger("ConfigManager")
+        self.logger = get_logger("ConfigManager")
         self._config_path = os.path.abspath(args.config)
         self._config_data = self._load_config()
         self._args = args
@@ -39,15 +39,13 @@ class ConfigManager:
             "export_path": validate_path(
                 self._args.export_path if self._args and self._args.export_path else program_settings.get("export_path", "data")
             ),
-            "verbose": validate_verbose(
-                self._args.verbose if self._args and self._args.verbose else program_settings.get("verbose", False)
-            ),
             "export_format": validate_export_format(
                 self._args.export_format if self._args and self._args.export_format else program_settings.get("export_format", "csv")
             ),
             "export_enabled": validate_export_enabled(
               program_settings.get("export_enabled", True) #defaults to True
             ),
+            "logging_level": program_settings.get("logging_level", "INFO")
         }
 
     def _load_plugin_settings(self):
@@ -112,9 +110,9 @@ class ConfigManager:
 def parse_args():
     """ Parse command-line arguments"""
     parser = argparse.ArgumentParser(description="Smart Money Follower Configuration")
-    parser.add_argument("--config", type=str, default="src/WalletWave/config.yaml", help="Path to the config file")
+    parser.add_argument("--config", type=str, default="config.yaml", help="Path to the config file")
     parser.add_argument("--export_path", type=str, help="Path to export files")
-    parser.add_argument("--verbose", type=bool, help="Verbose script logs")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Enable debug logging")
     parser.add_argument("--export-format", type=str, choices=["csv", "txt"], help="Export format (csv or txt)")
     return parser.parse_args()
 
@@ -129,7 +127,6 @@ if __name__ == "__main__":
     # Access properties
     print("Final Configuration:")
     print(f"Export Path: {config_manager.export_path}")
-    print(f"Verbose: {config_manager.verbose}")
     print(f"Export Format: {config_manager.export_format}")
 
     #plugin settings

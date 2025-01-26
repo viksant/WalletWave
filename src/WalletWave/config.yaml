@@ -10,8 +10,8 @@ program_settings:
   # set False if you don't want results to be exported
   export_enabled: True
 
-  #### Verbose Settings
-  verbose: False
+  #### Logging setting
+  logging_level: "INFO" # Options: DEBUG, INFO, WARNING, ERROR, CRITICAL
 
 plugin_settings:
   #### Wallet Search settings

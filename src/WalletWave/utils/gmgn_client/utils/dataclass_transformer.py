@@ -1,11 +1,12 @@
-import logging
-from typing import Type, TypeVar, Any
 from dataclasses import is_dataclass
+from typing import Type, TypeVar, Any
+
 import dacite
-from WalletWave.utils.logging_utils import setup_logger
+
+from WalletWave.utils.logging_utils import get_logger
 
 # Initialize logger
-logger = setup_logger("TransformUtils", log_level=logging.INFO)
+logger = get_logger("Transformer")
 
 T = TypeVar("T")
 

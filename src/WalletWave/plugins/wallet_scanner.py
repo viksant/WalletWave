@@ -1,6 +1,6 @@
 from WalletWave.plugins.utils.plugin_interface import PluginInterface
 from WalletWave.repositories.gmgn_repo import GmgnRepo
-from WalletWave.utils.logging_utils import setup_logger
+from WalletWave.utils.logging_utils import get_logger
 from WalletWave.config import ConfigManager
 
 # Author: LetsStartWithPurple
@@ -10,7 +10,7 @@ class SolanaWalletScanner(PluginInterface):
     def __init__(self, config_manager: ConfigManager):
         super().__init__(config_manager)
         self.gmgn = GmgnRepo()
-        self.logger = setup_logger(self.plugin_class)
+        self.logger = get_logger("SolanaWalletScanner")
         self.timeframe = config_manager.get_plugin_setting(self.plugin_class, "timeframe", "7d")
         self.wallets = []
 

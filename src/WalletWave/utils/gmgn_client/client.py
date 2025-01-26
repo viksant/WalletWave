@@ -1,11 +1,11 @@
-import logging
 import random
-import tls_client
-from typing import Optional, Dict, Any
 import time
+from typing import Optional, Dict, Any
+
+import tls_client
 
 from WalletWave.utils.gmgn_client.utils.agent_mapper import AgentMapper
-from WalletWave.utils.logging_utils import setup_logger
+from WalletWave.utils.logging_utils import get_logger
 
 
 # TODO: Implement additional features like fetching transaction history or token analytics if supported by the API.
@@ -29,7 +29,7 @@ class Gmgn:
     # TODO: Explore rate-limiting compliance for `gmgn_client.ai` API to avoid potential issues. (2 seconds)
 
     def __init__(self, max_requests_range: tuple = (1, 10)):
-        self.logger = setup_logger("Gmgn Client", log_level=logging.INFO)
+        self.logger = get_logger("GMGN_Client")
         self.agent_mapper = AgentMapper()
         self.session = tls_client.Session(random_tls_extension_order=True)
         self.client, self.agent, self.headers = None, None, None

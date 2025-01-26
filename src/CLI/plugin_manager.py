@@ -5,7 +5,7 @@ import inspect
 from pathlib import Path
 
 from WalletWave.plugins.utils.plugin_interface import PluginInterface
-from WalletWave.utils.logging_utils import setup_logger
+from WalletWave.utils.logging_utils import get_logger
 
 
 class PluginManager:
@@ -17,7 +17,7 @@ class PluginManager:
         """
         Initialize the plugin manager with the directory containing plugins.
         """
-        self.debug_logger = setup_logger("PluginManager", log_level=logging.INFO)
+        self.debug_logger = get_logger("PluginManager")
 
         root = Path(__file__).resolve().parent.parent
 

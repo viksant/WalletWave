@@ -4,7 +4,7 @@ from CLI.menu import menu
 from WalletWave.config import parse_args
 from WalletWave.config import ConfigManager
 from WalletWave.utils.file_utils import FileUtils
-from WalletWave.utils.logging_utils import setup_logger
+from WalletWave.utils.logging_utils import get_logger, init_logging
 
 
 class WalletWave:
@@ -16,7 +16,7 @@ class WalletWave:
         Initializes the main app.
         """
         self.config = config
-        self.logger = setup_logger("main", log_level=logging.INFO) # todo add verbose option
+        self.logger = get_logger("WalletWave")
         self.file_utils = FileUtils(self.config.export_path)
 
     def execute(self, plugin):
@@ -59,7 +59,10 @@ def main():
     try:
         # parse command line args and init manager
         args = parse_args()
+
         manager = ConfigManager(args)
+
+        init_logging(manager.config)
 
         # run menu
         action = menu(manager)
