@@ -9,7 +9,7 @@ from WalletWave.utils.logging_utils import get_logger
 
 class ConfigManager:
     """
-    Wallet Wave configuration manager
+    Wallet Wave configuration manager!
     """
     def __init__(self, args = None):
         self.logger = get_logger("ConfigManager")
