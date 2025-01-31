@@ -1,0 +1,404 @@
+2025-01-29 15:03:03 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-29 15:03:07 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-29 15:03:07 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-29 15:03:07 - SolanaWalletScanner - ERROR - Wallet file not found: 2
+2025-01-29 15:03:07 - SolanaWalletScanner - ERROR - No wallets loaded. Stopping plugin execution
+2025-01-29 15:03:07 - WalletWave - ERROR - An error occurred while running the plugin: No wallets found in the specified file. Plugin cannot proceed
+2025-01-29 15:03:35 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-29 15:03:35 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-29 15:03:35 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-29 15:03:37 - SolanaWalletScanner - ERROR - Wallet file not found: sadad.txt
+2025-01-29 15:03:37 - SolanaWalletScanner - ERROR - No wallets loaded. Stopping plugin execution
+2025-01-29 15:03:37 - WalletWave - ERROR - An error occurred while running the plugin: No wallets found in the specified file. Plugin cannot proceed
+2025-01-29 15:07:42 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-29 15:07:44 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-29 15:07:44 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-29 15:07:46 - SolanaWalletScanner - ERROR - Wallet file not found: test.txt
+2025-01-29 15:07:46 - SolanaWalletScanner - ERROR - No wallets loaded. Stopping plugin execution
+2025-01-29 15:07:50 - SolanaWalletScanner - ERROR - Wallet file not found: test
+2025-01-29 15:07:50 - SolanaWalletScanner - ERROR - No wallets loaded. Stopping plugin execution
+2025-01-29 15:07:50 - SolanaWalletScanner - ERROR - Wallet file not found: 
+2025-01-29 15:07:50 - SolanaWalletScanner - ERROR - No wallets loaded. Stopping plugin execution
+2025-01-29 15:07:50 - SolanaWalletScanner - ERROR - Wallet file not found: 
+2025-01-29 15:07:50 - SolanaWalletScanner - ERROR - No wallets loaded. Stopping plugin execution
+2025-01-29 15:07:51 - SolanaWalletScanner - ERROR - Wallet file not found: 
+2025-01-29 15:07:51 - SolanaWalletScanner - ERROR - No wallets loaded. Stopping plugin execution
+2025-01-29 15:08:50 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-29 15:08:51 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-29 15:08:51 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-29 15:08:54 - SolanaWalletScanner - INFO - Loaded 4 wallets from wallets_test.txt.
+2025-01-29 15:08:54 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 4 wallets
+2025-01-29 15:08:54 - WalletWave - INFO - Executing plugin...
+2025-01-29 15:08:54 - SolanaWalletScanner - INFO - Executing Solana Wallet Scanner...
+2025-01-29 15:08:54 - GMGN_Client - INFO - Max requests reached, rotating headers...
+2025-01-29 15:08:54 - GMGN_Client - INFO - Rotated Headers -> Client: firefox_104, User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:125.0) Gecko/20100101 Firefox/125.0
+2025-01-29 15:08:56 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y completed successfully.
+2025-01-29 15:08:56 - SolanaWalletScanner - INFO - Fetched data for wallet: 6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y
+2025-01-29 15:10:08 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-29 15:10:11 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-29 15:10:11 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-29 15:10:12 - SolanaWalletScanner - INFO - Loaded 4 wallets from test.txt.
+2025-01-29 15:10:12 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 4 wallets
+2025-01-29 15:10:12 - WalletWave - INFO - Executing plugin...
+2025-01-29 15:10:12 - SolanaWalletScanner - INFO - Executing Solana Wallet Scanner...
+2025-01-29 15:10:15 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y completed successfully.
+2025-01-29 15:10:15 - SolanaWalletScanner - INFO - Fetched data for wallet: 6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y
+2025-01-29 15:10:17 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja completed successfully.
+2025-01-29 15:10:17 - SolanaWalletScanner - INFO - Fetched data for wallet: FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja
+2025-01-29 15:10:17 - GMGN_Client - INFO - Max requests reached, rotating headers...
+2025-01-29 15:10:17 - GMGN_Client - INFO - Rotated Headers -> Client: chrome_109, User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+2025-01-29 15:10:19 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm completed successfully.
+2025-01-29 15:10:19 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm: wrong value type for field "data.token_num" - should be "int" instead of value "None" of type "NoneType"
+2025-01-29 15:12:05 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-29 15:12:06 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-29 15:12:06 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-29 15:12:09 - SolanaWalletScanner - INFO - Loaded 4 wallets from test.txt.
+2025-01-29 15:12:09 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 4 wallets
+2025-01-29 15:12:09 - WalletWave - INFO - Executing plugin...
+2025-01-29 15:12:09 - SolanaWalletScanner - INFO - Executing Solana Wallet Scanner...
+2025-01-29 15:12:11 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y completed successfully.
+2025-01-29 15:12:11 - SolanaWalletScanner - INFO - Fetched data for wallet: 6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y
+2025-01-29 15:12:13 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja completed successfully.
+2025-01-29 15:12:13 - SolanaWalletScanner - INFO - Fetched data for wallet: FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja
+2025-01-29 15:12:13 - GMGN_Client - INFO - Max requests reached, rotating headers...
+2025-01-29 15:12:13 - GMGN_Client - INFO - Rotated Headers -> Client: chrome_103, User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+2025-01-29 15:12:15 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm completed successfully.
+2025-01-29 15:12:15 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm: wrong value type for field "data.pnl_lt_minus_dot5_num" - should be "int" instead of value "None" of type "NoneType"
+2025-01-29 15:12:18 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4 completed successfully.
+2025-01-29 15:12:18 - SolanaWalletScanner - ERROR - Error fetching data for wallet D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4: wrong value type for field "data.pnl_lt_minus_dot5_num" - should be "int" instead of value "None" of type "NoneType"
+2025-01-29 15:12:18 - SolanaWalletScanner - INFO - Scanned 2
+2025-01-29 15:12:18 - WalletWave - INFO - Exporting plugin results..
+2025-01-29 15:12:18 - WalletWave - INFO - Exporting wallet data...
+2025-01-29 15:12:18 - FileUtils - INFO - Exporting 2 entries to csv format.
+2025-01-29 15:12:18 - FileUtils - INFO - Data exported successfully to data\wallet_list_20250129_151218.csv
+2025-01-29 15:12:18 - WalletWave - INFO - Finalizing plugin...
+2025-01-29 15:12:18 - SolanaWalletScanner - INFO - Solana Wallet Scanner finalized
+2025-01-29 15:13:01 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-29 15:13:12 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-29 15:13:14 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-29 15:13:14 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-29 15:13:15 - SolanaWalletScanner - INFO - Loaded 4 wallets from test.txt.
+2025-01-29 15:13:15 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 4 wallets
+2025-01-29 15:13:15 - WalletWave - INFO - Executing plugin...
+2025-01-29 15:13:15 - SolanaWalletScanner - INFO - Executing Solana Wallet Scanner...
+2025-01-29 15:13:18 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y completed successfully.
+2025-01-29 15:13:18 - SolanaWalletScanner - INFO - Fetched data for wallet: 6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y
+2025-01-29 15:13:20 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja completed successfully.
+2025-01-29 15:13:20 - SolanaWalletScanner - INFO - Fetched data for wallet: FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja
+2025-01-29 15:13:22 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm completed successfully.
+2025-01-29 15:13:22 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm: wrong value type for field "data.avg_holding_peroid" - should be "float" instead of value "None" of type "NoneType"
+2025-01-29 15:13:24 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4 completed successfully.
+2025-01-29 15:13:24 - SolanaWalletScanner - ERROR - Error fetching data for wallet D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4: wrong value type for field "data.avg_holding_peroid" - should be "float" instead of value "None" of type "NoneType"
+2025-01-29 15:13:24 - SolanaWalletScanner - INFO - Scanned 2
+2025-01-29 15:13:24 - WalletWave - INFO - Exporting plugin results..
+2025-01-29 15:13:24 - WalletWave - INFO - Exporting wallet data...
+2025-01-29 15:13:24 - FileUtils - INFO - Exporting 2 entries to csv format.
+2025-01-29 15:13:24 - FileUtils - INFO - Data exported successfully to data\wallet_list_20250129_151324.csv
+2025-01-29 15:13:24 - WalletWave - INFO - Finalizing plugin...
+2025-01-29 15:13:24 - SolanaWalletScanner - INFO - Solana Wallet Scanner finalized
+2025-01-29 15:13:56 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-29 15:13:56 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-29 15:13:56 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-29 15:13:58 - SolanaWalletScanner - INFO - Loaded 4 wallets from test.txt.
+2025-01-29 15:13:58 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 4 wallets
+2025-01-29 15:13:58 - WalletWave - INFO - Executing plugin...
+2025-01-29 15:13:58 - SolanaWalletScanner - INFO - Executing Solana Wallet Scanner...
+2025-01-29 15:14:01 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y completed successfully.
+2025-01-29 15:14:01 - SolanaWalletScanner - INFO - Fetched data for wallet: 6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y
+2025-01-29 15:14:03 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja completed successfully.
+2025-01-29 15:14:03 - SolanaWalletScanner - INFO - Fetched data for wallet: FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja
+2025-01-29 15:14:05 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm completed successfully.
+2025-01-29 15:14:05 - SolanaWalletScanner - INFO - Fetched data for wallet: 6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm
+2025-01-29 15:14:07 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4 completed successfully.
+2025-01-29 15:14:07 - SolanaWalletScanner - INFO - Fetched data for wallet: D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4
+2025-01-29 15:14:07 - SolanaWalletScanner - INFO - Scanned 4
+2025-01-29 15:14:07 - WalletWave - INFO - Exporting plugin results..
+2025-01-29 15:14:07 - WalletWave - INFO - Exporting wallet data...
+2025-01-29 15:14:07 - FileUtils - INFO - Exporting 4 entries to csv format.
+2025-01-29 15:14:07 - FileUtils - INFO - Data exported successfully to data\wallet_list_20250129_151407.csv
+2025-01-29 15:14:07 - WalletWave - INFO - Finalizing plugin...
+2025-01-29 15:14:07 - SolanaWalletScanner - INFO - Solana Wallet Scanner finalized
+2025-01-29 15:38:15 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-29 15:38:18 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-29 15:38:18 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-29 15:38:21 - SolanaWalletScanner - INFO - Loaded 4 wallets from test.txt.
+2025-01-29 15:38:21 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 4 wallets
+2025-01-29 15:38:21 - WalletWave - INFO - Executing plugin...
+2025-01-29 15:38:21 - SolanaWalletScanner - INFO - Executing Solana Wallet Scanner...
+2025-01-29 15:38:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:38:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:38:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:38:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:38:25 - SolanaWalletScanner - INFO - Scanned 0
+2025-01-29 15:38:25 - WalletWave - INFO - Exporting plugin results..
+2025-01-29 15:38:25 - WalletWave - INFO - Exporting wallet data...
+2025-01-29 15:38:25 - FileUtils - WARNING - No data to export
+2025-01-29 15:38:25 - WalletWave - INFO - Finalizing plugin...
+2025-01-29 15:38:25 - SolanaWalletScanner - INFO - Solana Wallet Scanner finalized
+2025-01-29 15:39:58 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-29 15:39:58 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-29 15:39:58 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-29 15:40:01 - SolanaWalletScanner - INFO - Loaded 4 wallets from test.txt.
+2025-01-29 15:40:01 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 4 wallets
+2025-01-29 15:40:01 - WalletWave - INFO - Executing plugin...
+2025-01-29 15:40:01 - SolanaWalletScanner - INFO - Executing Solana Wallet Scanner...
+2025-01-29 15:40:02 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:40:02 - SolanaWalletScanner - ERROR - Error fetching data for wallet FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:40:02 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:40:02 - GMGN_Client - INFO - Max requests reached, rotating headers...
+2025-01-29 15:40:02 - GMGN_Client - INFO - Rotated Headers -> Client: chrome_118, User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+2025-01-29 15:40:02 - SolanaWalletScanner - ERROR - Error fetching data for wallet D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:40:02 - SolanaWalletScanner - INFO - Scanned 0
+2025-01-29 15:40:02 - WalletWave - INFO - Exporting plugin results..
+2025-01-29 15:40:02 - WalletWave - INFO - Exporting wallet data...
+2025-01-29 15:40:02 - FileUtils - WARNING - No data to export
+2025-01-29 15:40:02 - WalletWave - INFO - Finalizing plugin...
+2025-01-29 15:40:02 - SolanaWalletScanner - INFO - Solana Wallet Scanner finalized
+2025-01-29 15:42:55 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-29 15:42:56 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-29 15:42:56 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-29 15:42:58 - SolanaWalletScanner - INFO - Loaded 4 wallets from test.txt.
+2025-01-29 15:42:58 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 4 wallets
+2025-01-29 15:42:58 - WalletWave - INFO - Executing plugin...
+2025-01-29 15:42:58 - SolanaWalletScanner - INFO - Executing Solana Wallet Scanner...
+2025-01-29 15:42:58 - GMGN_Client - INFO - Max requests reached, rotating headers...
+2025-01-29 15:42:58 - GMGN_Client - INFO - Rotated Headers -> Client: firefox_105, User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:125.0) Gecko/20100101 Firefox/125.0
+2025-01-29 15:42:58 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:42:58 - SolanaWalletScanner - ERROR - Error fetching data for wallet FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:42:58 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:42:58 - SolanaWalletScanner - ERROR - Error fetching data for wallet D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:42:58 - SolanaWalletScanner - INFO - Scanned 0
+2025-01-29 15:42:58 - WalletWave - INFO - Exporting plugin results..
+2025-01-29 15:42:58 - WalletWave - INFO - Exporting wallet data...
+2025-01-29 15:42:58 - FileUtils - WARNING - No data to export
+2025-01-29 15:42:58 - WalletWave - INFO - Finalizing plugin...
+2025-01-29 15:42:58 - SolanaWalletScanner - INFO - Solana Wallet Scanner finalized
+2025-01-29 15:50:44 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-29 15:50:45 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-29 15:50:45 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-29 15:50:46 - SolanaWalletScanner - INFO - Loaded 4 wallets from test.txt.
+2025-01-29 15:50:46 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 4 wallets
+2025-01-29 15:50:46 - WalletWave - INFO - Executing plugin...
+2025-01-29 15:50:46 - SolanaWalletScanner - INFO - Executing Solana Wallet Scanner...
+2025-01-29 15:50:47 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:50:47 - SolanaWalletScanner - ERROR - Error fetching data for wallet FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:50:47 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:50:47 - SolanaWalletScanner - ERROR - Error fetching data for wallet D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:50:47 - SolanaWalletScanner - INFO - Scanned 0
+2025-01-29 15:50:47 - WalletWave - INFO - Exporting plugin results..
+2025-01-29 15:50:47 - WalletWave - INFO - Exporting wallet data...
+2025-01-29 15:50:47 - FileUtils - WARNING - No data to export
+2025-01-29 15:50:47 - WalletWave - INFO - Finalizing plugin...
+2025-01-29 15:50:47 - SolanaWalletScanner - INFO - Solana Wallet Scanner finalized
+2025-01-29 15:51:16 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-29 15:51:16 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-29 15:51:16 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-29 15:51:17 - SolanaWalletScanner - INFO - Loaded 4 wallets from test.txt.
+2025-01-29 15:51:17 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 4 wallets
+2025-01-29 15:51:17 - WalletWave - INFO - Executing plugin...
+2025-01-29 15:51:17 - SolanaWalletScanner - INFO - Executing Solana Wallet Scanner...
+2025-01-29 15:51:18 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y completed successfully.
+2025-01-29 15:51:18 - SolanaWalletScanner - INFO - Fetched data for wallet: 6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y
+2025-01-29 15:51:18 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja completed successfully.
+2025-01-29 15:51:18 - SolanaWalletScanner - INFO - Fetched data for wallet: FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja
+2025-01-29 15:51:18 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm completed successfully.
+2025-01-29 15:51:18 - SolanaWalletScanner - INFO - Fetched data for wallet: 6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm
+2025-01-29 15:51:19 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4 completed successfully.
+2025-01-29 15:51:19 - SolanaWalletScanner - INFO - Fetched data for wallet: D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4
+2025-01-29 15:51:19 - SolanaWalletScanner - INFO - Scanned 4
+2025-01-29 15:51:19 - WalletWave - INFO - Exporting plugin results..
+2025-01-29 15:51:19 - WalletWave - INFO - Exporting wallet data...
+2025-01-29 15:51:19 - FileUtils - INFO - Exporting 4 entries to csv format.
+2025-01-29 15:51:19 - FileUtils - INFO - Data exported successfully to data\wallet_list_20250129_155119.csv
+2025-01-29 15:51:19 - WalletWave - INFO - Finalizing plugin...
+2025-01-29 15:51:19 - SolanaWalletScanner - INFO - Solana Wallet Scanner finalized
+2025-01-29 15:52:50 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-29 15:52:51 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-29 15:52:51 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-29 15:52:52 - SolanaWalletScanner - INFO - Loaded 4 wallets from test.txt.
+2025-01-29 15:52:52 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 4 wallets
+2025-01-29 15:52:52 - WalletWave - INFO - Executing plugin...
+2025-01-29 15:52:52 - SolanaWalletScanner - INFO - Executing Solana Wallet Scanner...
+2025-01-29 15:52:53 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:52:53 - SolanaWalletScanner - ERROR - Error fetching data for wallet FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:52:53 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:52:53 - GMGN_Client - INFO - Max requests reached, rotating headers...
+2025-01-29 15:52:53 - GMGN_Client - INFO - Rotated Headers -> Client: chrome_111, User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+2025-01-29 15:52:53 - SolanaWalletScanner - ERROR - Error fetching data for wallet D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:52:53 - SolanaWalletScanner - INFO - Scanned 0
+2025-01-29 15:52:53 - WalletWave - INFO - Exporting plugin results..
+2025-01-29 15:52:53 - WalletWave - INFO - Exporting wallet data...
+2025-01-29 15:52:53 - FileUtils - WARNING - No data to export
+2025-01-29 15:52:53 - WalletWave - INFO - Finalizing plugin...
+2025-01-29 15:52:53 - SolanaWalletScanner - INFO - Solana Wallet Scanner finalized
+2025-01-29 15:53:26 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-29 15:53:27 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-29 15:53:27 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-29 15:53:29 - SolanaWalletScanner - INFO - Loaded 4 wallets from test.txt.
+2025-01-29 15:53:29 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 4 wallets
+2025-01-29 15:53:29 - WalletWave - INFO - Executing plugin...
+2025-01-29 15:53:29 - SolanaWalletScanner - INFO - Executing Solana Wallet Scanner...
+2025-01-29 15:53:30 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:53:30 - SolanaWalletScanner - ERROR - Error fetching data for wallet FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:53:30 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:53:30 - SolanaWalletScanner - ERROR - Error fetching data for wallet D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:53:30 - SolanaWalletScanner - INFO - Scanned 0
+2025-01-29 15:53:30 - WalletWave - INFO - Exporting plugin results..
+2025-01-29 15:53:30 - WalletWave - INFO - Exporting wallet data...
+2025-01-29 15:53:30 - FileUtils - WARNING - No data to export
+2025-01-29 15:53:30 - WalletWave - INFO - Finalizing plugin...
+2025-01-29 15:53:30 - SolanaWalletScanner - INFO - Solana Wallet Scanner finalized
+2025-01-29 15:54:47 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-29 15:54:48 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-29 15:54:48 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-29 15:54:49 - SolanaWalletScanner - INFO - Loaded 4 wallets from test.txt.
+2025-01-29 15:54:49 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 4 wallets
+2025-01-29 15:54:49 - WalletWave - INFO - Executing plugin...
+2025-01-29 15:54:49 - SolanaWalletScanner - INFO - Executing Solana Wallet Scanner...
+2025-01-29 15:54:49 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:54:49 - GMGN_Client - INFO - Max requests reached, rotating headers...
+2025-01-29 15:54:49 - GMGN_Client - INFO - Rotated Headers -> Client: chrome_116, User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36
+2025-01-29 15:54:49 - SolanaWalletScanner - ERROR - Error fetching data for wallet FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:54:49 - GMGN_Client - INFO - Max requests reached, rotating headers...
+2025-01-29 15:54:49 - GMGN_Client - INFO - Rotated Headers -> Client: firefox_106, User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:125.0) Gecko/20100101 Firefox/125.0
+2025-01-29 15:54:49 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:54:49 - SolanaWalletScanner - ERROR - Error fetching data for wallet D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4: Request failed: Session.execute_request() got an unexpected keyword argument 'timeout'
+2025-01-29 15:54:49 - SolanaWalletScanner - INFO - Scanned 0
+2025-01-29 15:54:49 - WalletWave - INFO - Exporting plugin results..
+2025-01-29 15:54:49 - WalletWave - INFO - Exporting wallet data...
+2025-01-29 15:54:49 - FileUtils - WARNING - No data to export
+2025-01-29 15:54:49 - WalletWave - INFO - Finalizing plugin...
+2025-01-29 15:54:49 - SolanaWalletScanner - INFO - Solana Wallet Scanner finalized
+2025-01-29 15:58:13 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-29 15:58:14 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-29 15:58:14 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-29 15:58:17 - SolanaWalletScanner - INFO - Loaded 4 wallets from test.txt.
+2025-01-29 15:58:17 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 4 wallets
+2025-01-29 15:58:17 - WalletWave - INFO - Executing plugin...
+2025-01-29 15:58:17 - SolanaWalletScanner - INFO - Executing Solana Wallet Scanner...
+2025-01-29 15:58:18 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y: Request failed: json: cannot unmarshal string into Go struct field RequestInput.timeoutSeconds of type int
+2025-01-29 15:58:18 - SolanaWalletScanner - ERROR - Error fetching data for wallet FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja: Request failed: json: cannot unmarshal string into Go struct field RequestInput.timeoutSeconds of type int
+2025-01-29 15:58:18 - GMGN_Client - INFO - Max requests reached, rotating headers...
+2025-01-29 15:58:18 - GMGN_Client - INFO - Rotated Headers -> Client: chrome_118, User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+2025-01-29 15:58:18 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm: Request failed: json: cannot unmarshal string into Go struct field RequestInput.timeoutSeconds of type int
+2025-01-29 15:58:18 - SolanaWalletScanner - ERROR - Error fetching data for wallet D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4: Request failed: json: cannot unmarshal string into Go struct field RequestInput.timeoutSeconds of type int
+2025-01-29 15:58:18 - SolanaWalletScanner - INFO - Scanned 0
+2025-01-29 15:58:18 - WalletWave - INFO - Exporting plugin results..
+2025-01-29 15:58:18 - WalletWave - INFO - Exporting wallet data...
+2025-01-29 15:58:18 - FileUtils - WARNING - No data to export
+2025-01-29 15:58:18 - WalletWave - INFO - Finalizing plugin...
+2025-01-29 15:58:18 - SolanaWalletScanner - INFO - Solana Wallet Scanner finalized
+2025-01-29 15:59:09 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-29 15:59:10 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-29 15:59:10 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-29 15:59:12 - SolanaWalletScanner - INFO - Loaded 4 wallets from test.txt.
+2025-01-29 15:59:12 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 4 wallets
+2025-01-29 15:59:12 - WalletWave - INFO - Executing plugin...
+2025-01-29 15:59:12 - SolanaWalletScanner - INFO - Executing Solana Wallet Scanner...
+2025-01-29 15:59:13 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y: Request failed: Session.execute_request() got an unexpected keyword argument 'timeoutSeconds'. Did you mean 'timeout_seconds'?
+2025-01-29 15:59:13 - SolanaWalletScanner - ERROR - Error fetching data for wallet FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja: Request failed: Session.execute_request() got an unexpected keyword argument 'timeoutSeconds'. Did you mean 'timeout_seconds'?
+2025-01-29 15:59:13 - GMGN_Client - INFO - Max requests reached, rotating headers...
+2025-01-29 15:59:13 - GMGN_Client - INFO - Rotated Headers -> Client: chrome_118, User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+2025-01-29 15:59:13 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm: Request failed: Session.execute_request() got an unexpected keyword argument 'timeoutSeconds'. Did you mean 'timeout_seconds'?
+2025-01-29 15:59:13 - GMGN_Client - INFO - Max requests reached, rotating headers...
+2025-01-29 15:59:13 - GMGN_Client - INFO - Rotated Headers -> Client: safari_16_0, User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.1.1 Safari/605.1.15
+2025-01-29 15:59:13 - SolanaWalletScanner - ERROR - Error fetching data for wallet D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4: Request failed: Session.execute_request() got an unexpected keyword argument 'timeoutSeconds'. Did you mean 'timeout_seconds'?
+2025-01-29 15:59:13 - SolanaWalletScanner - INFO - Scanned 0
+2025-01-29 15:59:13 - WalletWave - INFO - Exporting plugin results..
+2025-01-29 15:59:13 - WalletWave - INFO - Exporting wallet data...
+2025-01-29 15:59:13 - FileUtils - WARNING - No data to export
+2025-01-29 15:59:13 - WalletWave - INFO - Finalizing plugin...
+2025-01-29 15:59:13 - SolanaWalletScanner - INFO - Solana Wallet Scanner finalized
+2025-01-29 15:59:33 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-29 15:59:34 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-29 15:59:34 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-29 15:59:36 - SolanaWalletScanner - INFO - Loaded 4 wallets from test.txt.
+2025-01-29 15:59:36 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 4 wallets
+2025-01-29 15:59:36 - WalletWave - INFO - Executing plugin...
+2025-01-29 15:59:36 - SolanaWalletScanner - INFO - Executing Solana Wallet Scanner...
+2025-01-29 15:59:37 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y completed successfully.
+2025-01-29 15:59:37 - SolanaWalletScanner - INFO - Fetched data for wallet: 6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y
+2025-01-29 15:59:37 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja completed successfully.
+2025-01-29 15:59:37 - SolanaWalletScanner - INFO - Fetched data for wallet: FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja
+2025-01-29 15:59:37 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm completed successfully.
+2025-01-29 15:59:37 - SolanaWalletScanner - INFO - Fetched data for wallet: 6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm
+2025-01-29 15:59:37 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4 completed successfully.
+2025-01-29 15:59:37 - SolanaWalletScanner - INFO - Fetched data for wallet: D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4
+2025-01-29 15:59:37 - SolanaWalletScanner - INFO - Scanned 4
+2025-01-29 15:59:37 - WalletWave - INFO - Exporting plugin results..
+2025-01-29 15:59:37 - WalletWave - INFO - Exporting wallet data...
+2025-01-29 15:59:37 - FileUtils - INFO - Exporting 4 entries to csv format.
+2025-01-29 15:59:37 - FileUtils - INFO - Data exported successfully to data\wallet_list_20250129_155937.csv
+2025-01-29 15:59:37 - WalletWave - INFO - Finalizing plugin...
+2025-01-29 15:59:37 - SolanaWalletScanner - INFO - Solana Wallet Scanner finalized
+2025-01-31 19:18:58 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-31 19:21:45 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-31 19:21:47 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-31 19:21:47 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-31 19:21:49 - SolanaWalletScanner - INFO - Loaded 18 wallets from test.txt.
+2025-01-31 19:21:49 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 18 wallets
+2025-01-31 19:21:49 - WalletWave - INFO - Executing plugin...
+2025-01-31 19:21:49 - SolanaWalletScanner - INFO - Executing Solana Wallet Scanner...
+2025-01-31 19:21:52 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y completed successfully.
+2025-01-31 19:21:52 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y completed successfully.
+2025-01-31 19:21:52 - SolanaWalletScanner - INFO - Fetched data for wallet: 6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y
+2025-01-31 19:21:53 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja completed successfully.
+2025-01-31 19:21:53 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja completed successfully.
+2025-01-31 19:21:53 - SolanaWalletScanner - INFO - Fetched data for wallet: FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja
+2025-01-31 19:21:53 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/FDiVPpzjfbwxvjjqUSVrqFcCS7CG8aY9WWnxSsMWuj5W completed successfully.
+2025-01-31 19:21:53 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/FDiVPpzjfbwxvjjqUSVrqFcCS7CG8aY9WWnxSsMWuj5W completed successfully.
+2025-01-31 19:21:53 - SolanaWalletScanner - INFO - Fetched data for wallet: FDiVPpzjfbwxvjjqUSVrqFcCS7CG8aY9WWnxSsMWuj5W
+2025-01-31 19:21:53 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/Gvp8oQCJh9iwyDAjW7tSt9J5FismTmBctiBf8xDX6wg8 completed successfully.
+2025-01-31 19:21:53 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/Gvp8oQCJh9iwyDAjW7tSt9J5FismTmBctiBf8xDX6wg8 completed successfully.
+2025-01-31 19:21:53 - SolanaWalletScanner - INFO - Fetched data for wallet: Gvp8oQCJh9iwyDAjW7tSt9J5FismTmBctiBf8xDX6wg8
+2025-01-31 19:21:53 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/HEmg53AvjtCejY3NgqhF3dff5uJQPaLPiHU8GsJU7WzG completed successfully.
+2025-01-31 19:21:53 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/HEmg53AvjtCejY3NgqhF3dff5uJQPaLPiHU8GsJU7WzG completed successfully.
+2025-01-31 19:21:53 - SolanaWalletScanner - INFO - Fetched data for wallet: HEmg53AvjtCejY3NgqhF3dff5uJQPaLPiHU8GsJU7WzG
+2025-01-31 19:21:54 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/5sc5JnefFVyu9AVYHzXNmEBZPXU9Lhq6LhWR5cm9JgoM completed successfully.
+2025-01-31 19:21:54 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/5sc5JnefFVyu9AVYHzXNmEBZPXU9Lhq6LhWR5cm9JgoM completed successfully.
+2025-01-31 19:21:54 - SolanaWalletScanner - INFO - Fetched data for wallet: 5sc5JnefFVyu9AVYHzXNmEBZPXU9Lhq6LhWR5cm9JgoM
+2025-01-31 19:21:54 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/7ACBAs2CmUbsNDEAWMsc46XcBzDjRTbTJzmAzK5tuy2s completed successfully.
+2025-01-31 19:21:54 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/7ACBAs2CmUbsNDEAWMsc46XcBzDjRTbTJzmAzK5tuy2s completed successfully.
+2025-01-31 19:21:54 - SolanaWalletScanner - INFO - Fetched data for wallet: 7ACBAs2CmUbsNDEAWMsc46XcBzDjRTbTJzmAzK5tuy2s
+2025-01-31 19:21:54 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/8i5x6j11u7K1mJVrgCqpMj6R5Sv6TZUxvhgLoZAzzVpi completed successfully.
+2025-01-31 19:21:54 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/8i5x6j11u7K1mJVrgCqpMj6R5Sv6TZUxvhgLoZAzzVpi completed successfully.
+2025-01-31 19:21:54 - SolanaWalletScanner - INFO - Fetched data for wallet: 8i5x6j11u7K1mJVrgCqpMj6R5Sv6TZUxvhgLoZAzzVpi
+2025-01-31 19:21:54 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/4B6i3z4aAGWwwixdUJb92Kxkd3PgcHbUrt2Zi7LP1ndK completed successfully.
+2025-01-31 19:21:54 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/4B6i3z4aAGWwwixdUJb92Kxkd3PgcHbUrt2Zi7LP1ndK completed successfully.
+2025-01-31 19:21:54 - SolanaWalletScanner - INFO - Fetched data for wallet: 4B6i3z4aAGWwwixdUJb92Kxkd3PgcHbUrt2Zi7LP1ndK
+2025-01-31 19:21:54 - GMGN_Client - INFO - Max requests reached, rotating headers...
+2025-01-31 19:21:54 - GMGN_Client - INFO - Rotated Headers -> Client: chrome_118, User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36
+2025-01-31 19:21:54 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/HighDYcKVXpYJdukBXNdHZ8Kb5qZnR8Hn6aYuWS1SSnu completed successfully.
+2025-01-31 19:21:54 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/HighDYcKVXpYJdukBXNdHZ8Kb5qZnR8Hn6aYuWS1SSnu completed successfully.
+2025-01-31 19:21:54 - SolanaWalletScanner - INFO - Fetched data for wallet: HighDYcKVXpYJdukBXNdHZ8Kb5qZnR8Hn6aYuWS1SSnu
+2025-01-31 19:21:55 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/3E5QmNWkXHixHJKtsgahc4L1WR2sWQ44Ayd4iorVZZfN completed successfully.
+2025-01-31 19:21:55 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/3E5QmNWkXHixHJKtsgahc4L1WR2sWQ44Ayd4iorVZZfN completed successfully.
+2025-01-31 19:21:55 - SolanaWalletScanner - INFO - Fetched data for wallet: 3E5QmNWkXHixHJKtsgahc4L1WR2sWQ44Ayd4iorVZZfN
+2025-01-31 19:21:55 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4 completed successfully.
+2025-01-31 19:21:55 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4 completed successfully.
+2025-01-31 19:21:55 - SolanaWalletScanner - INFO - Fetched data for wallet: D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4
+2025-01-31 19:21:55 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/9Sv7Jj5Mu4F8hfevURdrPvA3CLjuuMpXBisoesrLvKEv completed successfully.
+2025-01-31 19:21:55 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/9Sv7Jj5Mu4F8hfevURdrPvA3CLjuuMpXBisoesrLvKEv completed successfully.
+2025-01-31 19:21:55 - SolanaWalletScanner - INFO - Fetched data for wallet: 9Sv7Jj5Mu4F8hfevURdrPvA3CLjuuMpXBisoesrLvKEv
+2025-01-31 19:21:55 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/CjWX6z2ujwCEWX1b3NV5xTDWfqvUfWJRUzJ2zj2rwLfk completed successfully.
+2025-01-31 19:21:55 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/CjWX6z2ujwCEWX1b3NV5xTDWfqvUfWJRUzJ2zj2rwLfk completed successfully.
+2025-01-31 19:21:55 - SolanaWalletScanner - INFO - Fetched data for wallet: CjWX6z2ujwCEWX1b3NV5xTDWfqvUfWJRUzJ2zj2rwLfk
+2025-01-31 19:21:55 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm completed successfully.
+2025-01-31 19:21:55 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm completed successfully.
+2025-01-31 19:21:55 - SolanaWalletScanner - INFO - Fetched data for wallet: 6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm
+2025-01-31 19:21:56 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6n8qjrofokMVKk6mMWuSxfYrehR9jS6mrnJ5NFq8iyqj completed successfully.
+2025-01-31 19:21:56 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6n8qjrofokMVKk6mMWuSxfYrehR9jS6mrnJ5NFq8iyqj completed successfully.
+2025-01-31 19:21:56 - SolanaWalletScanner - INFO - Fetched data for wallet: 6n8qjrofokMVKk6mMWuSxfYrehR9jS6mrnJ5NFq8iyqj
+2025-01-31 19:21:56 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/3aHxNstdW44PWGJQ7VAfzt1gnjz4KC8nxJ8tyxpP2dyX completed successfully.
+2025-01-31 19:21:56 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/3aHxNstdW44PWGJQ7VAfzt1gnjz4KC8nxJ8tyxpP2dyX completed successfully.
+2025-01-31 19:21:56 - SolanaWalletScanner - INFO - Fetched data for wallet: 3aHxNstdW44PWGJQ7VAfzt1gnjz4KC8nxJ8tyxpP2dyX
+2025-01-31 19:21:56 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6yuk47z4c6F3hzsWoRYm53NbxDoGzYjwrkJdLt9qKXN3 completed successfully.
+2025-01-31 19:21:56 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6yuk47z4c6F3hzsWoRYm53NbxDoGzYjwrkJdLt9qKXN3 completed successfully.
+2025-01-31 19:21:56 - SolanaWalletScanner - INFO - Fetched data for wallet: 6yuk47z4c6F3hzsWoRYm53NbxDoGzYjwrkJdLt9qKXN3
+2025-01-31 19:21:56 - SolanaWalletScanner - INFO - Scanned 18
+2025-01-31 19:21:56 - WalletWave - INFO - Exporting plugin results..
+2025-01-31 19:21:56 - WalletWave - INFO - Exporting wallet data...
+2025-01-31 19:21:56 - FileUtils - INFO - Exporting 18 entries to csv format.
+2025-01-31 19:21:56 - FileUtils - INFO - Data exported successfully to data\wallet_list_20250131_192156.csv
+2025-01-31 19:21:56 - WalletWave - INFO - Finalizing plugin...
+2025-01-31 19:21:56 - SolanaWalletScanner - INFO - Solana Wallet Scanner finalized
