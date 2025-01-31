@@ -6,6 +6,7 @@ from typing import Optional
 import tls_client
 
 from WalletWave.utils.gmgn_client.utils.agent_mapper import AgentMapper
+from WalletWave.utils.logging_utils import LogConfig
 from WalletWave.utils.logging_utils import get_logger
 
 
@@ -21,7 +22,7 @@ class Gmgn:
     # TODO: Write unit tests for all `Gmgn` methods (e.g., `get_token_info`, `get_trending_wallets`, `get_wallet_info`).
     # TODO: Consolidate validation logic (e.g., for `timeframe`, `wallet_tag`, `period`) into reusable utility functions.
     # TODO: Add retries for `_make_request` to handle transient network errors or timeouts.
-    # TODO: Add an optional timeout parameter to `_make_request` for better control over request time.
+    # TODO: 👁️ Add an optional timeout parameter to `_make_request` for better control over request time.
     # TODO: Refactor `_generate_headers` to allow more dynamic header configurations if needed in the future.
     # TODO: Modularize the code into separate files (e.g., `agent_mapper.py`, `gmgn_client.py`, `validators.py`) for better maintainability.
     # TODO: Implement caching for frequently accessed endpoints (e.g., `get_token_info`) to reduce API load.
@@ -31,6 +32,8 @@ class Gmgn:
 
     def __init__(self, max_requests_range: tuple = (1, 10)):
         self.logger = get_logger("GMGN_Client")
+        self.log_config = LogConfig()
+        self.gmgn_logger = self.log_config.get_gmgn_api_logger()
         self.agent_mapper = AgentMapper()
         self.session = tls_client.Session(random_tls_extension_order=True)
         self.client, self.agent, self.headers = None, None, None
@@ -90,6 +93,7 @@ class Gmgn:
             if response.status_code in [429, 403]:
                 self.error_count += 1
                 self.logger.warning(f"Received HTTP {response.status_code}, rotating headers and retrying...")
+                self.gmgn_logger.error(f"Received HTTP {response.status_code}, for {url}")
                 self._rotate_headers()
                 if self.error_count == 3:
                     self.logger.error("Multiple consecutive failures, clearing cookies and retrying...")
@@ -105,6 +109,7 @@ class Gmgn:
                 raise RuntimeError(f"HTTP error {response.status_code}: {response.text}")
 
             self.logger.info(f"Request to {url} completed successfully.")
+            self.gmgn_logger.info(f"Request to {url} completed successfully.")
             return response.json()
         except Exception as err:
             raise RuntimeError(f"Request failed: {err}")
