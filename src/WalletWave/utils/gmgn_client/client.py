@@ -2,7 +2,6 @@ import random
 import time
 from typing import Optional, Dict, Any
 from concurrent.futures import ThreadPoolExecutor
-from typing import Optional
 import tls_client
 
 from WalletWave.utils.gmgn_client.utils.agent_mapper import AgentMapper
