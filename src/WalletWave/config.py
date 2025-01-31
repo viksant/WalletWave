@@ -3,6 +3,7 @@ import yaml
 import os
 from yaml import YAMLError
 
+from WalletWave.main import WalletWave
 from WalletWave.utils.config_validators import *
 from WalletWave.utils.logging_utils import get_logger
 
@@ -165,7 +166,7 @@ class ConfigManager:
 
 def parse_args():
     """ Parse command-line arguments"""
-    # Get the default path of the config file relative the the script directory
+    # Get the default path of the config file relative the script directory
     default_config_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "config.yaml"))
 
     parser = argparse.ArgumentParser(description="Smart Money Follower Configuration")
