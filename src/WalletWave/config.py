@@ -1,9 +1,9 @@
 import argparse
-import yaml
 import os
+
+import yaml
 from yaml import YAMLError
 
-from WalletWave.main import WalletWave
 from WalletWave.utils.config_validators import *
 from WalletWave.utils.logging_utils import get_logger
 
