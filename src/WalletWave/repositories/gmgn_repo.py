@@ -44,7 +44,7 @@ class GmgnRepo:
         url = self.endpoint.get_url(self.endpoint.TRENDING_WALLETS, timeframe=timeframe)
         
         # Make the request
-        response = self.client.make_request(url, params)
+        response = self.client.make_request(url, params=params)
 
         return transform(response, WalletsResponse)
 
@@ -66,10 +66,10 @@ class GmgnRepo:
         params = {"period": period}
 
         # build the endpoint url
-        url = self.endpoint.get_url(self.endpoint.WALLET_INFO, wallet_address=wallet_address)
+        #url = self.endpoint.get_url(self.endpoint.WALLET_INFO, wallet_address=wallet_address)
         
         # Easier 
-        #url = f"https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/{wallet_address}"
+        url = f"https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/{wallet_address}"
         
         #make request
         response = self.client.make_request(url, timeout, params)

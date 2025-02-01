@@ -29,11 +29,11 @@ class SolanaWalletScanner(PluginInterface):
     def initialize(self) -> None:
         # Step 1 of plugin lifecycle
         self.logger.info("Solana Wallet Scanner initialized")
-        
+
         # Loop until the user inputs the correct file path
         while True:
             wallet_file_path = input("Please provide the path to the wallet list file: ").strip()
-            try: 
+            try:
                 self._load_wallets(wallet_file_path)
                 if not self.wallets:
                     self.logger.error("No wallets loaded. Stopping plugin execution")
@@ -49,10 +49,26 @@ class SolanaWalletScanner(PluginInterface):
                 print(f"An error occurred: {str(e)}. Please try again.")
 
     def execute(self) -> list:
+        while True:
+            user_input = input("Type desired timeout between requests in seconds. Press 0 to omit: ").strip()
+            try:
+                timeout = int(user_input)
+
+                if timeout < 0:
+                    self.logger.info("Please enter a number 0 or greater.")
+                    continue
+
+                timeout = None if timeout == 0 else timeout
+                break
+
+            except ValueError:
+                self.logger.info(f"'{user_input}' is invalid. Please enter a number 0 or greater")
+
+
         # Step 2 execute the plugin
         wallet_data = []
         self.logger.info("Executing Solana Wallet Scanner...")
-        timeout = str(input("Type desired timeout between requests in seconds. Press 0 to ommit."))
+
         for wallet in self.wallets:
             try:
                 wallet_info = self.gmgn.get_wallet_info(wallet, timeout, period=self.timeframe)
