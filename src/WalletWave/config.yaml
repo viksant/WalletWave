@@ -11,7 +11,7 @@ program_settings:
   export_enabled: True
 
   #### Logging setting
-  logging_level: "INFO" # Options: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  logging_level: "INFO" # Options: DEBUG, INFO, WARNING
 
 plugin_settings:
   #### Wallet Search settings

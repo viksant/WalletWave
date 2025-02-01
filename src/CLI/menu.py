@@ -4,7 +4,7 @@ def menu(config_manager):
     pm = plugin_manager.PluginManager(config_manager=config_manager)
     pm.load_plugins()
 
-    # banner.print_wave_banner()
+    banner.print_wave_banner()
 
     while True:
         print("\n1. List Plugins")

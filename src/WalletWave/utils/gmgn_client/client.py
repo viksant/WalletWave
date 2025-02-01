@@ -1,8 +1,9 @@
 import random
 import time
-from typing import Optional, Dict, List, Tuple
+from typing import Optional, Dict, Any
+from concurrent.futures import ThreadPoolExecutor
 import tls_client
-import asyncio, httpx
+
 from WalletWave.utils.gmgn_client.utils.agent_mapper import AgentMapper
 from WalletWave.utils.logging_utils import LogConfig
 from WalletWave.utils.logging_utils import get_logger
@@ -16,7 +17,7 @@ from WalletWave.utils.logging_utils import get_logger
 # TODO: Consider integrating database support (e.g., SQLite, PostgreSQL) for persistent storage of API responses.
 
 class Gmgn:
-    # TODO: 👁️ Add logging to track successful and failed API requests.
+    # TODO: Add logging to track successful and failed API requests.
     # TODO: Write unit tests for all `Gmgn` methods (e.g., `get_token_info`, `get_trending_wallets`, `get_wallet_info`).
     # TODO: Consolidate validation logic (e.g., for `timeframe`, `wallet_tag`, `period`) into reusable utility functions.
     # TODO: Add retries for `_make_request` to handle transient network errors or timeouts.
@@ -28,11 +29,10 @@ class Gmgn:
     # TODO: Validate wallet address format in `get_wallet_info` to avoid unnecessary API calls.
     # TODO: Explore rate-limiting compliance for `gmgn_client.ai` API to avoid potential issues. (2 seconds)
 
-    def __init__(self, max_requests_range: tuple = (1, 5)):
+    def __init__(self, max_requests_range: tuple = (1, 10)):
         self.logger = get_logger("GMGN_Client")
         self.log_config = LogConfig()
         self.gmgn_logger = self.log_config.get_gmgn_api_logger()
-        self.pending_requests: List[Tuple[str, dict, int]] = []
         self.agent_mapper = AgentMapper()
         self.session = tls_client.Session(random_tls_extension_order=True)
         self.client, self.agent, self.headers = None, None, None
@@ -66,9 +66,10 @@ class Gmgn:
         self.session.cookies.clear()
         self.logger.info("Cookies cleared...") 
 
-    """ def make_request(self, endpoint: str, timeout: Optional[int] = None, params: Optional[Dict[str, Any]] = None) -> dict:
+    def make_request(self, endpoint: str, timeout: Optional[int] = None, params: Optional[Dict[str, Any]] = None) -> dict:
         url = endpoint
-        
+        self.logger.debug(f"Preparing request to URL: {url} with params: {params}")
+
         try:
             self.request_count += 1
             if self.request_count % self.max_requests == 0:
@@ -79,7 +80,7 @@ class Gmgn:
                 self.request_count = 0
             
             if not timeout:
-                time.sleep(1)
+                time.sleep(2)
                 
             self.logger.debug("Sending request...")
             if timeout:
@@ -104,66 +105,14 @@ class Gmgn:
                 return self.make_request(endpoint, params)
 
             if response.status_code >= 400:
-                self.gmgn_logger.error(f"Received HTTP {response.status_code}, for {url}")
                 raise RuntimeError(f"HTTP error {response.status_code}: {response.text}")
-            
 
             self.logger.info(f"Request to {url} completed successfully.")
             self.gmgn_logger.info(f"Request to {url} completed successfully.")
             return response.json()
         except Exception as err:
-            raise RuntimeError(f"Request failed: {err}") """
-            
-    # Queue all the endpoints to later on fetch them together using HTTPX
-    def queue_request(self, url: str, params: dict = None, timeout: int = None):
-        self.pending_requests.append((url, params, timeout))
-        
-    async def execute_requests(self):
-        try: 
-            async with httpx.AsyncClient() as client:
-                results = []
-                for url, params, timeout in self.pending_requests:
-                    try:
-                        self.logger.debug(f"Preparing request to URL: {url} with params: {params}")
-                        self.request_count += 1
-                        
-                        if self.request_count % self.max_requests == 0:
-                            self.logger.info("Max requests reached, rotating headers...")
-                            self._rotate_headers()
-                            self.logger.info(f"Rotated Headers -> Client: {self.client}, User-Agent: {self.agent}")
-                            self.max_requests = random.randint(*self.max_requests_range)
-                            self.request_count = 0
-                        
-                        if not timeout:
-                            time.sleep(1)
-                            
-                        self.logger.debug("Sending request...")
-                        
-                        if timeout:
-                            response = self.client.get(url, headers=self.headers, timeout_seconds=int(timeout), params=params)
-                        else:
-                            response = self.client.get(url, headers=self.headers, params=params)
-                            
-                        response = await client.get(url, params=params, timeout=timeout)
-                        
-                        if response.status_code >= 400:
-                            self.gmgn_logger.error(f"Received HTTP {response.status_code}, for {url}")
-                            raise RuntimeError(f"HTTP error {response.status_code}: {response.text}")
+            raise RuntimeError(f"Request failed: {err}")
 
-                        self.logger.info(f"Request to {url} completed successfully.")
-                        self.gmgn_logger.info(f"Request to {url} completed successfully.")
-                        results.append(response.json())
-                        
-                    except Exception as err:
-                        self.logger.error(f"Failed {url}: {err}")
-                        results.append(None)
-                        
-                self.pending_requests.clear()
-                return results
-            
-        except Exception as err:
-            raise RuntimeError(f"Request failed {err}")
-        
 if __name__ == "__main__":
     agent_mapper = AgentMapper()
     client, agent = agent_mapper.get_random_client_and_agent()
