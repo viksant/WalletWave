@@ -1,9 +1,9 @@
-from dataclasses import dataclass, field
+from pydantic import BaseModel
 from typing import List, Optional
 
 
-@dataclass
-class Status:
+
+class Status(BaseModel):
     hold: Optional[int] = None
     bought_more: Optional[int] = None
     sold_part: Optional[int] = None
@@ -12,16 +12,16 @@ class Status:
     bought_rate: Optional[str] = None
     holding_rate: Optional[str] = None
     top_10_holder_rate: Optional[float] = None
-    smart_pos: List[str] = field(default_factory=list)
+    smart_pos: List[str]
     smart_count_hold: Optional[int] = None
     smart_count_bought_more: Optional[int] = None
     smart_count_sold_part: Optional[int] = None
     smart_count_sold: Optional[int] = None
     smart_count_transfered: Optional[int] = None
-    transfer_pos: List[str] = field(default_factory=list)
+    transfer_pos: List[str]
 
-@dataclass
-class HolderInfo:
+
+class HolderInfo(BaseModel):
     token_address: str
     wallet_address: str
     first_bought_amount: str
@@ -33,11 +33,11 @@ class HolderInfo:
     history_bought_amount: str
     history_sold_amount: str
     status: str
-    maker_token_tags: List[str] = field(default_factory=list)
-    tags: List[str] = field(default_factory=list)
+    maker_token_tags: List[str]
+    tags: List[str]
 
-@dataclass
-class HoldersData:
+
+class HoldersData(BaseModel):
     chain: str
     holder_count: int
     statusNow: Status
@@ -46,10 +46,10 @@ class HoldersData:
     sold_part_diff: int
     hold_diff: int
     bought_more: int
-    holderInfo: List[HolderInfo] = field(default_factory=list)
+    holderInfo: List[HolderInfo]
 
-@dataclass
-class TopHoldersResponse:
+
+class TopHoldersResponse(BaseModel):
     code: int
     msg: str
     data: HoldersData

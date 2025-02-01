@@ -1,8 +1,11 @@
 [project]
 name='WalletWave'
-version='2.0.0'
+version='2.1.2'
 description='CLI program to analyze SOLANA wallets for copy trading'
-authors = [{name = "LetsStartWithPurple", email = "LetsStartWithPurple@gmail.com"}]
+authors = [
+    {name = "LetsStartWithPurple", email = "LetsStartWithPurple@gmail.com"},
+    {name = "viksant", email = "no-email@mail.com"}
+]
 readme = {file = "README.md", content-type = "text/markdown"}
 license = {file = "LICENSE"}
 dependencies=[
@@ -11,8 +14,8 @@ dependencies=[
     "requests",
     "PyYAML",
     "fake-useragent",
-    "dacite",
-    "colorama"
+    "colorama",
+    "pydantic"
 ]
 keywords = ['crypto', 'wallet', 'scanner', 'solana', 'copy trading']
 requires-python = ">= 3.8"
@@ -23,6 +26,12 @@ walletwave = "WalletWave.main:main"
 [project.urls]
 Homepage = "https://github.com/LetsStartWithPurple/WalletWave"
 Repository = 'https://github.com/LetsStartWithPurple/WalletWave.git'
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+"WalletWave" = ["config.yaml"]
 
 [build-system]
 requires = ["setuptools >= 61.0", "wheel"]

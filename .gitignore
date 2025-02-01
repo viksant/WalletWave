@@ -5,3 +5,5 @@
 # Ignore Python cache files
 __pycache__/
 *.pyc
+/src/WalletWave/logs/
+*.egg-info

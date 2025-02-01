@@ -1,9 +1,8 @@
-from dataclasses import dataclass
+from pydantic import BaseModel
 from typing import List, Optional
 
 
-@dataclass
-class TokenInfo:
+class TokenInfo(BaseModel):
     chain: str
     address: str
     symbol: str
@@ -33,8 +32,8 @@ class TokenInfo:
     burn_ratio: Optional[str] = None
     burn_status: Optional[str] = None
 
-@dataclass
-class TokenInfoResponse:
+
+class TokenInfoResponse(BaseModel):
     code: int
     msg: str
     data: List[TokenInfo]

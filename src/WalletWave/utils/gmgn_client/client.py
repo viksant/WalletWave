@@ -79,14 +79,13 @@ class Gmgn:
                 self.max_requests = random.randint(*self.max_requests_range)
                 self.request_count = 0
             
-            if not timeout:
-                time.sleep(2)
+            #if not timeout:
+            #    time.sleep(2)
+            timeout = timeout if timeout is not None else 2 # if timeout omitted, default rate limit.
+            time.sleep(timeout)
                 
             self.logger.debug("Sending request...")
-            if timeout:
-                response = self.session.get(url, headers=self.headers, timeout_seconds=int(timeout), params=params)
-            else:
-                response = self.session.get(url, headers=self.headers, params=params)
+            response = self.session.get(url, headers=self.headers, params=params)
 
             # rotate on rate-limit or block errors
             if response.status_code in [429, 403]:

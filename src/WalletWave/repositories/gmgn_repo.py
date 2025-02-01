@@ -1,7 +1,7 @@
 from WalletWave.utils.gmgn_client.schemas import WalletsResponse, WalletInfoResponse
 from WalletWave.utils.gmgn_client.client import Gmgn
 from WalletWave.utils.gmgn_client.utils.gmgn_endpoints import GmgnEndpoints
-from WalletWave.utils.gmgn_client.utils.dataclass_transformer import transform
+
 from datetime import datetime
 
 class GmgnRepo:
@@ -46,7 +46,7 @@ class GmgnRepo:
         # Make the request
         response = self.client.queue_request(url, params)
 
-        return transform(response, WalletsResponse)
+        return WalletsResponse.model_validate(response)
 
     async def get_token_info(self, contract_address: str) -> dict:
         if not contract_address:
@@ -65,7 +65,7 @@ class GmgnRepo:
 
         params = {"period": period}
         # build the endpoint url
-        # url = self.endpoint.get_url(self.endpoint.WALLET_INFO, wallet_address=wallet_address)
+        #url = self.endpoint.get_url(self.endpoint.WALLET_INFO, wallet_address=wallet_address)
         
         # Easier 
         url = f"https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/{wallet_address}"
