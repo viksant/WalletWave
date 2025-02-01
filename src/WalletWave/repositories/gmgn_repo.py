@@ -73,7 +73,7 @@ class GmgnRepo:
         # Append the request to later on parallelize it
         self.client.queue_request(url, timeout, params)
         response = (await self.client.execute_requests())[0]
-        return transform(response, WalletInfoResponse)
+        return WalletInfoResponse.model_validate(response)
         # response = self.client.queue_request(url, timeout, params)
         # print(f"Request was made at {datetime.now()}")
         # return transform(response, WalletInfoResponse)

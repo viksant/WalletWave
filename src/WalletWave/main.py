@@ -7,7 +7,6 @@ from WalletWave.utils.file_utils import FileUtils
 from WalletWave.utils.logging_utils import get_logger, init_logging
 import time
 
-
 class WalletWave:
     """
     Main class
@@ -20,7 +19,7 @@ class WalletWave:
         self.logger = get_logger("WalletWave")
         self.file_utils = FileUtils(self.config.export_path)
 
-    def execute(self, plugin):
+    async def execute(self, plugin):
         """
         Executes the selected plugin's lifecycle: initialize, execute, and finalize.
         :param plugin: The plugin object to execute.
@@ -28,11 +27,11 @@ class WalletWave:
         try:
             # Step 1: Initialize the plugin
             self.logger.info(f"Initializing: {plugin.get_name()}")
-            plugin.initialize()
+            await plugin.initialize()
 
             # Step 2: Execute the plugin
             self.logger.info("Executing plugin...")
-            data = plugin.execute()
+            data = await plugin.execute()
 
             # Step 3: Export plugin results
             if self.config.export_enabled:
@@ -55,7 +54,7 @@ class WalletWave:
         self.file_utils.export_wallet_data(data, export_format=export_format)
 
 
-def main():
+async def main():
     """Entry point"""
     try:
         time_start = time.time()
@@ -74,7 +73,7 @@ def main():
             return
 
         # WalletWave instance
-        app = WalletWave(manager)
+        app = await WalletWave(manager)
 
         selected_plugin = action[1]
         # Run
@@ -86,4 +85,8 @@ def main():
         exit(1)
 
 if __name__ == "__main__":
-    main()
+    import asyncio
+    try:
+        asyncio.run(main())
+    except RuntimeError as e:
+        print(f"Error: {e}")

@@ -51,7 +51,7 @@ class SolanaWalletScanner(PluginInterface):
             except Exception as e:
                 print(f"An error occurred: {str(e)}. Please try again.")
 
-    def execute(self) -> list:
+    async def execute(self) -> list:
         while True:
             user_input = input("Type desired timeout between requests in seconds. Press 0 to omit: ").strip()
             try:
