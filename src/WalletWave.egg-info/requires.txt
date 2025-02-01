@@ -1,7 +1,0 @@
-typing_extensions
-tls_client
-requests
-PyYAML
-fake-useragent
-dacite
-colorama

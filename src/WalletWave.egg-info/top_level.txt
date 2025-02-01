@@ -1,4 +1,0 @@
-CLI
-WalletWave
-__init__
-logs
