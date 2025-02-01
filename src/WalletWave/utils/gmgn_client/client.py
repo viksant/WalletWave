@@ -1,8 +1,8 @@
 import random
 import time
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, List, Tuple
 from concurrent.futures import ThreadPoolExecutor
-import tls_client
+import tls_client, httpx
 
 from WalletWave.utils.gmgn_client.utils.agent_mapper import AgentMapper
 from WalletWave.utils.logging_utils import LogConfig
@@ -34,6 +34,7 @@ class Gmgn:
         self.log_config = LogConfig()
         self.gmgn_logger = self.log_config.get_gmgn_api_logger()
         self.agent_mapper = AgentMapper()
+        self.pending_requests: List[Tuple[str, dict, int]] = []
         self.session = tls_client.Session(random_tls_extension_order=True)
         self.client, self.agent, self.headers = None, None, None
         self.request_count = 0
@@ -66,51 +67,74 @@ class Gmgn:
         self.session.cookies.clear()
         self.logger.info("Cookies cleared...") 
 
-    def make_request(self, endpoint: str, timeout: Optional[int] = None, params: Optional[Dict[str, Any]] = None) -> dict:
+    """ def make_request(self, endpoint: str, timeout: Optional[int] = None, params: Optional[Dict[str, Any]] = None) -> dict:
         url = endpoint
-        self.logger.debug(f"Preparing request to URL: {url} with params: {params}")
-
-        try:
-            self.request_count += 1
-            if self.request_count % self.max_requests == 0:
-                self.logger.info("Max requests reached, rotating headers...")
-                self._rotate_headers()
-                self.logger.info(f"Rotated Headers -> Client: {self.client}, User-Agent: {self.agent}")
-                self.max_requests = random.randint(*self.max_requests_range)
-                self.request_count = 0
+        self.logger.debug(f"Preparing request to URL: {url} with params: {params}") """
+        
+    def queue_request(self, url: str, params: dict = None, timeout: int = None):
+        self.pending_requests.append((url, params, timeout))
+        
+    async def execute_requests(self):
+        try: 
+            async with httpx.AsyncClient() as client:
+                results = []
+                for url, params, timeout in self.pending_requests:
+                    try:
+                        self.logger.debug(f"Preparing request to URL: {url} with params: {params}")
+                        self.request_count += 1
+                        
+                        if self.request_count % self.max_requests == 0:
+                            self.logger.info("Max requests reached, rotating headers...")
+                            self._rotate_headers()
+                            self.logger.info(f"Rotated Headers -> Client: {self.client}, User-Agent: {self.agent}")
+                            self.max_requests = random.randint(*self.max_requests_range)
+                            self.request_count = 0
+                        
+                        if not timeout:
+                            time.sleep(1)
+                            
+                        self.logger.debug("Sending request...")
+                        
+                        if timeout:
+                            response = self.client.get(url, headers=self.headers, timeout_seconds=int(timeout), params=params)
+                        else:
+                            response = self.client.get(url, headers=self.headers, params=params)
+                            
+                        response = await client.get(url, params=params, timeout=timeout)
+                        
+                        if response.status_code in [429, 403]:
+                            self.error_count += 1
+                            self.logger.warning(f"Received HTTP {response.status_code}, rotating headers and retrying...")
+                            self.gmgn_logger.error(f"Received HTTP {response.status_code}, for {url}")
+                            self._rotate_headers()
+                            if self.error_count == 3:
+                                self.logger.error("Multiple consecutive failures, clearing cookies and retrying...")
+                                self._clear_cookies()
+                                self.error_count = 0
+                            if not timeout:
+                                time.sleep(random.randint(5, 10)) # backoff
+                            else: 
+                                time.sleep(timeout)
+                            return self.queue_request(url=url, params=params, timeout=timeout)
             
-            #if not timeout:
-            #    time.sleep(2)
-            timeout = timeout if timeout is not None else 2 # if timeout omitted, default rate limit.
-            time.sleep(timeout)
-                
-            self.logger.debug("Sending request...")
-            response = self.session.get(url, headers=self.headers, params=params)
+                        if response.status_code >= 400:
+                            self.gmgn_logger.error(f"Received HTTP {response.status_code}, for {url}")
+                            raise RuntimeError(f"HTTP error {response.status_code}: {response.text}")
 
-            # rotate on rate-limit or block errors
-            if response.status_code in [429, 403]:
-                self.error_count += 1
-                self.logger.warning(f"Received HTTP {response.status_code}, rotating headers and retrying...")
-                self.gmgn_logger.error(f"Received HTTP {response.status_code}, for {url}")
-                self._rotate_headers()
-                if self.error_count == 3:
-                    self.logger.error("Multiple consecutive failures, clearing cookies and retrying...")
-                    self._clear_cookies()
-                    self.error_count = 0
-                if not timeout:
-                    time.sleep(random.randint(5, 10)) # backoff
-                else: 
-                    time.sleep(timeout)
-                return self.make_request(endpoint, params)
-
-            if response.status_code >= 400:
-                raise RuntimeError(f"HTTP error {response.status_code}: {response.text}")
-
-            self.logger.info(f"Request to {url} completed successfully.")
-            self.gmgn_logger.info(f"Request to {url} completed successfully.")
-            return response.json()
+                        self.logger.info(f"Request to {url} completed successfully.")
+                        self.gmgn_logger.info(f"Request to {url} completed successfully.")
+                        results.append(response.json())
+                        
+                    except Exception as err:
+                        self.logger.error(f"Failed {url}: {err}")
+                        results.append(None)
+                        
+                self.pending_requests.clear()
+                return results
+            
         except Exception as err:
-            raise RuntimeError(f"Request failed: {err}")
+            raise RuntimeError(f"Request failed {err}")
+
 
 if __name__ == "__main__":
     agent_mapper = AgentMapper()

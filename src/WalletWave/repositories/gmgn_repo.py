@@ -44,9 +44,9 @@ class GmgnRepo:
         url = self.endpoint.get_url(self.endpoint.TRENDING_WALLETS, timeframe=timeframe)
         
         # Make the request
-        response = self.client.queue_request(url, params)
+        # response = self.client.queue_request(url, params)
 
-        return WalletsResponse.model_validate(response)
+        # return WalletsResponse.model_validate(response)
 
     async def get_token_info(self, contract_address: str) -> dict:
         if not contract_address:
@@ -54,7 +54,7 @@ class GmgnRepo:
         url = self.endpoint.get_url(self.endpoint.TOKEN_INFO, contract_address=contract_address)
 
         #make request
-        return self.client.queue_request(url)
+        # return self.client.queue_request(url)
 
     async def get_wallet_info(self, wallet_address: str, timeout: int = 0, period: str = "7d") -> WalletInfoResponse:
         valid_periods = ["7d", "30d"]
@@ -71,8 +71,8 @@ class GmgnRepo:
         url = f"https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/{wallet_address}"
         
         # Append the request to later on parallelize it
-        self.client.queue_request(url, timeout, params)
-        response = (await self.client.execute_requests())[0]
+        self.client.queue_request(url, params, timeout)
+        response = await self.client.execute_requests()
         return WalletInfoResponse.model_validate(response)
         # response = self.client.queue_request(url, timeout, params)
         # print(f"Request was made at {datetime.now()}")
