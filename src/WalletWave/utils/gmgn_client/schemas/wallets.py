@@ -1,17 +1,17 @@
-from dataclasses import dataclass, field
+from pydantic import BaseModel, Field
 from typing import List, Optional, Dict
 
-@dataclass
-class TagRank:
+
+class TagRank(BaseModel):
     fresh_wallet: Optional[int] = None
 
-@dataclass
-class DailyProfit:
+
+class DailyProfit(BaseModel):
     timestamp: int
     profit: float
 
-@dataclass
-class RankEntry:
+
+class RankEntry(BaseModel):
     wallet_address: str
     address: str
     realized_profit: float
@@ -37,14 +37,14 @@ class RankEntry:
     tag: Optional[str] = None
     tag_rank: Optional[TagRank] = None
     nickname: Optional[str] = None
-    tags: List[str] = field(default_factory=list)
+    tags: List[str] = Field(default_factory=list)
     twitter_name: Optional[str] = None
     followers_count: Optional[int] = 0
     is_blue_verified: Optional[int] = 0
     twitter_description: Optional[str] = None
     name: Optional[str] = None
     avg_hold_time: Optional[int] = 0
-    recent_buy_tokens: List = field(default_factory=list)
+    recent_buy_tokens: List = Field(default_factory=list)
     winrate_7d: Optional[float] = None
     avg_cost_7d: Optional[float] = None
     pnl_lt_minus_dot5_num_7d: Optional[int] = None
@@ -57,13 +57,13 @@ class RankEntry:
     pnl_lt_2x_num_7d_ratio: Optional[float] = None
     pnl_2x_5x_num_7d_ratio: Optional[float] = None
     pnl_gt_5x_num_7d_ratio: Optional[float] = None
-    daily_profit_7d: List[DailyProfit] = field(default_factory=list)
+    daily_profit_7d: List[DailyProfit] = Field(default_factory=list)
     txs: Optional[int] = None
     token_num_7d: Optional[int] = None
     avg_holding_period_7d: Optional[float] = None
 
-@dataclass
-class WalletsResponse:
+
+class WalletsResponse(BaseModel):
     code: int
     msg: str
     data: Dict[str, List[RankEntry]]

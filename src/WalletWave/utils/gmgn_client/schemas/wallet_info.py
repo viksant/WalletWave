@@ -1,13 +1,11 @@
-from dataclasses import dataclass, field, asdict
+from pydantic import BaseModel, Field
 from typing import List, Optional
 
 
-@dataclass
-class TagRank:
+class TagRank(BaseModel):
     fresh_wallet: Optional[int] = None
 
-@dataclass
-class Risk:
+class Risk(BaseModel):
     token_active: Optional[str] = None
     token_honeypot: Optional[str] = None
     token_honeypot_ratio: Optional[float] = None
@@ -18,8 +16,8 @@ class Risk:
     fast_tx: Optional[str] = None
     fast_tx_ratio: Optional[float] = None
 
-@dataclass
-class WalletInfo:
+
+class WalletInfo(BaseModel):
     twitter_bind: bool
     twitter_fans_num: int
     eth_balance: str
@@ -67,14 +65,13 @@ class WalletInfo:
     ens: Optional[str] = None
     avatar: Optional[str] = None
     name: Optional[str] = None
-    tags: List[str] = field(default_factory=list)
-    tag_rank: TagRank = field(default_factory=TagRank)
+    tags: List[str] = Field(default_factory=list)
+    tag_rank: TagRank = Field(default_factory=TagRank)
     refresh_requested_at: Optional[int] = None
     risk: Optional[Risk] = None
 
 
-@dataclass
-class WalletInfoResponse:
+class WalletInfoResponse(BaseModel):
     code: int
     msg: str
     data: WalletInfo
@@ -89,8 +86,8 @@ class WalletInfoResponse:
         """
         return self.data
 
-    # noinspection PyTypeChecker
-    def to_summary(self, wallet_address: str, summary_func: callable = None) -> dict:
+
+    def to_summary(self, wallet_address: str, summary_func: Optional[callable] = None) -> dict:
         """
         Summarizes wallet data. Returns the entire wallet data dictionary if no summary_func is provided.
 
@@ -103,4 +100,4 @@ class WalletInfoResponse:
             return summary_func(wallet_address, self.wallet_data)
         else:
             # return the entire dictionary, including wallet address
-            return {"wallet_address": wallet_address, **asdict(self.wallet_data)}
+            return {"wallet_address": wallet_address, **self.wallet_data.model_dump()}
