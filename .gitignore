@@ -6,4 +6,4 @@
 __pycache__/
 *.pyc
 /src/WalletWave/logs/
-/src/WalletWave.egg-info/
+*.egg-info
