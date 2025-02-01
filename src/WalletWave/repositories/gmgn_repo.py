@@ -46,7 +46,7 @@ class GmgnRepo:
         # Make the request
         response = self.client.make_request(url, params=params)
 
-        return transform(response, WalletsResponse)
+        return WalletsResponse.model_validate(response)
 
     def get_token_info(self, contract_address: str) -> dict:
         if not contract_address:
@@ -74,7 +74,7 @@ class GmgnRepo:
         #make request
         response = self.client.make_request(url, timeout, params)
         print(f"Request was made at {datetime.now()}")
-        return transform(response, WalletInfoResponse)
+        return WalletInfoResponse.model_validate(response)
 
 if __name__ == "__main__":
     repo = GmgnRepo()
