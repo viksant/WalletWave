@@ -402,3 +402,199 @@
 2025-01-31 19:21:56 - FileUtils - INFO - Data exported successfully to data\wallet_list_20250131_192156.csv
 2025-01-31 19:21:56 - WalletWave - INFO - Finalizing plugin...
 2025-01-31 19:21:56 - SolanaWalletScanner - INFO - Solana Wallet Scanner finalized
+2025-01-31 19:29:47 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-31 19:29:48 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-31 19:29:48 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-31 19:29:50 - SolanaWalletScanner - INFO - Loaded 18 wallets from test.txt.
+2025-01-31 19:29:50 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 18 wallets
+2025-01-31 19:29:50 - WalletWave - INFO - Executing plugin...
+2025-01-31 19:29:50 - SolanaWalletScanner - INFO - Executing Solana Wallet Scanner...
+2025-01-31 19:29:54 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y completed successfully.
+2025-01-31 19:29:54 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y completed successfully.
+2025-01-31 19:29:54 - SolanaWalletScanner - INFO - Fetched data for wallet: 6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y
+2025-01-31 19:29:56 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja completed successfully.
+2025-01-31 19:29:56 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja completed successfully.
+2025-01-31 19:29:56 - SolanaWalletScanner - INFO - Fetched data for wallet: FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja
+2025-01-31 19:29:59 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/FDiVPpzjfbwxvjjqUSVrqFcCS7CG8aY9WWnxSsMWuj5W completed successfully.
+2025-01-31 19:29:59 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/FDiVPpzjfbwxvjjqUSVrqFcCS7CG8aY9WWnxSsMWuj5W completed successfully.
+2025-01-31 19:29:59 - SolanaWalletScanner - INFO - Fetched data for wallet: FDiVPpzjfbwxvjjqUSVrqFcCS7CG8aY9WWnxSsMWuj5W
+2025-01-31 19:30:01 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/Gvp8oQCJh9iwyDAjW7tSt9J5FismTmBctiBf8xDX6wg8 completed successfully.
+2025-01-31 19:30:01 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/Gvp8oQCJh9iwyDAjW7tSt9J5FismTmBctiBf8xDX6wg8 completed successfully.
+2025-01-31 19:30:01 - SolanaWalletScanner - INFO - Fetched data for wallet: Gvp8oQCJh9iwyDAjW7tSt9J5FismTmBctiBf8xDX6wg8
+2025-01-31 19:30:03 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/HEmg53AvjtCejY3NgqhF3dff5uJQPaLPiHU8GsJU7WzG completed successfully.
+2025-01-31 19:30:03 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/HEmg53AvjtCejY3NgqhF3dff5uJQPaLPiHU8GsJU7WzG completed successfully.
+2025-01-31 19:30:03 - SolanaWalletScanner - INFO - Fetched data for wallet: HEmg53AvjtCejY3NgqhF3dff5uJQPaLPiHU8GsJU7WzG
+2025-01-31 19:30:05 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/5sc5JnefFVyu9AVYHzXNmEBZPXU9Lhq6LhWR5cm9JgoM completed successfully.
+2025-01-31 19:30:05 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/5sc5JnefFVyu9AVYHzXNmEBZPXU9Lhq6LhWR5cm9JgoM completed successfully.
+2025-01-31 19:30:05 - SolanaWalletScanner - INFO - Fetched data for wallet: 5sc5JnefFVyu9AVYHzXNmEBZPXU9Lhq6LhWR5cm9JgoM
+2025-01-31 19:30:07 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/7ACBAs2CmUbsNDEAWMsc46XcBzDjRTbTJzmAzK5tuy2s completed successfully.
+2025-01-31 19:30:07 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/7ACBAs2CmUbsNDEAWMsc46XcBzDjRTbTJzmAzK5tuy2s completed successfully.
+2025-01-31 19:30:07 - SolanaWalletScanner - INFO - Fetched data for wallet: 7ACBAs2CmUbsNDEAWMsc46XcBzDjRTbTJzmAzK5tuy2s
+2025-01-31 19:30:10 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/8i5x6j11u7K1mJVrgCqpMj6R5Sv6TZUxvhgLoZAzzVpi completed successfully.
+2025-01-31 19:30:10 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/8i5x6j11u7K1mJVrgCqpMj6R5Sv6TZUxvhgLoZAzzVpi completed successfully.
+2025-01-31 19:30:10 - SolanaWalletScanner - INFO - Fetched data for wallet: 8i5x6j11u7K1mJVrgCqpMj6R5Sv6TZUxvhgLoZAzzVpi
+2025-01-31 19:30:10 - GMGN_Client - INFO - Max requests reached, rotating headers...
+2025-01-31 19:30:10 - GMGN_Client - INFO - Rotated Headers -> Client: chrome_119, User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36
+2025-01-31 19:30:12 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/4B6i3z4aAGWwwixdUJb92Kxkd3PgcHbUrt2Zi7LP1ndK completed successfully.
+2025-01-31 19:30:12 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/4B6i3z4aAGWwwixdUJb92Kxkd3PgcHbUrt2Zi7LP1ndK completed successfully.
+2025-01-31 19:30:12 - SolanaWalletScanner - INFO - Fetched data for wallet: 4B6i3z4aAGWwwixdUJb92Kxkd3PgcHbUrt2Zi7LP1ndK
+2025-01-31 19:30:14 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/HighDYcKVXpYJdukBXNdHZ8Kb5qZnR8Hn6aYuWS1SSnu completed successfully.
+2025-01-31 19:30:14 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/HighDYcKVXpYJdukBXNdHZ8Kb5qZnR8Hn6aYuWS1SSnu completed successfully.
+2025-01-31 19:30:14 - SolanaWalletScanner - INFO - Fetched data for wallet: HighDYcKVXpYJdukBXNdHZ8Kb5qZnR8Hn6aYuWS1SSnu
+2025-01-31 19:30:16 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/3E5QmNWkXHixHJKtsgahc4L1WR2sWQ44Ayd4iorVZZfN completed successfully.
+2025-01-31 19:30:16 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/3E5QmNWkXHixHJKtsgahc4L1WR2sWQ44Ayd4iorVZZfN completed successfully.
+2025-01-31 19:30:16 - SolanaWalletScanner - INFO - Fetched data for wallet: 3E5QmNWkXHixHJKtsgahc4L1WR2sWQ44Ayd4iorVZZfN
+2025-01-31 19:30:19 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4 completed successfully.
+2025-01-31 19:30:19 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4 completed successfully.
+2025-01-31 19:30:19 - SolanaWalletScanner - INFO - Fetched data for wallet: D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4
+2025-01-31 19:30:21 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/9Sv7Jj5Mu4F8hfevURdrPvA3CLjuuMpXBisoesrLvKEv completed successfully.
+2025-01-31 19:30:21 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/9Sv7Jj5Mu4F8hfevURdrPvA3CLjuuMpXBisoesrLvKEv completed successfully.
+2025-01-31 19:30:21 - SolanaWalletScanner - INFO - Fetched data for wallet: 9Sv7Jj5Mu4F8hfevURdrPvA3CLjuuMpXBisoesrLvKEv
+2025-01-31 19:30:21 - GMGN_Client - INFO - Max requests reached, rotating headers...
+2025-01-31 19:30:21 - GMGN_Client - INFO - Rotated Headers -> Client: opera_90, User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 OPR/114.0.0.0
+2025-01-31 19:30:23 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/CjWX6z2ujwCEWX1b3NV5xTDWfqvUfWJRUzJ2zj2rwLfk completed successfully.
+2025-01-31 19:30:23 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/CjWX6z2ujwCEWX1b3NV5xTDWfqvUfWJRUzJ2zj2rwLfk completed successfully.
+2025-01-31 19:30:23 - SolanaWalletScanner - INFO - Fetched data for wallet: CjWX6z2ujwCEWX1b3NV5xTDWfqvUfWJRUzJ2zj2rwLfk
+2025-01-31 19:30:25 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm completed successfully.
+2025-01-31 19:30:25 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm completed successfully.
+2025-01-31 19:30:25 - SolanaWalletScanner - INFO - Fetched data for wallet: 6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm
+2025-01-31 19:30:27 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6n8qjrofokMVKk6mMWuSxfYrehR9jS6mrnJ5NFq8iyqj completed successfully.
+2025-01-31 19:30:27 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6n8qjrofokMVKk6mMWuSxfYrehR9jS6mrnJ5NFq8iyqj completed successfully.
+2025-01-31 19:30:27 - SolanaWalletScanner - INFO - Fetched data for wallet: 6n8qjrofokMVKk6mMWuSxfYrehR9jS6mrnJ5NFq8iyqj
+2025-01-31 19:30:30 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/3aHxNstdW44PWGJQ7VAfzt1gnjz4KC8nxJ8tyxpP2dyX completed successfully.
+2025-01-31 19:30:30 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/3aHxNstdW44PWGJQ7VAfzt1gnjz4KC8nxJ8tyxpP2dyX completed successfully.
+2025-01-31 19:30:30 - SolanaWalletScanner - INFO - Fetched data for wallet: 3aHxNstdW44PWGJQ7VAfzt1gnjz4KC8nxJ8tyxpP2dyX
+2025-01-31 19:30:32 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6yuk47z4c6F3hzsWoRYm53NbxDoGzYjwrkJdLt9qKXN3 completed successfully.
+2025-01-31 19:30:32 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6yuk47z4c6F3hzsWoRYm53NbxDoGzYjwrkJdLt9qKXN3 completed successfully.
+2025-01-31 19:30:32 - SolanaWalletScanner - INFO - Fetched data for wallet: 6yuk47z4c6F3hzsWoRYm53NbxDoGzYjwrkJdLt9qKXN3
+2025-01-31 19:30:32 - SolanaWalletScanner - INFO - Scanned 18
+2025-01-31 19:30:32 - WalletWave - INFO - Exporting plugin results..
+2025-01-31 19:30:32 - WalletWave - INFO - Exporting wallet data...
+2025-01-31 19:30:32 - FileUtils - INFO - Exporting 18 entries to csv format.
+2025-01-31 19:30:32 - FileUtils - INFO - Data exported successfully to data\wallet_list_20250131_193032.csv
+2025-01-31 19:30:32 - WalletWave - INFO - Finalizing plugin...
+2025-01-31 19:30:32 - SolanaWalletScanner - INFO - Solana Wallet Scanner finalized
+2025-01-31 19:33:03 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-31 19:33:03 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-31 19:33:03 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-31 19:33:06 - SolanaWalletScanner - INFO - Loaded 18 wallets from test.txt.
+2025-01-31 19:33:06 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 18 wallets
+2025-01-31 19:33:06 - WalletWave - INFO - Executing plugin...
+2025-01-31 19:33:06 - SolanaWalletScanner - INFO - Executing Solana Wallet Scanner...
+2025-01-31 19:33:08 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y completed successfully.
+2025-01-31 19:33:08 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y completed successfully.
+2025-01-31 19:33:08 - SolanaWalletScanner - INFO - Fetched data for wallet: 6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y
+2025-01-31 19:33:08 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja completed successfully.
+2025-01-31 19:33:08 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja completed successfully.
+2025-01-31 19:33:08 - SolanaWalletScanner - INFO - Fetched data for wallet: FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja
+2025-01-31 19:33:08 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/FDiVPpzjfbwxvjjqUSVrqFcCS7CG8aY9WWnxSsMWuj5W completed successfully.
+2025-01-31 19:33:08 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/FDiVPpzjfbwxvjjqUSVrqFcCS7CG8aY9WWnxSsMWuj5W completed successfully.
+2025-01-31 19:33:08 - SolanaWalletScanner - INFO - Fetched data for wallet: FDiVPpzjfbwxvjjqUSVrqFcCS7CG8aY9WWnxSsMWuj5W
+2025-01-31 19:33:08 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/Gvp8oQCJh9iwyDAjW7tSt9J5FismTmBctiBf8xDX6wg8 completed successfully.
+2025-01-31 19:33:08 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/Gvp8oQCJh9iwyDAjW7tSt9J5FismTmBctiBf8xDX6wg8 completed successfully.
+2025-01-31 19:33:08 - SolanaWalletScanner - INFO - Fetched data for wallet: Gvp8oQCJh9iwyDAjW7tSt9J5FismTmBctiBf8xDX6wg8
+2025-01-31 19:33:08 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/HEmg53AvjtCejY3NgqhF3dff5uJQPaLPiHU8GsJU7WzG completed successfully.
+2025-01-31 19:33:08 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/HEmg53AvjtCejY3NgqhF3dff5uJQPaLPiHU8GsJU7WzG completed successfully.
+2025-01-31 19:33:08 - SolanaWalletScanner - INFO - Fetched data for wallet: HEmg53AvjtCejY3NgqhF3dff5uJQPaLPiHU8GsJU7WzG
+2025-01-31 19:33:08 - GMGN_Client - INFO - Max requests reached, rotating headers...
+2025-01-31 19:33:08 - GMGN_Client - INFO - Rotated Headers -> Client: firefox_120, User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:125.0) Gecko/20100101 Firefox/125.0
+2025-01-31 19:33:09 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/5sc5JnefFVyu9AVYHzXNmEBZPXU9Lhq6LhWR5cm9JgoM completed successfully.
+2025-01-31 19:33:09 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/5sc5JnefFVyu9AVYHzXNmEBZPXU9Lhq6LhWR5cm9JgoM completed successfully.
+2025-01-31 19:33:09 - SolanaWalletScanner - INFO - Fetched data for wallet: 5sc5JnefFVyu9AVYHzXNmEBZPXU9Lhq6LhWR5cm9JgoM
+2025-01-31 19:33:09 - GMGN_Client - INFO - Max requests reached, rotating headers...
+2025-01-31 19:33:09 - GMGN_Client - INFO - Rotated Headers -> Client: safari_ios_15_5, User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 17_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1
+2025-01-31 19:33:09 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/7ACBAs2CmUbsNDEAWMsc46XcBzDjRTbTJzmAzK5tuy2s completed successfully.
+2025-01-31 19:33:09 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/7ACBAs2CmUbsNDEAWMsc46XcBzDjRTbTJzmAzK5tuy2s completed successfully.
+2025-01-31 19:33:09 - SolanaWalletScanner - INFO - Fetched data for wallet: 7ACBAs2CmUbsNDEAWMsc46XcBzDjRTbTJzmAzK5tuy2s
+2025-01-31 19:33:10 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/8i5x6j11u7K1mJVrgCqpMj6R5Sv6TZUxvhgLoZAzzVpi completed successfully.
+2025-01-31 19:33:10 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/8i5x6j11u7K1mJVrgCqpMj6R5Sv6TZUxvhgLoZAzzVpi completed successfully.
+2025-01-31 19:33:10 - SolanaWalletScanner - INFO - Fetched data for wallet: 8i5x6j11u7K1mJVrgCqpMj6R5Sv6TZUxvhgLoZAzzVpi
+2025-01-31 19:33:10 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/4B6i3z4aAGWwwixdUJb92Kxkd3PgcHbUrt2Zi7LP1ndK completed successfully.
+2025-01-31 19:33:10 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/4B6i3z4aAGWwwixdUJb92Kxkd3PgcHbUrt2Zi7LP1ndK completed successfully.
+2025-01-31 19:33:10 - SolanaWalletScanner - INFO - Fetched data for wallet: 4B6i3z4aAGWwwixdUJb92Kxkd3PgcHbUrt2Zi7LP1ndK
+2025-01-31 19:33:10 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/HighDYcKVXpYJdukBXNdHZ8Kb5qZnR8Hn6aYuWS1SSnu completed successfully.
+2025-01-31 19:33:10 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/HighDYcKVXpYJdukBXNdHZ8Kb5qZnR8Hn6aYuWS1SSnu completed successfully.
+2025-01-31 19:33:10 - SolanaWalletScanner - INFO - Fetched data for wallet: HighDYcKVXpYJdukBXNdHZ8Kb5qZnR8Hn6aYuWS1SSnu
+2025-01-31 19:33:10 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/3E5QmNWkXHixHJKtsgahc4L1WR2sWQ44Ayd4iorVZZfN completed successfully.
+2025-01-31 19:33:10 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/3E5QmNWkXHixHJKtsgahc4L1WR2sWQ44Ayd4iorVZZfN completed successfully.
+2025-01-31 19:33:10 - SolanaWalletScanner - INFO - Fetched data for wallet: 3E5QmNWkXHixHJKtsgahc4L1WR2sWQ44Ayd4iorVZZfN
+2025-01-31 19:33:10 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4 completed successfully.
+2025-01-31 19:33:10 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4 completed successfully.
+2025-01-31 19:33:10 - SolanaWalletScanner - INFO - Fetched data for wallet: D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4
+2025-01-31 19:33:11 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/9Sv7Jj5Mu4F8hfevURdrPvA3CLjuuMpXBisoesrLvKEv completed successfully.
+2025-01-31 19:33:11 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/9Sv7Jj5Mu4F8hfevURdrPvA3CLjuuMpXBisoesrLvKEv completed successfully.
+2025-01-31 19:33:11 - SolanaWalletScanner - INFO - Fetched data for wallet: 9Sv7Jj5Mu4F8hfevURdrPvA3CLjuuMpXBisoesrLvKEv
+2025-01-31 19:33:11 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/CjWX6z2ujwCEWX1b3NV5xTDWfqvUfWJRUzJ2zj2rwLfk completed successfully.
+2025-01-31 19:33:11 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/CjWX6z2ujwCEWX1b3NV5xTDWfqvUfWJRUzJ2zj2rwLfk completed successfully.
+2025-01-31 19:33:11 - SolanaWalletScanner - INFO - Fetched data for wallet: CjWX6z2ujwCEWX1b3NV5xTDWfqvUfWJRUzJ2zj2rwLfk
+2025-01-31 19:33:11 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm completed successfully.
+2025-01-31 19:33:11 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm completed successfully.
+2025-01-31 19:33:11 - SolanaWalletScanner - INFO - Fetched data for wallet: 6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm
+2025-01-31 19:33:11 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6n8qjrofokMVKk6mMWuSxfYrehR9jS6mrnJ5NFq8iyqj completed successfully.
+2025-01-31 19:33:11 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6n8qjrofokMVKk6mMWuSxfYrehR9jS6mrnJ5NFq8iyqj completed successfully.
+2025-01-31 19:33:11 - SolanaWalletScanner - INFO - Fetched data for wallet: 6n8qjrofokMVKk6mMWuSxfYrehR9jS6mrnJ5NFq8iyqj
+2025-01-31 19:33:11 - GMGN_Client - INFO - Max requests reached, rotating headers...
+2025-01-31 19:33:11 - GMGN_Client - INFO - Rotated Headers -> Client: okhttp4_android_12, User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36
+2025-01-31 19:33:11 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/3aHxNstdW44PWGJQ7VAfzt1gnjz4KC8nxJ8tyxpP2dyX completed successfully.
+2025-01-31 19:33:11 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/3aHxNstdW44PWGJQ7VAfzt1gnjz4KC8nxJ8tyxpP2dyX completed successfully.
+2025-01-31 19:33:11 - SolanaWalletScanner - INFO - Fetched data for wallet: 3aHxNstdW44PWGJQ7VAfzt1gnjz4KC8nxJ8tyxpP2dyX
+2025-01-31 19:33:12 - GMGN_Client - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6yuk47z4c6F3hzsWoRYm53NbxDoGzYjwrkJdLt9qKXN3 completed successfully.
+2025-01-31 19:33:12 - gmgn_api - INFO - Request to https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/6yuk47z4c6F3hzsWoRYm53NbxDoGzYjwrkJdLt9qKXN3 completed successfully.
+2025-01-31 19:33:12 - SolanaWalletScanner - INFO - Fetched data for wallet: 6yuk47z4c6F3hzsWoRYm53NbxDoGzYjwrkJdLt9qKXN3
+2025-01-31 19:33:12 - SolanaWalletScanner - INFO - Scanned 18
+2025-01-31 19:33:12 - WalletWave - INFO - Exporting plugin results..
+2025-01-31 19:33:12 - WalletWave - INFO - Exporting wallet data...
+2025-01-31 19:33:12 - FileUtils - INFO - Exporting 18 entries to csv format.
+2025-01-31 19:33:12 - FileUtils - INFO - Data exported successfully to data\wallet_list_20250131_193312.csv
+2025-01-31 19:33:12 - WalletWave - INFO - Finalizing plugin...
+2025-01-31 19:33:12 - SolanaWalletScanner - INFO - Solana Wallet Scanner finalized
+2025-01-31 20:55:01 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-31 20:55:55 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-31 20:56:06 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-31 20:56:06 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-31 20:56:17 - SolanaWalletScanner - INFO - Loaded 18 wallets from test.txt.
+2025-01-31 20:56:17 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 18 wallets
+2025-01-31 20:56:17 - WalletWave - INFO - Executing plugin...
+2025-01-31 20:56:17 - SolanaWalletScanner - INFO - Executing Solana Wallet Scanner...
+2025-01-31 20:56:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6VBWNKezNFrVz9jCh5qrUXz8ZoySLEZvpyBHLqF9R28Y: 'coroutine' object has no attribute 'to_summary'
+2025-01-31 20:56:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet FW2PJkHDm9HpVcnR2MKbP2urd8u2buJQkQWogxnw7Fja: 'coroutine' object has no attribute 'to_summary'
+2025-01-31 20:56:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet FDiVPpzjfbwxvjjqUSVrqFcCS7CG8aY9WWnxSsMWuj5W: 'coroutine' object has no attribute 'to_summary'
+2025-01-31 20:56:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet Gvp8oQCJh9iwyDAjW7tSt9J5FismTmBctiBf8xDX6wg8: 'coroutine' object has no attribute 'to_summary'
+2025-01-31 20:56:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet HEmg53AvjtCejY3NgqhF3dff5uJQPaLPiHU8GsJU7WzG: 'coroutine' object has no attribute 'to_summary'
+2025-01-31 20:56:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet 5sc5JnefFVyu9AVYHzXNmEBZPXU9Lhq6LhWR5cm9JgoM: 'coroutine' object has no attribute 'to_summary'
+2025-01-31 20:56:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet 7ACBAs2CmUbsNDEAWMsc46XcBzDjRTbTJzmAzK5tuy2s: 'coroutine' object has no attribute 'to_summary'
+2025-01-31 20:56:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet 8i5x6j11u7K1mJVrgCqpMj6R5Sv6TZUxvhgLoZAzzVpi: 'coroutine' object has no attribute 'to_summary'
+2025-01-31 20:56:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet 4B6i3z4aAGWwwixdUJb92Kxkd3PgcHbUrt2Zi7LP1ndK: 'coroutine' object has no attribute 'to_summary'
+2025-01-31 20:56:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet HighDYcKVXpYJdukBXNdHZ8Kb5qZnR8Hn6aYuWS1SSnu: 'coroutine' object has no attribute 'to_summary'
+2025-01-31 20:56:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet 3E5QmNWkXHixHJKtsgahc4L1WR2sWQ44Ayd4iorVZZfN: 'coroutine' object has no attribute 'to_summary'
+2025-01-31 20:56:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet D9A1wCMf2QNfFWThBPaPXFb3m1AzaqNUrzBvZKKL6Cp4: 'coroutine' object has no attribute 'to_summary'
+2025-01-31 20:56:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet 9Sv7Jj5Mu4F8hfevURdrPvA3CLjuuMpXBisoesrLvKEv: 'coroutine' object has no attribute 'to_summary'
+2025-01-31 20:56:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet CjWX6z2ujwCEWX1b3NV5xTDWfqvUfWJRUzJ2zj2rwLfk: 'coroutine' object has no attribute 'to_summary'
+2025-01-31 20:56:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6LJfRoevujggKxNRMsb9f8PfhcjujRshzXwgG7HbmaTm: 'coroutine' object has no attribute 'to_summary'
+2025-01-31 20:56:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6n8qjrofokMVKk6mMWuSxfYrehR9jS6mrnJ5NFq8iyqj: 'coroutine' object has no attribute 'to_summary'
+2025-01-31 20:56:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet 3aHxNstdW44PWGJQ7VAfzt1gnjz4KC8nxJ8tyxpP2dyX: 'coroutine' object has no attribute 'to_summary'
+2025-01-31 20:56:25 - SolanaWalletScanner - ERROR - Error fetching data for wallet 6yuk47z4c6F3hzsWoRYm53NbxDoGzYjwrkJdLt9qKXN3: 'coroutine' object has no attribute 'to_summary'
+2025-01-31 20:56:25 - SolanaWalletScanner - INFO - Scanned 0
+2025-01-31 20:56:25 - WalletWave - INFO - Exporting plugin results..
+2025-01-31 20:56:25 - WalletWave - INFO - Exporting wallet data...
+2025-01-31 20:56:25 - FileUtils - WARNING - No data to export
+2025-01-31 20:56:25 - WalletWave - INFO - Finalizing plugin...
+2025-01-31 20:56:25 - SolanaWalletScanner - INFO - Solana Wallet Scanner finalized
+2025-01-31 20:57:37 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-31 20:57:38 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-31 20:57:38 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized
+2025-01-31 20:57:41 - SolanaWalletScanner - INFO - Loaded 18 wallets from test.txt.
+2025-01-31 20:57:41 - SolanaWalletScanner - INFO - Solana Wallet Scanner initialized with 18 wallets
+2025-01-31 20:57:41 - WalletWave - INFO - Executing plugin...
+2025-01-31 20:57:41 - WalletWave - INFO - Exporting plugin results..
+2025-01-31 20:57:41 - WalletWave - INFO - Exporting wallet data...
+2025-01-31 20:57:41 - WalletWave - ERROR - An error occurred while running the plugin: 'coroutine' object is not iterable
+2025-01-31 20:58:32 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-31 21:00:31 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-31 21:01:29 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-31 21:02:18 - ConfigManager - WARNING - No plugin settings with TopWallets found, proceeding without plugin settings
+2025-01-31 21:02:22 - WalletWave - INFO - Initializing: Solana Wallet Scanner
+2025-01-31 21:02:22 - WalletWave - INFO - Executing plugin...
+2025-01-31 21:02:22 - WalletWave - INFO - Exporting plugin results..
+2025-01-31 21:02:22 - WalletWave - INFO - Exporting wallet data...
+2025-01-31 21:02:22 - WalletWave - ERROR - An error occurred while running the plugin: 'coroutine' object is not iterable

@@ -13,7 +13,7 @@ class GmgnRepo:
         self.endpoint = GmgnEndpoints
 
 
-    def get_trending_wallets(self, timeframe: str, wallet_tag: str, order: str = "desc") -> WalletsResponse:
+    async def get_trending_wallets(self, timeframe: str, wallet_tag: str, order: str = "desc") -> WalletsResponse:
         """
         Fetches trending wallets for a given timeframe and wallet tag.
 
@@ -44,19 +44,19 @@ class GmgnRepo:
         url = self.endpoint.get_url(self.endpoint.TRENDING_WALLETS, timeframe=timeframe)
         
         # Make the request
-        response = self.client.make_request(url, params)
+        response = self.client.queue_request(url, params)
 
         return transform(response, WalletsResponse)
 
-    def get_token_info(self, contract_address: str) -> dict:
+    async def get_token_info(self, contract_address: str) -> dict:
         if not contract_address:
             raise ValueError("Must provide a contract address")
         url = self.endpoint.get_url(self.endpoint.TOKEN_INFO, contract_address=contract_address)
 
         #make request
-        return self.client.make_request(url)
+        return self.client.queue_request(url)
 
-    def get_wallet_info(self, wallet_address: str, timeout: int = 0, period: str = "7d") -> WalletInfoResponse:
+    async def get_wallet_info(self, wallet_address: str, timeout: int = 0, period: str = "7d") -> WalletInfoResponse:
         valid_periods = ["7d", "30d"]
         if not wallet_address:
             raise ValueError("Must provide a wallet address")
@@ -64,17 +64,19 @@ class GmgnRepo:
             raise ValueError(f"Invalid period: {period}")
 
         params = {"period": period}
-
         # build the endpoint url
         # url = self.endpoint.get_url(self.endpoint.WALLET_INFO, wallet_address=wallet_address)
         
         # Easier 
         url = f"https://gmgn.ai/defi/quotation/v1/smartmoney/sol/walletNew/{wallet_address}"
         
-        #make request
-        response = self.client.make_request(url, timeout, params)
-        print(f"Request was made at {datetime.now()}")
+        # Append the request to later on parallelize it
+        self.client.queue_request(url, timeout, params)
+        response = (await self.client.execute_requests())[0]
         return transform(response, WalletInfoResponse)
+        # response = self.client.queue_request(url, timeout, params)
+        # print(f"Request was made at {datetime.now()}")
+        # return transform(response, WalletInfoResponse)
 
 if __name__ == "__main__":
     repo = GmgnRepo()

@@ -108,7 +108,7 @@ class TopWallets(PluginInterface):
         self.logger.info("TopWallets plugin finalized")
 
     #custom function
-    def analyze_wallet_activity(self, wallet_address, period="7d"):
+    async def analyze_wallet_activity(self, wallet_address, period="7d"):
         """
         Analyze recent trading activity of a wallet using the getWalletInfo endpoint.
 
@@ -118,7 +118,7 @@ class TopWallets(PluginInterface):
         """
         self.logger.debug(f"Analyzing wallet {wallet_address} for period {period}")
         try:
-            response = self.gmgn.get_wallet_info(wallet_address=wallet_address, period=period)
+            response = await self.gmgn.get_wallet_info(wallet_address=wallet_address, period=period)
             return response
         except Exception as e:
             self.logger.error(f"Error analyzing: {e}")

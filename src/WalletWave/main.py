@@ -5,6 +5,7 @@ from WalletWave.config import parse_args
 from WalletWave.config import ConfigManager
 from WalletWave.utils.file_utils import FileUtils
 from WalletWave.utils.logging_utils import get_logger, init_logging
+import time
 
 
 class WalletWave:
@@ -57,6 +58,7 @@ class WalletWave:
 def main():
     """Entry point"""
     try:
+        time_start = time.time()
         # parse command line args and init manager
         args = parse_args()
 
@@ -77,6 +79,8 @@ def main():
         selected_plugin = action[1]
         # Run
         app.execute(selected_plugin)
+        time_end = time.time()
+        print(f"Execution finished in {(time_end - time_start):.2f} seconds")
     except ValueError as e:
         print(f"Configuration Error: {e}")
         exit(1)
