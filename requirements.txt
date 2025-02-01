@@ -6,3 +6,4 @@ dacite
 click
 colorama
 WalletWave
+pydantic

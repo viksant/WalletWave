@@ -1,7 +1,7 @@
 from WalletWave.utils.gmgn_client.schemas import WalletsResponse, WalletInfoResponse
 from WalletWave.utils.gmgn_client.client import Gmgn
 from WalletWave.utils.gmgn_client.utils.gmgn_endpoints import GmgnEndpoints
-from WalletWave.utils.gmgn_client.utils.dataclass_transformer import transform
+
 from datetime import datetime
 
 class GmgnRepo:
