@@ -105,7 +105,7 @@ class TopWallets(PluginInterface):
             self.logger.critical(f"Error running plugin: {e}", exc_info=True)
             return filtered_wallets
 
-    def finalize(self) -> None:
+    async def finalize(self) -> None:
         self.logger.info("TopWallets plugin finalized")
 
     #custom function

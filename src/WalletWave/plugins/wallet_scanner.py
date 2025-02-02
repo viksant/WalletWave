@@ -15,8 +15,8 @@ class SolanaWalletScanner(PluginInterface):
         self.wallets = []
         self.logger = None
 
-    async def initialize(self):
-        self.logger = await get_logger("SolanaWalletScanner")
+    #async def initialize(self):
+        
 
     def get_name(self) -> str:
         # return the name you want to show in the plugin menu
@@ -31,6 +31,7 @@ class SolanaWalletScanner(PluginInterface):
 
     async def initialize(self) -> None:
         # Step 1 of plugin lifecycle
+        self.logger = get_logger("SolanaWalletScanner")
         self.logger.info("Solana Wallet Scanner initialized")
 
         # Loop until the user inputs the correct file path
@@ -83,7 +84,7 @@ class SolanaWalletScanner(PluginInterface):
         self.logger.info(f"Scanned {len(wallet_data)}")
         return wallet_data
 
-    def finalize(self) -> None:
+    async def finalize(self) -> None:
         self.logger.info("Solana Wallet Scanner finalized")
 
     def _load_wallets(self, file_path: str) -> None:
