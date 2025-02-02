@@ -1,3 +1,4 @@
+import asyncio
 import time
 from typing import List
 
@@ -41,10 +42,10 @@ class TopWallets(PluginInterface):
     def get_version(self) -> str:
         return "2.0.0"
 
-    def initialize(self) -> None:
+    async def initialize(self) -> None:
         self.logger.info("TopWallets plugin initialized.")
 
-    def execute(self) -> any:
+    async def execute(self) -> any:
         """
         Execute the plugin
         """
@@ -61,7 +62,7 @@ class TopWallets(PluginInterface):
         try:
             # Step 1: Get the top wallets
             self.logger.debug(f"Fetching top wallets with params: timeframe={timeframe}, wallet_tag={wallet_tag}")
-            top_wallets = self.get_top_wallets(timeframe=timeframe, wallet_tag=wallet_tag)
+            top_wallets = await self.get_top_wallets(timeframe=timeframe, wallet_tag=wallet_tag)
             if not top_wallets:
                 self.logger.error("No top wallets found.")
                 return []
@@ -74,7 +75,7 @@ class TopWallets(PluginInterface):
             for wallet in top_wallets:
                 wallet_address = wallet.wallet_address
                 self.logger.debug(f"Analyzing wallet: {wallet_address}")
-                wallet_activity = self.analyze_wallet_activity(wallet_address, period=timeframe)
+                wallet_activity = await self.analyze_wallet_activity(wallet_address, period=timeframe)
 
                 if not wallet_activity:
                     self.logger.warning(
@@ -92,12 +93,12 @@ class TopWallets(PluginInterface):
                 wallet_tuples.append((wallet_activity, wallet_address))
 
             # Step 3: Filter wallets by winrate
-            filtered_wallets = self.filter_by_winrate(wallet_tuples)
+            filtered_wallets = await self.filter_by_winrate(wallet_tuples)
 
             # log the result
             self.logger.info(f"Filtered {len(filtered_wallets)} wallets.")
 
-            time.sleep(1) #rate limiter
+            #rate limiter
             return filtered_wallets
 
         except Exception as e:
@@ -108,7 +109,7 @@ class TopWallets(PluginInterface):
         self.logger.info("TopWallets plugin finalized")
 
     #custom function
-    def analyze_wallet_activity(self, wallet_address, period="7d"):
+    async def analyze_wallet_activity(self, wallet_address, period="7d"):
         """
         Analyze recent trading activity of a wallet using the getWalletInfo endpoint.
 
@@ -118,13 +119,13 @@ class TopWallets(PluginInterface):
         """
         self.logger.debug(f"Analyzing wallet {wallet_address} for period {period}")
         try:
-            response = self.gmgn.get_wallet_info(wallet_address=wallet_address, period=period)
-            return response
+            response = await self.gmgn.get_wallet_info(wallet_address=wallet_address, period=period)
+            return response if response else None
         except Exception as e:
             self.logger.error(f"Error analyzing: {e}")
 
     #custom function
-    def get_top_wallets(self, timeframe="7d", wallet_tag="smart_degen"):
+    async def get_top_wallets(self, timeframe="7d", wallet_tag="smart_degen"):
         """
         Fetch top performing wallets using the getTrendingWallets endpoint.
 
@@ -134,13 +135,13 @@ class TopWallets(PluginInterface):
         """
         self.logger.debug(f"Fetching trending wallets: timeframe={timeframe}, tag={wallet_tag}")
         try:
-            response = self.gmgn.get_trending_wallets(timeframe, wallet_tag)
-            return response.rank
+            response = await self.gmgn.get_trending_wallets(timeframe, wallet_tag)
+            return response.rank if response else []
         except Exception as e:
             self.logger.error(f"Error fetching top wallets: {e}")
 
     # custom function
-    def filter_by_winrate(self, wallet_tuples: List[tuple]) -> List[dict]:
+    async def filter_by_winrate(self, wallet_tuples: List[tuple]) -> List[dict]:
         """
         Filters wallets based on win rate and converts the result to a list of dictionaries.
 

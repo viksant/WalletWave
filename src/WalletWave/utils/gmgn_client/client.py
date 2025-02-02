@@ -1,7 +1,8 @@
+import asyncio
 import random
-import time
-from typing import Optional, Dict, Any
-from concurrent.futures import ThreadPoolExecutor
+from typing import Dict, List, Tuple, Optional
+
+import httpx
 import tls_client
 
 from WalletWave.utils.gmgn_client.utils.agent_mapper import AgentMapper
@@ -14,7 +15,7 @@ from WalletWave.utils.logging_utils import get_logger
 # TODO: Create a CLI or web-based interface for interacting with the `Gmgn` class.
 # TODO: Explore multithreading or async requests to improve performance for concurrent API calls.
 # TODO: Add pagination handling for endpoints that return large datasets.
-# TODO: Consider integrating database support (e.g., SQLite, PostgreSQL) for persistent storage of API responses.
+# TODO: Consider integrating database support (e.g., SQLite, PostgresSQL) for persistent storage of API responses.
 
 class Gmgn:
     # TODO: Add logging to track successful and failed API requests.
@@ -34,6 +35,7 @@ class Gmgn:
         self.log_config = LogConfig()
         self.gmgn_logger = self.log_config.get_gmgn_api_logger()
         self.agent_mapper = AgentMapper()
+        self.pending_requests: List[Tuple[str, dict, int]] = []
         self.session = tls_client.Session(random_tls_extension_order=True)
         self.client, self.agent, self.headers = None, None, None
         self.request_count = 0
@@ -64,53 +66,90 @@ class Gmgn:
     def _clear_cookies(self):
         self.logger.warning("Lets destroy cookies!")
         self.session.cookies.clear()
-        self.logger.info("Cookies cleared...") 
+        self.logger.info("Cookies cleared...")
 
-    def make_request(self, endpoint: str, timeout: Optional[int] = None, params: Optional[Dict[str, Any]] = None) -> dict:
-        url = endpoint
+    async def _make_request(self, client: httpx.AsyncClient, url: str, params: Optional[dict] = None, timeout: int = 0):
         self.logger.debug(f"Preparing request to URL: {url} with params: {params}")
+        self.request_count += 1
+
+        if self.request_count % self.max_requests == 0:
+            self.logger.info("Max requests reached, rotating headers...")
+            self._rotate_headers()
+            self.logger.info(f"Rotated Headers -> Client: {self.client}, User-Agent: {self.agent}")
+            self.max_requests = random.randint(*self.max_requests_range)
+            self.request_count = 0
+
+        if not timeout:
+            await asyncio.sleep(2)
+
+        self.logger.debug("Sending request...")
 
         try:
-            self.request_count += 1
-            if self.request_count % self.max_requests == 0:
-                self.logger.info("Max requests reached, rotating headers...")
-                self._rotate_headers()
-                self.logger.info(f"Rotated Headers -> Client: {self.client}, User-Agent: {self.agent}")
-                self.max_requests = random.randint(*self.max_requests_range)
-                self.request_count = 0
-            
-            #if not timeout:
-            #    time.sleep(2)
-            timeout = timeout if timeout is not None else 2 # if timeout omitted, default rate limit.
-            time.sleep(timeout)
-                
-            self.logger.debug("Sending request...")
-            response = self.session.get(url, headers=self.headers, params=params)
+            if timeout:
+                response = await client.get(url, headers=self.headers, params=params, timeout=timeout)
+            else:
+                response = await client.get(url, headers=self.headers, params=params)
 
-            # rotate on rate-limit or block errors
-            if response.status_code in [429, 403]:
-                self.error_count += 1
-                self.logger.warning(f"Received HTTP {response.status_code}, rotating headers and retrying...")
-                self.gmgn_logger.error(f"Received HTTP {response.status_code}, for {url}")
-                self._rotate_headers()
-                if self.error_count == 3:
-                    self.logger.error("Multiple consecutive failures, clearing cookies and retrying...")
-                    self._clear_cookies()
-                    self.error_count = 0
-                if not timeout:
-                    time.sleep(random.randint(5, 10)) # backoff
-                else: 
-                    time.sleep(timeout)
-                return self.make_request(endpoint, params)
+            response.raise_for_status() # Raise for bad response (4xx or 5xx)
 
-            if response.status_code >= 400:
-                raise RuntimeError(f"HTTP error {response.status_code}: {response.text}")
+            return response
 
-            self.logger.info(f"Request to {url} completed successfully.")
-            self.gmgn_logger.info(f"Request to {url} completed successfully.")
-            return response.json()
-        except Exception as err:
-            raise RuntimeError(f"Request failed: {err}")
+        except httpx.HTTPStatusError as e:
+            self.error_count += 1
+            self.logger.warning(f"Received HTTP {e.response.status_code} for {url}, rotating headers and retrying...")
+            self.gmgn_logger.error(f"Received HTTP {e.response.status_code} for {url}")
+
+            self._rotate_headers()
+            if self.error_count >= 3:
+                self.logger.error("Multiple consecutive failures, clearing cookies and retrying...")
+                self._clear_cookies()
+                self.error_count = 0
+            if not timeout:
+                await asyncio.sleep(random.randint(5, 10)) # backoff
+            else:
+                await asyncio.sleep(timeout)
+
+            return await self._make_request(client, url, params, timeout) # we're retrying
+
+        except (httpx.TimeoutException, httpx.ConnectError) as e:
+            self.logger.error(f"Request to {url} timed out or connection error: {e}")
+            return None
+
+        except Exception as e:
+            self.logger.error(f"Failed {url}: {e}")
+            return None
+
+    def queue_request(self, url: str, params: Optional[dict] = None, timeout: Optional[int] = None):
+        self.pending_requests.append((url, params, timeout))
+        self.logger.debug(f"Queued request: {url} with params: {params}, timeout: {timeout}")
+
+    async def execute_requests(self):
+        if not self.pending_requests:
+            self.logger.warning("No pending requests to execute.")
+            return []
+
+        self.logger.info(f"Executing {len(self.pending_requests)} queued requests...")
+
+        results = []
+        async with httpx.AsyncClient() as client:
+            tasks = []
+            for url, params, timeout in self.pending_requests:
+                tasks.append(self._make_request(client, url, params, timeout))
+
+            responses = await asyncio.gather(*tasks)
+
+            for (url, params, timeout), response in zip(self.pending_requests, responses):
+                if response:
+                    json_response = response.json() if response else None
+                    results.append(json_response)
+                    self.logger.info(f"Request to {url} was successful")
+                else:
+                    self.logger.error(f"Request to {url} failed: {response.text if response else 'No response received'}")
+                    results.append(None)
+
+        self.pending_requests.clear()
+        return results
+
 
 if __name__ == "__main__":
     agent_mapper = AgentMapper()

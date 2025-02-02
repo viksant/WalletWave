@@ -11,9 +11,12 @@ class SolanaWalletScanner(PluginInterface):
     def __init__(self, config_manager: ConfigManager):
         super().__init__(config_manager)
         self.gmgn = GmgnRepo()
-        self.logger = get_logger("SolanaWalletScanner")
         self.timeframe = config_manager.get_plugin_setting(self.plugin_class, "timeframe", "7d")
         self.wallets = []
+        self.logger = None
+
+    async def initialize(self):
+        self.logger = await get_logger("SolanaWalletScanner")
 
     def get_name(self) -> str:
         # return the name you want to show in the plugin menu
@@ -26,7 +29,7 @@ class SolanaWalletScanner(PluginInterface):
     def get_version(self) -> str:
         return "1.0.1"
 
-    def initialize(self) -> None:
+    async def initialize(self) -> None:
         # Step 1 of plugin lifecycle
         self.logger.info("Solana Wallet Scanner initialized")
 
@@ -48,7 +51,7 @@ class SolanaWalletScanner(PluginInterface):
             except Exception as e:
                 print(f"An error occurred: {str(e)}. Please try again.")
 
-    def execute(self) -> list:
+    async def execute(self) -> list:
         while True:
             user_input = input("Type desired timeout between requests in seconds. Press 0 to omit: ").strip()
             try:
@@ -71,7 +74,7 @@ class SolanaWalletScanner(PluginInterface):
 
         for wallet in self.wallets:
             try:
-                wallet_info = self.gmgn.get_wallet_info(wallet, timeout, period=self.timeframe)
+                wallet_info = await self.gmgn.get_wallet_info(wallet, timeout, period=self.timeframe)
                 wallet_data.append(wallet_info.to_summary(wallet))
                 self.logger.info(f"Fetched data for wallet: {wallet}")
             except Exception as e:

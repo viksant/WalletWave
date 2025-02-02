@@ -4,5 +4,5 @@ tls_client
 requests
 click
 colorama
-WalletWave
+httpx
 pydantic
