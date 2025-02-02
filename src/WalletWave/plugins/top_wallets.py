@@ -1,13 +1,11 @@
-import asyncio
-import time
 from typing import List
 
+from WalletWave.config import ConfigManager
 from WalletWave.plugins.utils.plugin_interface import PluginInterface
 from WalletWave.repositories.gmgn_repo import GmgnRepo
-from WalletWave.utils.logging_utils import get_logger
-from WalletWave.config import ConfigManager
-
 from WalletWave.utils.config_validators import *
+from WalletWave.utils.logging_utils import get_logger
+
 
 # Author: LetsStartWithPurple
 # Version: 2.0.0
@@ -105,7 +103,7 @@ class TopWallets(PluginInterface):
             self.logger.critical(f"Error running plugin: {e}", exc_info=True)
             return filtered_wallets
 
-    def finalize(self) -> None:
+    async def finalize(self) -> None:
         self.logger.info("TopWallets plugin finalized")
 
     #custom function

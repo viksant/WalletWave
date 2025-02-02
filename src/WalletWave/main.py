@@ -47,7 +47,7 @@ class WalletWave:
 
             # Step 4: Finalize the plugin
             self.logger.info("Finalizing plugin...")
-            plugin.finalize()
+            await plugin.finalize()
         except Exception as e:
             self.logger.error(f"An error occurred while running the plugin: {e}")
 
