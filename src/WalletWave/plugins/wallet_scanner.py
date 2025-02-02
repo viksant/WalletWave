@@ -29,7 +29,6 @@ class SolanaWalletScanner(PluginInterface):
     async def initialize(self) -> None:
         # Step 1 of plugin lifecycle
         self.logger = get_logger("SolanaWalletScanner")
-        self.logger = get_logger("SolanaWalletScanner")
         self.logger.info("Solana Wallet Scanner initialized")
 
         # Loop until the user inputs the correct file path
