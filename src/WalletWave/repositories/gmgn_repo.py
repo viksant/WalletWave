@@ -54,8 +54,7 @@ class GmgnRepo:
         if not contract_address:
             raise ValueError("Must provide a contract address")
         url = self.endpoint.get_url(self.endpoint.TOKEN_INFO, contract_address=contract_address)
-
-        #make request
+        # Queue the request
         return self.client.queue_request(url)
 
     async def get_wallet_info(self, wallet_address: str, timeout: int = 0, period: str = "7d") -> WalletInfoResponse:
@@ -76,9 +75,6 @@ class GmgnRepo:
         self.client.queue_request(url, params, timeout)
         response = await self.client.execute_requests()
         return WalletInfoResponse.model_validate(response)
-        # response = self.client.queue_request(url, timeout, params)
-        # print(f"Request was made at {datetime.now()}")
-        # return transform(response, WalletInfoResponse)
 
 if __name__ == "__main__":
     # repo = GmgnRepo()

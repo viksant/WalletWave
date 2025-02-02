@@ -56,7 +56,7 @@ class PluginInterface(ABC):
         pass
 
     @abstractmethod
-    def finalize(self) -> None:
+    async def finalize(self) -> None:
         """
         Called when the plugin is being unloaded to clean up resources.
         """
