@@ -5,5 +5,4 @@ requests
 click
 colorama
 httpx
-WalletWave
 pydantic

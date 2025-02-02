@@ -1,3 +1,4 @@
+import asyncio
 import time
 from typing import List
 
@@ -41,7 +42,7 @@ class TopWallets(PluginInterface):
     def get_version(self) -> str:
         return "2.0.0"
 
-    def initialize(self) -> None:
+    async def initialize(self) -> None:
         self.logger.info("TopWallets plugin initialized.")
 
     async def execute(self) -> any:
@@ -97,7 +98,7 @@ class TopWallets(PluginInterface):
             # log the result
             self.logger.info(f"Filtered {len(filtered_wallets)} wallets.")
 
-            time.sleep(1) #rate limiter
+            #rate limiter
             return filtered_wallets
 
         except Exception as e:
@@ -119,7 +120,7 @@ class TopWallets(PluginInterface):
         self.logger.debug(f"Analyzing wallet {wallet_address} for period {period}")
         try:
             response = await self.gmgn.get_wallet_info(wallet_address=wallet_address, period=period)
-            return response
+            return response if response else None
         except Exception as e:
             self.logger.error(f"Error analyzing: {e}")
 
@@ -134,8 +135,8 @@ class TopWallets(PluginInterface):
         """
         self.logger.debug(f"Fetching trending wallets: timeframe={timeframe}, tag={wallet_tag}")
         try:
-            response = self.gmgn.get_trending_wallets(timeframe, wallet_tag)
-            return response.rank
+            response = await self.gmgn.get_trending_wallets(timeframe, wallet_tag)
+            return response.rank if response else []
         except Exception as e:
             self.logger.error(f"Error fetching top wallets: {e}")
 

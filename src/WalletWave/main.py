@@ -1,14 +1,20 @@
-import logging
-
 from CLI.menu import menu
 from WalletWave.config import parse_args
 from WalletWave.config import ConfigManager
 from WalletWave.utils.file_utils import FileUtils
 from WalletWave.utils.logging_utils import get_logger, init_logging
+import asyncio
 
 class WalletWave:
     """
-    Main class
+    Main class that handles plugin execution and data export
+    - execute function of WalletWave
+       - Step 1: Initialize the plugin
+       - Step 2: Execute the plugin
+       - Step 3: Export plugin results
+       - Step 4: Finalize the plugin
+    - export function
+       - Exports the data returned from plugin by passing to file_utils
     """
     def __init__(self, config: ConfigManager):
         """
@@ -53,34 +59,45 @@ class WalletWave:
         self.file_utils.export_wallet_data(data, export_format=export_format)
 
 
-async def main():
-    """Entry point"""
+def main():
+    """
+    Application entry point that handles:
+      - Command line argument parsing
+      - Configuration management
+      - Logging initialization
+      - Menu interaction
+      - Plugin execution
+    """
     try:
+        # Parse command line arguments (config.py - parse_args())
         args = parse_args()
 
+        # Initialize configuration manager (config.py)
         manager = ConfigManager(args)
 
+        # Setup logging based on config
+        # Passes configuration settings to logging_utils
         init_logging(manager.config)
 
-        # run menu
+        # Display menu and get user selection
+        # CLI - menu.py
         action = menu(manager)
 
-        #exit if prompted
+        # exit if prompted
         if action == "exit":
             return
 
-        # WalletWave instance
-        app = await WalletWave(manager)
+        # Create main application instance (main.py - WalletWave::class)
+        app = WalletWave(manager)
 
+        # Extract the selected plugin from menu action
+        # menu.py returns ["plugin", selected_plugin] to action variable
         selected_plugin = action[1]
-        # Run
-        await app.execute(selected_plugin)
+
+        # Execute the selected plugin asynchronously
+        asyncio.run(app.execute(selected_plugin))
     except ValueError as e:
         exit(1)
 
 if __name__ == "__main__":
-    import asyncio
-    try:
-        asyncio.run(main())
-    except RuntimeError as e:
-        print(f"Error: {e}")
+    main()
