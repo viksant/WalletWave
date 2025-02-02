@@ -124,7 +124,6 @@ class Gmgn:
         self.logger.debug(f"Queued request: {url} with params: {params}, timeout: {timeout}")
 
     async def execute_requests(self):
-        print("I'm about to execute requests")
         if not self.pending_requests:
             self.logger.warning("No pending requests to execute.")
             return []
