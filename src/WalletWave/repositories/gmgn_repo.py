@@ -1,8 +1,8 @@
-from WalletWave.utils.gmgn_client.schemas import WalletsResponse, WalletInfoResponse
-from WalletWave.utils.gmgn_client.client import Gmgn
-from WalletWave.utils.gmgn_client.utils.gmgn_endpoints import GmgnEndpoints
+from WalletWave.models.wallets import WalletsResponse
+from WalletWave.models.wallet_info import WalletInfoResponse
+from WalletWave.services.gmgn_client.client import Gmgn
+from WalletWave.services.gmgn_client.utils.gmgn_endpoints import GmgnEndpoints
 
-from datetime import datetime
 
 class GmgnRepo:
     def __init__(self):
@@ -35,6 +35,13 @@ class GmgnRepo:
             raise ValueError("Invalid timeframe or wallet tag")
 
         params = {
+            "device_id": "f80400db-d886-4350-89fc-767ce49eefd7",
+            "client_id": "gmgn_web_2025.0128.214338",
+            "from_app": "gmgn",
+            "app_ver": "2025.0128.214338",
+            "tz_name": "America/Indianapolis",
+            "tz_offset": "-18000",
+            "app_lang": "en",
             "tag": wallet_tag,
             "orderby": f"pnl_{timeframe}",
             "direction": order,

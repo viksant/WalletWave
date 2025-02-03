@@ -3,12 +3,16 @@ import random
 from typing import Dict, List, Tuple, Optional
 
 import httpx
-import tls_client
 
-from WalletWave.utils.gmgn_client.utils.agent_mapper import AgentMapper
+from WalletWave.services.gmgn_client.utils.agent_mapper import AgentMapper
 from WalletWave.utils.logging_utils import LogConfig
 from WalletWave.utils.logging_utils import get_logger
 
+cf_cookie = "__cf_bm=4QJAnceroN0E013Tze5M4HFYhAx9zJsEaBHmUoekCGE-1738510740-1.0.1.1-FBBkfk6w.4duV6mTjkXL4KgPgWcZQoYCVE7JeSNBWBec2mDgWf1FJ.iR6y6TF7oQwKXjPv94HTVdRdoc.mvW3w"
+
+cookies = {
+    "__cf_bm": cf_cookie,
+}
 
 # TODO: Implement additional features like fetching transaction history or token analytics if supported by the API.
 # TODO: Add support for other blockchain networks in addition to Solana.
@@ -36,7 +40,8 @@ class Gmgn:
         self.gmgn_logger = self.log_config.get_gmgn_api_logger()
         self.agent_mapper = AgentMapper()
         self.pending_requests: List[Tuple[str, dict, int]] = []
-        self.session = tls_client.Session(random_tls_extension_order=True)
+        # self.session = tls_client.Session(random_tls_extension_order=True)
+        self.session = httpx.AsyncClient(cookies=cookies)
         self.client, self.agent, self.headers = None, None, None
         self.request_count = 0
         self.max_requests_range = max_requests_range
@@ -51,6 +56,7 @@ class Gmgn:
         return {
             "Host": "gmgn_client.ai",
             "accept": "application/json",
+            "accept-encoding": "gzip, deflate, br, zstd",
             "accept-language": "en-US,en;q=0.9",
             "dnt": "1",
             "priority": "u=1, i",
@@ -65,8 +71,9 @@ class Gmgn:
 
     def _clear_cookies(self):
         self.logger.warning("Lets destroy cookies!")
-        self.session.cookies.clear()
-        self.logger.info("Cookies cleared...")
+        #self.session.cookies.clear()
+        # self.logger.info("Cookies cleared...")
+        self.logger.info("Clear cookies is bypassed")
 
     async def _make_request(self, client: httpx.AsyncClient, url: str, params: Optional[dict] = None, timeout: int = 0):
         self.logger.debug(f"Preparing request to URL: {url} with params: {params}")
@@ -81,14 +88,15 @@ class Gmgn:
 
         if not timeout:
             await asyncio.sleep(2)
+            #time.sleep(2)
 
         self.logger.debug("Sending request...")
 
         try:
             if timeout:
-                response = await client.get(url, headers=self.headers, params=params, timeout=timeout)
+                response = await self.session.get(url, headers=self.headers, params=params, timeout=timeout)
             else:
-                response = await client.get(url, headers=self.headers, params=params)
+                response = await self.session.get(url, headers=self.headers, params=params)
 
             response.raise_for_status() # Raise for bad response (4xx or 5xx)
 
