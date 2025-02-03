@@ -4,7 +4,7 @@ from typing import Dict, List, Tuple, Optional
 
 import httpx
 
-from WalletWave.utils.gmgn_client.utils.agent_mapper import AgentMapper
+from WalletWave.services.gmgn_client.utils.agent_mapper import AgentMapper
 from WalletWave.utils.logging_utils import LogConfig
 from WalletWave.utils.logging_utils import get_logger
 

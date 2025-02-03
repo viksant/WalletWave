@@ -1,10 +1,8 @@
-import uuid
+from WalletWave.models.wallets import WalletsResponse
+from WalletWave.models.wallet_info import WalletInfoResponse
+from WalletWave.services.gmgn_client.client import Gmgn
+from WalletWave.services.gmgn_client.utils.gmgn_endpoints import GmgnEndpoints
 
-from WalletWave.utils.gmgn_client.schemas import WalletsResponse, WalletInfoResponse
-from WalletWave.utils.gmgn_client.client import Gmgn
-from WalletWave.utils.gmgn_client.utils.gmgn_endpoints import GmgnEndpoints
-
-from datetime import datetime
 
 class GmgnRepo:
     def __init__(self):

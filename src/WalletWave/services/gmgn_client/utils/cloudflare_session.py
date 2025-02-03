@@ -1,8 +1,9 @@
-from curl_cffi.requests import AsyncSession
 import asyncio
 import logging
-from typing import Optional, Dict, List, Any
 from datetime import datetime
+from typing import Optional, Dict, Any
+
+from curl_cffi.requests import AsyncSession
 
 logging.basicConfig(level=logging.INFO)
 
